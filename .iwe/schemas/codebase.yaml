@@ -1,14 +1,15 @@
 $schema: https://document-schema.org/draft/2026-06/schema
 description: >-
-  Codebase map documents (data/codebase/**) — derived from the code by the map
-  skill. source names the code the doc describes (one path, or a list whose
-  first entry is primary); commit is the git revision it was read at; verified
-  is the date the doc last matched it.
+  Codebase map documents (data/codebase/**) — derived by reading the code.
+  source names the code the doc describes (one path, or a list whose
+  first entry is primary); commit is the git revision it was read at; the OKF
+  verified family records who last confirmed the doc against that code.
 maxDepth: 4
 frontmatter:
   type: object
-  required: [source, commit, verified]
+  required: [type, source, commit, verified]
   properties:
+    type: { const: codebase }
     source:
       anyOf:
         - type: string
@@ -21,7 +22,55 @@ frontmatter:
       type: string
       pattern: "^[0-9a-f]{7,40}$"
       description: git commit SHA of the codebase when the code was read
-    verified:
+    description:
+      type: string
+      description: one sentence summarizing this document — what OKF consumers and data/index.md show
+    resource:
+      type: string
+      description: canonical URI of the underlying asset this document describes (SPEC §4.1)
+    tags: { type: array, items: { type: string } }
+    status:
+      enum: [draft, stable, deprecated]
+      description: OKF lifecycle (SPEC §5.4), derived from stage — set it only for the draft and deprecated cases in SCHEMA.md; absent means stable
+    stale_after:
       type: string
       format: date
-      description: verified must be a YYYY-MM-DD date — when the doc last matched the code
+      description: the day this content goes stale (SPEC §5.5); set it on anything that rots
+    generated:
+      type: object
+      required: [by]
+      description: how the current content was produced (SPEC §5.2) — write it on every edit
+      properties:
+        by: { type: string, description: "actor (SPEC §7) — <producer>/<version>, human:<id>, or process:<id>" }
+        at: { type: string, description: ISO 8601 datetime of the last meaningful change }
+    verified:
+      description: who confirmed the content against its sources (SPEC §5.2); one mapping or a list
+      anyOf:
+        - $ref: '#/$defs/verification'
+        - { type: array, items: { $ref: '#/$defs/verification' } }
+    sources:
+      type: array
+      description: the materials this document derives from (SPEC §5.1); cite per claim with a footnote keyed to an entry id
+      items:
+        type: object
+        required: [resource]
+        properties:
+          id: { type: string, description: footnote label used to attribute a claim in the body }
+          resource: { type: string, description: a URL, a repo path, or a scope descriptor }
+          title: { type: string }
+          author: { type: string, description: actor (SPEC §7) }
+          usage_count: { type: integer }
+          last_modified: { type: string, format: date }
+    usage_window:
+      type: object
+      description: the date range every usage_count is measured over
+      properties:
+        from: { type: string, format: date }
+        to: { type: string, format: date }
+  $defs:
+    verification:
+      type: object
+      required: [by]
+      properties:
+        by: { type: string, description: "actor (SPEC §7)" }
+        at: { type: string, description: ISO 8601 datetime }

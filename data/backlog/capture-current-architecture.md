@@ -1,7 +1,12 @@
 ---
-status: planned
+type: task
+description: 'Write the first data/architecture/ documents: the module layout, the core data structures, and the design decisions already baked into the code.'
+stage: planned
 priority: medium
 created: 2026-08-01
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
 ---
 
 # Capture the current architecture

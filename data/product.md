@@ -1,3 +1,12 @@
+---
+type: tracker
+description: What the product is, who it is for, and the decisions every plan and spec derives from.
+stage: living
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
+---
+
 # Product
 
 *The foundation document. Every plan, spec, and release decision derives from

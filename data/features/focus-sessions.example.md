@@ -1,5 +1,10 @@
 ---
-status: implemented
+type: feature
+description: 'Example implemented feature: focus sessions, the product''s core loop.'
+stage: implemented
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
 ---
 
 # Focus sessions

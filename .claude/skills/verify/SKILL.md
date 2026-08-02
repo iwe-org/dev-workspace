@@ -46,14 +46,14 @@ fixes belong to the skills and sessions it points at.
      highest-traffic specs first: `iwe find --references <key>` counts).
    - Features marked `implemented` with no trace in the code; shipped
      behavior with no feature doc.
-   - Open bugs (no `status`) — still reproducible? Point at ones whose
+   - Open bugs (no `stage`) — still reproducible? Point at ones whose
      `## Key references` no longer exist.
    - Stale map docs: for each `data/codebase/` doc, commits touching its
      `source` after its `commit`
      (`git log --oneline <commit>..HEAD -- <source>`) — flag for the map
      skill's refresh mode.
-   - Consistency: plans with `status: done` still linked under `## Active`
-     (`iwe find --filter '{status: done}' --included-by data/plans -f keys`
+   - Consistency: plans with `stage: done` still linked under `## Active`
+     (`iwe find --filter '{stage: done}' --included-by data/plans -f keys`
      cross-checked against the hub sections); `iwe schema validate`
      violations; `iwe stats` dangling links and `data/` orphans other than
      `data/index`.

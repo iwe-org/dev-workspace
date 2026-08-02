@@ -19,7 +19,7 @@ software project's memory and system of record. The division of labor:
    `## Authoring rules`: they bind everything you write.
 2. Check the state of work: active plans under `## Active` in `data/plans.md`,
    and high-priority tasks —
-   `iwe find --filter '{status: planned, priority: high}' --included-by data/backlog -f keys`.
+   `iwe find --filter '{stage: planned, priority: high}' --included-by data/backlog -f keys`.
 
 ## The operating loop
 
@@ -35,33 +35,40 @@ software project's memory and system of record. The division of labor:
 4. **Record** — write the state back:
    - Idea (not a commitment) → `data/someday/<slug>.md` + link from
      `data/someday.md`.
-   - Actionable item → `data/backlog/<slug>.md` (`status: planned`, priority),
+   - Actionable item → `data/backlog/<slug>.md` (`stage: planned`, priority),
      linked under the priority section of `data/backlog.md`.
    - Work starts → plan skill: `data/plans/YYYYMMDD-<slug>.md` (`created`,
      verified code anchors, `## Spec changes`) + link under `## Active`.
    - Work ships → verify skill green (tasks, requirements, and scenarios checked
-     against the code), then ship skill: specs synced first, then `status: done`
+     against the code), then ship skill: specs synced first, then `stage: done`
      with `completed`, link moved to `## Done`, feature doc `implemented`,
      inclusion link in `data/releases/unreleased.md`.
-   - Plan abandoned → `status: cancelled`, link moved to `## Cancelled` (it
-     stays listed — the record of why is worth keeping).
+   - Plan abandoned → `stage: cancelled`, link moved to `## Cancelled` (it stays
+     listed — the record of why is worth keeping).
    - Bug found → `data/bugs/<slug>.md` (Symptom / Reproduction / Root cause /
      Fix, `path:line` anchors) + link from `data/bugs.md`. Fixed →
-     `status: done`.
+     `stage: done`.
    - Behavior defined or changed → the matching `data/spec/` doc
      (Requirement/Scenario format); this happens *inside* the ship flow, not as
      an afterthought.
    - Design decision made → `data/architecture/<slug>.md`, including the
      rejected alternatives.
-   - Code structure changed (module added, split, or moved) → refresh the
-     touched `data/codebase/` docs (the map skill's refresh mode — the skill
-     ships in the [code-map template](https://github.com/iwe-org/code-map)).
+   - Code structure changed (module added, split, or moved) → re-read the code
+     and refresh the touched `data/codebase/` docs, bumping their `commit` and
+     `verified`. `git log <commit>..HEAD -- <source>` finds the stale ones.
    - Vision insight → `data/concept/<slug>.md`.
-   - Task finished → `status: done` + `completed` on the task doc, link moved to
+   - Task finished → `stage: done` + `completed` on the task doc, link moved to
      `## Done` in `data/backlog.md`.
    - Release cut → ship skill's release mode (rename unreleased, stamp
      version/date, fresh accumulator).
-5. **Validate & commit** — `iwe normalize`, then `iwe schema validate` must
+5. **Stamp** — every document you create or meaningfully change gets
+   `generated: { by: claude-code/opus-5, at: <ISO 8601 now> }`, a one-sentence
+   `description` if it has none, and — when you derived it from code or an
+   external page — a `sources` entry naming that path or URL. Whenever you set
+   `stage`, derive OKF `status` from the table in `SCHEMA.md` and set or clear
+   it in the same edit. If a hub gained or lost a document, update
+   `data/index.md`.
+6. **Validate & commit** — `iwe normalize`, then `iwe schema validate` must
    pass; commit with a short message describing the state change.
 
 ## Conventions
@@ -71,17 +78,29 @@ software project's memory and system of record. The division of labor:
   inclusion-link their members; that link, not the directory, is what makes a
   document a plan or a feature. Inline links (inside sentences/list items) are
   soft references for cross-cutting relationships.
-- **Dual representation**: a work item's status lives in frontmatter *and* as
-  its link's position in the hub (`## Active`/`## Done`/`## Cancelled` in plans,
+- **Dual representation**: a work item's stage lives in frontmatter *and* as its
+  link's position in the hub (`## Active`/`## Done`/`## Cancelled` in plans,
   `## High`/`## Done` in backlog). Change both together; every item stays listed
   forever.
-- **Status vocabularies** (schema-enforced, human reference in `SCHEMA.md`):
+- **Stage vocabularies** (schema-enforced, human reference in `SCHEMA.md`):
   plans `done|cancelled` (absent = active, `done` requires `completed`);
   features `proposed|accepted|implemented|deprecated|cancelled`; bugs
   `done|cancelled` (absent = open); releases `released|unreleased`; backlog
-  `planned|done`. Reference docs (spec/architecture/concept/someday) carry no
-  frontmatter; codebase-map docs carry `source` + `commit` + `verified` —
-  provenance, not lifecycle.
+  `planned|done`. Reference docs (spec/architecture/concept/someday) carry a
+  `type` and no stage; codebase-map docs carry `source` + `commit` + `verified`
+  — provenance, not lifecycle.
+- **`data/` is an OKF v0.2 bundle** — the graph is portable knowledge any [Open
+  Knowledge
+  Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+  consumer can read, and CI checks conformance on every commit. Three rules keep
+  it true: every document under `data/` has frontmatter with a non-empty `type`;
+  `data/index.md` carries no frontmatter beyond `okf_version` and stays sections
+  of link bullets; `data/log.md` stays date-grouped bullets under
+  `## YYYY-MM-DD`. `okf.yaml`, `okf-index.yaml`, and `okf-log.yaml` enforce all
+  three — never work around them by unbinding a schema.
+- **Links carry `.md`** — `refs_extension = ".md"`, so a link resolves for
+  readers outside iwe. Run `iwe normalize` after bulk edits rather than
+  hand-writing link targets.
 - **Specs are the durable truth** and use `### Requirement:` + SHALL +
   `#### Scenario:` WHEN/THEN. The ship skill syncs them whenever a plan ships —
   a plan is not done while the specs it touched describe the old behavior. Scale
@@ -130,10 +149,10 @@ iwe find --fuzzy timer -f keys                                   # fuzzy title+k
 iwe find --lexical "session log storage" -f keys                 # full-text ranking
 iwe find --included-by data/plans -f keys                        # all docs under a hub
 iwe find --references data/spec/timer -f keys                    # backlinks
-iwe find --filter '{status: done}' --included-by data/plans -f keys   # frontmatter query
+iwe find --filter '{stage: done}' --included-by data/plans -f keys   # frontmatter query
 iwe tree -k data/plans -d 2                                      # subtree overview
 iwe new --key data/plans/20260801-my-plan                        # create at an explicit key
-iwe update -k data/features/foo --set status=implemented         # set frontmatter
+iwe update -k data/features/foo --set stage=implemented         # set frontmatter
 iwe rename <old-key> <new-key>                                   # move; references auto-update
 iwe delete <key>                                                 # delete + reference cleanup
 iwe normalize                                                    # run after manual edits
@@ -147,13 +166,12 @@ anchors: `--includes`, `--included-by`, `--references`, `--referenced-by`,
 
 ## Workspace skills
 
-| Skill                                                    | What it does                                                              |
-| -------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `.claude/skills/setup/SKILL.md`                          | Brownfield onboarding: scans the codebase, drafts product/architecture    |
-| [code-map template](https://github.com/iwe-org/code-map) | Map + benchmark skills for `data/codebase/` — copy them in from that repo |
-| `.claude/skills/explore/SKILL.md`                        | Thinking partner: investigate and compare options; never writes code      |
-| `.claude/skills/plan/SKILL.md`                           | Files a plan: discovery, verified anchors, spec impact, Active listing    |
-| `.claude/skills/implement/SKILL.md`                      | Executes a plan task-by-task: tests, checkbox ticks, clean boundaries     |
-| `.claude/skills/verify/SKILL.md`                         | Pre-ship gate + drift audit: claims in the graph checked against code     |
-| `.claude/skills/ship/SKILL.md`                           | Closes the loop: spec sync, status flips, release recording, release cut  |
-| `.claude/skills/weekly/SKILL.md`                         | Read-only digest: shipped, in flight, bugs, backlog, graph health         |
+| Skill                               | What it does                                                            |
+| ----------------------------------- | ----------------------------------------------------------------------- |
+| `.claude/skills/setup/SKILL.md`     | Brownfield onboarding: scans the codebase, drafts product/architecture  |
+| `.claude/skills/explore/SKILL.md`   | Thinking partner: investigate and compare options; never writes code    |
+| `.claude/skills/plan/SKILL.md`      | Files a plan: discovery, verified anchors, spec impact, Active listing  |
+| `.claude/skills/implement/SKILL.md` | Executes a plan task-by-task: tests, checkbox ticks, clean boundaries   |
+| `.claude/skills/verify/SKILL.md`    | Pre-ship gate + drift audit: claims in the graph checked against code   |
+| `.claude/skills/ship/SKILL.md`      | Closes the loop: spec sync, stage flips, release recording, release cut |
+| `.claude/skills/weekly/SKILL.md`    | Read-only digest: shipped, in flight, bugs, backlog, graph health       |

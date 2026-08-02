@@ -11,13 +11,13 @@ next. Numbers come from frontmatter and git — never from memory.
 ## Steps
 
 1. **Shipped.** Plans completed in the last 7 days:
-   `iwe find --filter '{status: done}' --included-by data/plans -f json` and
+   `iwe find --filter '{stage: done}' --included-by data/plans -f json` and
    keep those with a `completed` date in range; cross-check with
    `git log --since '7 days ago' --oneline`. List releases cut, if any.
-2. **In flight.** Active plans (no `status`) under `## Active` in
+2. **In flight.** Active plans (no `stage`) under `## Active` in
    `data/plans.md`; flag any untouched for 14+ days (last commit touching the
    file) as possibly stalled or silently done.
-3. **Open bugs.** Docs under `data/bugs.md` without `status: done/cancelled`.
+3. **Open bugs.** Docs under `data/bugs.md` without `stage: done/cancelled`.
 4. **Backlog head.** `## High` items in `data/backlog.md`, plus how long
    they've sat (`created`).
 5. **Graph health.** `iwe schema validate` (report violations) and `iwe stats`

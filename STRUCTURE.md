@@ -24,7 +24,7 @@ STRUCTURE.md       # this file: design rationale
   config.toml      # markdown conventions + schema→glob bindings
   schemas/         # validation schemas: plan, feature, bug, release, task, codebase
 .claude/skills/    # state workflows: setup, explore, plan, implement,
-                   # verify, ship, weekly (map: see the code-map template)
+                   # verify, ship, weekly
 data/              # the graph
   index.md         # the root hub — every hub is its child
   product.md       # ✏️ fill-in tracker: the doc every session reads first
@@ -41,18 +41,19 @@ graph is truth. This keeps categorization refactorable (move a link, not a file)
 and makes every hub a queryable index.
 
 **Work items vs. reference.** Plans, features, bugs, releases, and backlog tasks
-are *work items*: schema-validated frontmatter, lifecycles, a commit gate
+are *work items*: a lifecycle `stage`, dates, a commit gate
 (`iwe schema validate`). Specs, architecture, concept, and someday docs are
-*durable reference*: no frontmatter at all, because nothing about them is a
-status. The split keeps validation where it pays and ceremony away from where it
-doesn't.
+*durable reference*: they carry a `type` and the shared OKF families, but no
+`stage`, because nothing about them is a lifecycle. The split keeps the ceremony
+where it pays. Every document is validated — OKF conformance requires a `type`
+everywhere — but only work items are asked for more than that.
 
-**Dual representation.** A work item's status lives in frontmatter (for queries)
+**Dual representation.** A work item's stage lives in frontmatter (for queries)
 and as its link's position in the hub (for reading). The rule that makes this
 survivable: change both together, and no item is ever delisted — `## Done` and
 `## Cancelled` are history, not a trash can.
 
-**Minimal frontmatter; relationships are links.** Five status vocabularies and
+**Minimal frontmatter; relationships are links.** Five stage vocabularies and
 three date fields — that's the entire frontmatter surface. Everything relational
 (plan → spec, bug → requirement, release → feature, plan → plan dependency) is a
 markdown link in the body, which keeps relationships visible while reading and
@@ -64,7 +65,7 @@ traversable via `iwe find --references`.
 new doc plus a moved link.
 
 **Spec sync at ship.** A plan names the specs it will touch (`## Spec changes`);
-the ship skill updates those specs *before* the plan's status flips. This is the
+the ship skill updates those specs *before* the plan's stage flips. This is the
 single strongest defense against the failure mode of every long-lived doc set:
 specs that describe last quarter's behavior.
 
@@ -83,13 +84,14 @@ truth next to spec (must), architecture (why), and concept (why at all): *what
 the code is*, written only from reading it. The map mirrors the code's
 containment tree: every component gets a doc at a canonical key matching its
 source path, and parents inclusion-link children (`## Contains`), so
-`iwe tree -k data/codebase` renders the code's structure. Map docs are the one
-reference type with frontmatter — `source` (the code described), `commit` (the
-revision it was read at), `verified` (the date) — because provenance is what
-makes incremental refresh cheap: `git log <commit>..HEAD -- <source>` finds
-exactly the dirty docs. Each relationship is written in one direction only
-(`## Contains` down, `## Depends on` out); "part of" and "used by" are backlink
-queries, so they can never rot. Map docs are freely rewritable by the map skill;
+`iwe tree -k data/codebase` renders the code's structure. Map docs carry the
+most provenance of any type — `source` (the code described), `commit` (the
+revision it was read at), and OKF's `verified` (who last confirmed the doc
+against that code) — because provenance is what makes incremental refresh cheap:
+`git log <commit>..HEAD -- <source>` finds exactly the dirty docs. Each
+relationship is written in one direction only (`## Contains` down,
+`## Depends on` out); "part of" and "used by" are backlink queries, so they can
+never rot. Map docs are freely rewritable from a fresh read of the code;
 decision records never are.
 
 **Authoring rules travel with the product doc.** `data/product.md` carries an
@@ -119,9 +121,8 @@ Adopted, in IWE-native form:
 
 Deliberately not adopted:
 
-- **Archive by file move** (`changes/archive/YYYY-MM-DD-*`) — `status: done`
-  plus graph queries gives the same lifecycle without moving files or breaking
-  links.
+- **Archive by file move** (`changes/archive/YYYY-MM-DD-*`) — `stage: done` plus
+  graph queries gives the same lifecycle without moving files or breaking links.
 - **Per-change file bundles** (proposal/design/tasks/specs per change) — one
   plan document with sections is leaner; when a plan genuinely outgrows one
   file, inclusion links split it natively.
@@ -133,7 +134,7 @@ Deliberately not adopted:
 Lessons from the knowledge base this template generalizes:
 
 - Its `## Failed` plans section had no frontmatter counterpart — failed plans
-  were indistinguishable from active ones in queries. Here `status: cancelled` ⇄
+  were indistinguishable from active ones in queries. Here `stage: cancelled` ⇄
   `## Cancelled` covers abandoned work completely.
 - It accumulated overlapping ad-hoc hubs (dated snapshot indexes duplicating the
   real ones). This template ships exactly one hub per entity type; point-in-time

@@ -1,3 +1,11 @@
+---
+type: bug
+description: 'Example bug record: the timer drifts after the machine sleeps, with repro and investigation notes.'
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
+---
+
 # Bug: Timer drifts after laptop sleep
 
 *Example document — this shows the shape of a bug report; absent `status`

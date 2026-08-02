@@ -1,34 +1,37 @@
-# 🏠 Index
+---
+okf_version: '0.2'
+---
 
-*The root of the graph — every hub is a child, so `iwe tree -k data/index` shows
-the whole workspace.*
+# Foundation
 
-[Product](product)
+- [Product](product.md) - What the product is, who it is for, and the decisions
+  every plan and spec derives from.
 
-## Work
+# Work
 
-[Plans](plans)
+- [Plans](plans.md) - Implementation plans, migrations, and design proposals,
+  one document per unit of work.
+- [Backlog](backlog.md) - Prioritized single-topic work items waiting to become
+  a plan or a quick fix.
+- [Milestones](milestone.md) - Aggregator plans that sequence the work for one
+  release.
+- [Someday](someday.md) - Ideas and POCs that are not commitments yet.
 
-[Backlog](backlog)
+# Delivery
 
-[Milestones](milestone)
+- [Features](features.md) - Feature design documents, each carrying its
+  lifecycle stage.
+- [Bugs](bugs.md) - Bug reports, investigations, and repro notes.
+- [Releases](releases.md) - One page per version, aggregating the features and
+  fixes it shipped.
 
-[Someday](someday)
+# Reference
 
-## Delivery
-
-[Features](features)
-
-[Bugs](bugs)
-
-[Releases](releases)
-
-## Reference
-
-[Spec](spec)
-
-[Codebase](codebase)
-
-[Architecture](architecture)
-
-[Concept](concept)
+- [Spec](spec.md) - Behavioral specifications — the durable truth about how the
+  product must work.
+- [Codebase](codebase.md) - Codebase maps derived from the code, each pinned to
+  the commit it was read at.
+- [Architecture](architecture.md) - System design notes and the reasoning behind
+  them, rejected alternatives included.
+- [Concept](concept.md) - Product vision and the principles that outlive any
+  single release.

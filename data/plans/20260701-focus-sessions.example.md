@@ -1,7 +1,12 @@
 ---
-status: done
+type: plan
+description: 'Example shipped plan: building focus sessions, from approach through completion.'
+stage: done
 created: 2026-07-01
 completed: 2026-07-18
+generated:
+  by: human:author
+  at: 2026-07-01T00:00:00Z
 ---
 
 # Focus sessions

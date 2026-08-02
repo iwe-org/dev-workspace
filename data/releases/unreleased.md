@@ -1,6 +1,12 @@
 ---
+type: release
+description: The accumulator page for work merged but not yet released.
 version: unreleased
-status: unreleased
+stage: unreleased
+status: draft
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
 ---
 
 # Unreleased

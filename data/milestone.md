@@ -1,3 +1,12 @@
+---
+type: tracker
+description: Aggregator plans that sequence the work for one release.
+stage: living
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
+---
+
 # 🏁 Milestones
 
 *A milestone is a plan whose children are plans: an aggregator document in

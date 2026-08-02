@@ -1,7 +1,7 @@
 version = 3
 
 [markdown]
-refs_extension = ""
+refs_extension = ".md"
 date_format = "%b %d, %Y"
 
 [markdown.formatting]
@@ -70,3 +70,49 @@ match = "data/backlog/**"
 
 [schemas.codebase]
 match = "data/codebase/**"
+
+[schemas.spec]
+match = "data/spec/**"
+
+[schemas.architecture]
+match = "data/architecture/**"
+
+[schemas.concept]
+match = "data/concept/**"
+
+[schemas.someday]
+match = "data/someday/**"
+
+# Directory hubs. OKF conformance requires every non-reserved document under the
+# bundle to carry a type, so the hubs are typed and validated too — the earlier
+# "hubs stay unvalidated by design" exemption is deliberately retired.
+[schemas.hub]
+match = [
+  "data/architecture",
+  "data/backlog",
+  "data/bugs",
+  "data/codebase",
+  "data/concept",
+  "data/features",
+  "data/plans",
+  "data/releases",
+  "data/someday",
+  "data/spec",
+]
+
+[schemas.tracker]
+match = ["data/product", "data/milestone"]
+
+# OKF v0.2 conformance (SPEC §11). okf stacks on top of the per-type schemas and
+# catches any document arriving without a type; okf-index and okf-log check the
+# body shapes of the reserved files, which a frontmatter-only check cannot see.
+# The bundle root is data/, so these bind under data/ only.
+[schemas.okf]
+match = "data/**"
+exclude = ["data/index", "data/**/index", "data/log", "data/**/log"]
+
+[schemas.okf-index]
+match = ["data/index", "data/**/index"]
+
+[schemas.okf-log]
+match = ["data/log", "data/**/log"]

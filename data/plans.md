@@ -1,3 +1,12 @@
+---
+type: hub
+description: Implementation plans, migrations, and design proposals, one document per unit of work.
+stage: living
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
+---
+
 # 🗺️ Plans
 
 *Every plan lives in `plans/YYYYMMDD-<slug>.md` and is listed here, always — a

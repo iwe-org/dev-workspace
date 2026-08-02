@@ -1,0 +1,35 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  schema:
+    name: OKF conformance and schema validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache the iwe binary
+        id: cache-iwe
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/iwe
+          key: iwe-${{ runner.os }}-master
+
+      # Installs from master until the release carrying `iwe init --okf` and the
+      # `exclude` schema binding is published; swap to
+      # `cargo install iwe --locked --version '>=0.19.0'` once it is.
+      - name: Install iwe
+        if: steps.cache-iwe.outputs.cache-hit != 'true'
+        run: cargo install --git https://github.com/iwe-org/iwe --locked iwe
+
+      - name: Validate every document against its schemas
+        run: iwe schema validate
+
+      - name: Check that normalization is a no-op
+        run: |
+          iwe normalize
+          git diff --exit-code

@@ -1,3 +1,11 @@
+---
+type: concept
+description: 'Example concept document: why the product exists and the principles that outlive any release.'
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
+---
+
 # Why Pomodux
 
 *Example document — this shows the shape of a concept note: the vision that

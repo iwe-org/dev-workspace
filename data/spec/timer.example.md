@@ -1,3 +1,11 @@
+---
+type: spec
+description: 'Example specification: the timer''s required behaviour as SHALL requirements and WHEN/THEN scenarios.'
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
+---
+
 # Timer
 
 *Example document — this shows the shape of a behavioral spec:

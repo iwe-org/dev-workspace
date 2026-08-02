@@ -20,7 +20,7 @@ never silently outgrown.
    `## Spec changes`, and `data/product.md` `## Constraints` and
    `## Authoring rules` — they bind the code you're about to write.
 3. **Check `## Depends on`.** Every prerequisite plan must carry
-   `status: done`; if one doesn't, say so and stop — building on an unshipped
+   `stage: done`; if one doesn't, say so and stop — building on an unshipped
    dependency is how two plans end up half-true.
 4. **Re-verify the anchors.** The plan's `## Key references` line numbers were
    true when written; re-locate each symbol in the current checkout before

@@ -1,16 +1,14 @@
 $schema: https://document-schema.org/draft/2026-06/schema
 description: >-
-  Feature design documents (data/features/<slug>.md). Every feature carries a
-  lifecycle stage.
+  A landing page that inclusion-links the documents in one directory
+  (data/features.md, data/plans.md, …).
 maxDepth: 4
 frontmatter:
   type: object
-  required: [type, stage]
+  required: [type]
   properties:
-    type: { const: feature }
-    stage:
-      enum: [proposed, accepted, implemented, deprecated, cancelled]
-      description: "stage must be one of: proposed, accepted, implemented, deprecated, cancelled"
+    type: { const: hub }
+    stage: { const: living }
     description:
       type: string
       description: one sentence summarizing this document — what OKF consumers and data/index.md show

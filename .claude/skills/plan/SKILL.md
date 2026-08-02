@@ -47,7 +47,7 @@ verified, every touched spec is named.
      `Verified anchor points (line numbers as of <today>):`
 4. **File it.** Add an inclusion link under `## Active` in `data/plans.md`. If
    the plan implements a proposed feature, set the feature doc to
-   `status: accepted`. If it grew from a backlog task, mark the task done and
+   `stage: accepted`. If it grew from a backlog task, mark the task done and
    move its link.
 5. **Validate.** `iwe normalize`, then `iwe schema validate` — must pass.
 

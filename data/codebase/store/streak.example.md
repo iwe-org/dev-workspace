@@ -1,7 +1,21 @@
 ---
+type: codebase
+description: 'Example codebase map: the streak slice of the store and how it is computed.'
 source: src/store/streak.ts
 commit: 3f1a9c2
-verified: 2026-07-25
+stale_after: 2026-11-01
+sources:
+- id: code
+  resource: src/store/streak.ts
+  title: the code this map describes, read at commit 3f1a9c2
+  author: human:author
+  last_modified: 2026-07-25
+verified:
+  by: human:author
+  at: 2026-07-25T00:00:00Z
+generated:
+  by: human:author
+  at: 2026-08-01T00:00:00Z
 ---
 
 # Streak calculator

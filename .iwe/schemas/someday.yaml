@@ -1,16 +1,14 @@
 $schema: https://document-schema.org/draft/2026-06/schema
 description: >-
-  Feature design documents (data/features/<slug>.md). Every feature carries a
-  lifecycle stage.
+  Ideas, POCs, and brainstorming that are not commitments yet
+  (data/someday/<slug>.md). Promote to a backlog task or a plan when one gets
+  real.
 maxDepth: 4
 frontmatter:
   type: object
-  required: [type, stage]
+  required: [type]
   properties:
-    type: { const: feature }
-    stage:
-      enum: [proposed, accepted, implemented, deprecated, cancelled]
-      description: "stage must be one of: proposed, accepted, implemented, deprecated, cancelled"
+    type: { const: someday }
     description:
       type: string
       description: one sentence summarizing this document — what OKF consumers and data/index.md show

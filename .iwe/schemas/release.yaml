@@ -1,0 +1,25 @@
+$schema: https://document-schema.org/draft/2026-06/schema
+description: >-
+  Releases (data/releases/<version>.md); each page aggregates the features and
+  fixes shipped in one version. A released version carries its ship date.
+maxDepth: 4
+frontmatter:
+  type: object
+  required: [version, status]
+  properties:
+    version:
+      type: string
+      description: version must be a string (e.g. 0.6.0, or "unreleased" for the accumulator page)
+    status:
+      enum: [released, unreleased]
+      description: "status must be one of: released, unreleased"
+    date:
+      type: string
+      format: date
+      description: date must be a YYYY-MM-DD date
+  if:
+    properties:
+      status: { const: released }
+  then:
+    required: [date]
+    description: a released version must carry a date

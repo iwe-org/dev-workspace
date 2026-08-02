@@ -1,0 +1,28 @@
+$schema: https://document-schema.org/draft/2026-06/schema
+description: >-
+  Implementation plans, migrations, and design proposals
+  (data/plans/YYYYMMDD-slug.md). Every plan carries a created date; a shipped
+  plan is marked done and dated with completed.
+maxDepth: 4
+frontmatter:
+  type: object
+  required: [created]
+  properties:
+    status:
+      enum: [done, cancelled]
+      description: "status must be one of: done, cancelled (omit for active/pending)"
+    created:
+      type: string
+      format: date
+      description: created must be a YYYY-MM-DD date
+    completed:
+      type: string
+      format: date
+      description: completed must be a YYYY-MM-DD date
+  if:
+    required: [status]
+    properties:
+      status: { const: done }
+  then:
+    required: [completed]
+    description: a plan marked done must carry a completed date

@@ -1,0 +1,23 @@
+$schema: https://document-schema.org/draft/2026-06/schema
+description: >-
+  An atomic backlog task (data/backlog/<slug>.md) — a prioritized, single-topic
+  work item waiting to become a plan or a quick fix.
+maxDepth: 3
+frontmatter:
+  type: object
+  required: [status, created]
+  properties:
+    status:
+      enum: [planned, done]
+      description: "status must be one of: planned, done"
+    priority:
+      enum: [high, medium, low]
+      description: "priority must be one of: high, medium, low"
+    created:
+      type: string
+      format: date
+      description: created must be a YYYY-MM-DD date
+    completed:
+      type: string
+      format: date
+      description: completed must be a YYYY-MM-DD date

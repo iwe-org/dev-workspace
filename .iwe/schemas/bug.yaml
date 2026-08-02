@@ -1,0 +1,11 @@
+$schema: https://document-schema.org/draft/2026-06/schema
+description: >-
+  Bug reports, investigations, and repro notes (data/bugs/<slug>.md). Status is
+  optional; an absent status means open/under investigation.
+maxDepth: 4
+frontmatter:
+  type: object
+  properties:
+    status:
+      enum: [done, cancelled]
+      description: "status, if present, must be one of: done, cancelled (omit while open)"

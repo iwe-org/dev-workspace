@@ -1,0 +1,27 @@
+$schema: https://document-schema.org/draft/2026-06/schema
+description: >-
+  Codebase map documents (data/codebase/**) — derived from the code by the map
+  skill. source names the code the doc describes (one path, or a list whose
+  first entry is primary); commit is the git revision it was read at; verified
+  is the date the doc last matched it.
+maxDepth: 4
+frontmatter:
+  type: object
+  required: [source, commit, verified]
+  properties:
+    source:
+      anyOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+          minItems: 1
+      description: repo-relative path(s) of the code this document describes; first entry is primary
+    commit:
+      type: string
+      pattern: "^[0-9a-f]{7,40}$"
+      description: git commit SHA of the codebase when the code was read
+    verified:
+      type: string
+      format: date
+      description: verified must be a YYYY-MM-DD date — when the doc last matched the code

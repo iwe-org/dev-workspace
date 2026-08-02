@@ -1,0 +1,12 @@
+$schema: https://document-schema.org/draft/2026-06/schema
+description: >-
+  Feature design documents (data/features/<slug>.md). Every feature carries a
+  lifecycle status.
+maxDepth: 4
+frontmatter:
+  type: object
+  required: [status]
+  properties:
+    status:
+      enum: [proposed, accepted, implemented, deprecated, cancelled]
+      description: "status must be one of: proposed, accepted, implemented, deprecated, cancelled"

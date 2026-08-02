@@ -1,0 +1,72 @@
+version = 3
+
+[markdown]
+refs_extension = ""
+date_format = "%b %d, %Y"
+
+[markdown.formatting]
+wrap_column = 80
+
+[library]
+path = ""
+date_format = "%Y-%m-%d"
+frontmatter_document_title = "title"
+
+[search]
+language = "english"
+
+[completion]
+
+[templates.default]
+key_template = "{{slug}}"
+document_template = """
+# {{title}}
+
+{{content}}"""
+
+[actions.extract]
+type = "extract"
+title = "Extract"
+link_type = "markdown"
+key_template = "{{id}}"
+
+[actions.link]
+type = "link"
+title = "Link"
+link_type = "markdown"
+key_template = "{{id}}"
+
+[actions.inline_section]
+type = "inline"
+title = "Inline section"
+inline_type = "section"
+keep_target = false
+
+[actions.sort]
+type = "sort"
+title = "Sort A-Z"
+reverse = false
+
+# Document-schema bindings. Each entry names a schema file in .iwe/schemas/<name>.yaml
+# and a key-glob that binds it. Bindings are BY PATH, not by frontmatter fields.
+# The extension-less hub keys (data/plans, data/bugs, ...) match none of these
+# globs, so hub documents stay unvalidated by design.
+# Run: iwe schema validate  (--explain shows the binding trace).
+
+[schemas.plan]
+match = "data/plans/**"
+
+[schemas.feature]
+match = "data/features/**"
+
+[schemas.bug]
+match = "data/bugs/**"
+
+[schemas.release]
+match = "data/releases/**"
+
+[schemas.task]
+match = "data/backlog/**"
+
+[schemas.codebase]
+match = "data/codebase/**"

@@ -120,7 +120,7 @@ software project's memory and system of record. The division of labor:
 - **Frontmatter shapes are enforced** — `.iwe/schemas/*.yaml` is the validation
   gate, bound to key globs in `.iwe/config.toml`.
 
-## iwe basics
+## IWE basics
 
 The graph is managed by [IWE](https://iwe.md) — the `iwe` CLI. What you must
 know:
@@ -140,7 +140,7 @@ know:
   validation need the CLI. Ask the user to install it
   (https://iwe.md/quick-start/) before restructuring anything.
 
-## iwe CLI cheatsheet
+## IWE CLI cheatsheet
 
 ``` bash
 iwe retrieve -k data/spec/timer                                  # read a doc

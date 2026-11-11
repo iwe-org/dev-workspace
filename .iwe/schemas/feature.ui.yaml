@@ -34,7 +34,7 @@ fields:
     description: One sentence summarizing the document, shown by the hubs and data/index.md.
     multiline: true
   status:
-    title: OKF status
+    title: Status
     description: OKF lifecycle, derived from stage. Absent means stable.
     values:
       draft:

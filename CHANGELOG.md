@@ -32,6 +32,7 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   version's dots make `0.4.0-example` read as a file too. If you cloned an
   earlier copy and kept the examples, rename them the same way and update the
   links in their hubs.
+- The `status` field is labelled Status in the app instead of OKF status.
 - `bug.ui.yaml` did not parse: an unquoted colon in the `reported_by`
   description. The app dropped the whole sidecar, so bug rows showed no columns
   and the fields lost their titles and colours.

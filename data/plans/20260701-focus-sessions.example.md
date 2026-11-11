@@ -19,9 +19,9 @@ onboarding.*
 ## Context
 
 Pomodux has a window and a session log but no working timer. This plan builds
-the core loop: countdown, pause/resume, completion logging. The
-[state model](../architecture/state-model.example) (single store, append-only
-log) is already in place.
+the core loop: countdown, pause/resume, completion logging. The [state
+model](../architecture/state-model.example) (single store, append-only log) is
+already in place.
 
 ## Approach
 

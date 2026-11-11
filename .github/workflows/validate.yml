@@ -17,11 +17,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cargo/bin/iwe
-          key: iwe-${{ runner.os }}-0.19.0
+          key: iwe-${{ runner.os }}-0.32.0
 
       - name: Install iwe
         if: steps.cache-iwe.outputs.cache-hit != 'true'
-        run: cargo install iwe --locked --version 0.19.0
+        run: cargo install iwe --locked --version 0.32.0
 
       - name: Validate every document against its schemas
         run: iwe schema validate

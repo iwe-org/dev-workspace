@@ -28,8 +28,8 @@ What happens between "start a focus session" and a row in the history log.
 
 ## Trace
 
-1. UI start action → `createEngine(config).start()` in the
-   [timer engine](timer.example) — `src/ui/timer-view.tsx:33`
+1. UI start action → `createEngine(config).start()` in the [timer
+   engine](timer.example) — `src/ui/timer-view.tsx:33`
 2. Engine ticks on the monotonic clock; each transition fires `onTransition` —
    `src/timer/engine.ts:63`
 3. The [session store](store.example) reduces transitions into state; the UI
@@ -39,8 +39,8 @@ What happens between "start a focus session" and a row in the history log.
 5. Derived views (history, the [streak](store/streak.example)) recompute lazily
    on next read — `src/store/streak.ts:8`
 
-Behavior contract for steps 2 and 4 lives in the
-[Timer spec](../spec/timer.example).
+Behavior contract for steps 2 and 4 lives in the [Timer
+spec](../spec/timer.example).
 
 ## Failure modes
 

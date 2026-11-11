@@ -32,6 +32,11 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   appends to it on every release.
 - A GitHub Actions workflow that runs `iwe schema validate` and checks that
   `iwe normalize` is a no-op on every push and pull request.
+- `template.toml` — the manifest of the iWe template format (id, name,
+  description, version, license), so the template can be listed in the [iWe
+  template registry](https://github.com/iwe-org/templates) and created from the
+  app with File ▸ New Workspace from Template…. `README.md` and `CHANGELOG.md`
+  are excluded from the installed workspace.
 
 ### Changed
 
@@ -53,6 +58,13 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
 - **`data/index.md` is the bundle-root index.** Its only frontmatter is
   `okf_version: "0.2"`, and its body is sections of link bullets carrying each
   target's description.
+- **Config version 4.** `.iwe/config.toml` moved from `version = 3` to
+  `version = 4`, and the `[library]` table is now `[workspace]`. `iwe normalize`
+  performs the migration; it also re-wrapped the paragraphs of ten example
+  documents, with no change to their text.
+- **CI runs `iwe` 0.32.0**, up from 0.19.0.
+- `.gitignore` ignores `.iwe/app/`, the folder the iWe app now keeps its state
+  in.
 
 ### Fixed
 
@@ -75,5 +87,8 @@ If you cloned an earlier copy of this template, in your workspace:
    your `.iwe/`.
 6. Add `description` and `generated` to your documents — the agent can backfill
    these in one pass.
+7. Run `iwe normalize` with `iwe` 0.32.0 to migrate `.iwe/config.toml` to
+   version 4, and add `.iwe/app/` to your `.gitignore`.
 
-Requires an `iwe` build with the `exclude` schema-binding key.
+Checked with `iwe` 0.32.0, the version CI runs; an older build may not read a
+version 4 config.

@@ -59,8 +59,7 @@ Verified anchor points (line numbers as of 2026-07-25):
 - `src/store/sessions.ts:15` — `appendSession()`
 - `src/store/reducers.ts:21` — transition reducer table
 
-*Convention notes: the map doc describes what the code does; the
-[architecture note](../architecture/state-model.example) records why — a map
-refresh may rewrite this doc freely, but never touches the decision record.
-Containment is written one way (this doc lists its children); "part of" is the
-backlink.*
+*Convention notes: the map doc describes what the code does; the [architecture
+note](../architecture/state-model.example) records why — a map refresh may
+rewrite this doc freely, but never touches the decision record. Containment is
+written one way (this doc lists its children); "part of" is the backlink.*

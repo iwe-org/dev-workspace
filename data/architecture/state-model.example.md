@@ -38,6 +38,6 @@ Rejected alternatives:
   not just the last entry.
 
 *Convention notes: like specs, architecture notes carry no frontmatter. Record
-the decision when it's made, with the rejected options — the
-[streak widget plan](../plans/20260720-streak-widget.example) builds directly on
-the derived-aggregates rule stated here.*
+the decision when it's made, with the rejected options — the [streak widget
+plan](../plans/20260720-streak-widget.example) builds directly on the
+derived-aggregates rule stated here.*

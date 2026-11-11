@@ -24,6 +24,20 @@ mutates. Completed sessions append to a JSON-lines log in the user data
 directory — the log is the source of truth, and aggregates (daily totals,
 streaks) are derived at read time.
 
+``` mermaid
+flowchart LR
+  UI["UI components"] -- "dispatch action" --> Reducers["Pure reducers"]
+  Reducers -- "next state" --> Store[("Store<br/>src/store/sessions.ts")]
+  Store -- "subscribe" --> UI
+  Reducers -- "session completed" --> Log[("Session log<br/>sessions.jsonl")]
+  Log -- "replay at launch" --> Store
+  Log -- "derive at read time" --> Aggregates["Daily totals<br/>and streaks"]
+  Aggregates --> UI
+```
+
+The arrows run one way: the UI never writes to the store or the log, and nothing
+writes an aggregate back.
+
 ## Decision: append-only session log
 
 An append-only log was chosen over a mutable database because sessions are
@@ -37,7 +51,7 @@ Rejected alternatives:
 - **Mutable JSON snapshot** — a crash during write can lose the whole history,
   not just the last entry.
 
-*Convention notes: like specs, architecture notes carry no frontmatter. Record
+*Convention notes: draw the structure as a `mermaid` block when it helps. Record
 the decision when it's made, with the rejected options — the [streak widget
 plan](../plans/20260720-streak-widget-example.md) builds directly on the
 derived-aggregates rule stated here.*

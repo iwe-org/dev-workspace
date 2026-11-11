@@ -8,6 +8,13 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
 
 ## [1.2.1]
 
+### Added
+
+- A mermaid diagram in the state model example (`data/architecture/`): the
+  one-way flow from UI through reducers to the store and the session log, and
+  the aggregates derived from the log. Its convention note says to draw an
+  architecture note's structure the same way when it helps.
+
 ### Fixed
 
 - The hubs list their example documents again. A link such as

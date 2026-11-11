@@ -14,4 +14,4 @@ principles that outlive any single release, one document per idea in
 `concept/<slug>.md`. Frontmatter is `type: concept`. When a feature debate
 stalls, the answer is usually already here.*
 
-[Why Pomodux](concept/why-pomodux.example)
+[Why Pomodux](concept/why-pomodux-example.md)

@@ -6,6 +6,62 @@ All notable changes to this template are documented here. The format is based on
 This is a template you clone, so the entries below double as migration notes: if
 you cloned an earlier copy, they tell you what to change in your own workspace.
 
+## [1.2.1]
+
+### Added
+
+- A mermaid diagram in the state model example (`data/architecture/`): the
+  one-way flow, top to bottom, from UI through reducers to the store and the
+  session log, and the aggregates derived from the log. Its convention note says
+  to draw an architecture note's structure the same way when it helps.
+- A system overview diagram on the Architecture hub: the modules under `src/`
+  (UI, shortcuts, store, timer, audio, settings) and the session log, and how
+  they talk, linking the state model for the store's side.
+- Three more example specs under Spec: Breaks, Session history and Do not
+  disturb, each linked to the feature it describes and the example bug that
+  violates it.
+
+### Fixed
+
+- The hubs list their example documents again. A link such as
+  `plans/mvp.example` reads to iwe as a file with the extension `.example`, not
+  as a document, so no example was included by its hub, every hub but Backlog
+  and Releases dropped out of the iWe sidebar, and `iwe normalize` kept
+  rewriting the links that way. Example documents are now named
+  `<name>-example.md`, and example releases `example-<version>.md`, since a
+  version's dots make `0.4.0-example` read as a file too. If you cloned an
+  earlier copy and kept the examples, rename them the same way and update the
+  links in their hubs.
+- The `status` field is labelled Status in the app instead of OKF status.
+- `bug.ui.yaml` did not parse: an unquoted colon in the `reported_by`
+  description. The app dropped the whole sidecar, so bug rows showed no columns
+  and the fields lost their titles and colours.
+- The release charts place one bar per version, side by side in release order,
+  instead of thin bars on a calendar axis with weeks of empty space between
+  them. The label above each bar is now its item total.
+- The Bugs, Features and Plans archive charts no longer put count tiles above
+  the chart; each is the chart alone. Bugs archive keeps its row of counts, now
+  40 px tall with each number under its title instead of a tall empty box.
+
+### Removed
+
+- The `okf` schema that was stacked on every document under `data/`. Each
+  folder's own schema already requires `type`, and the second binding hid the
+  columns the iWe app shows beside inclusion links: the app takes them from the
+  first binding in alphabetical order, so `okf` won over `plan`, `release` and
+  `task`. Backlog, plan and release rows now show their stage, priority and
+  dates. If you cloned an earlier copy, delete `[schemas.okf]` from
+  `.iwe/config.toml` and `.iwe/schemas/okf.yaml`.
+- The Codebase hub: `data/codebase.md`, its example maps, the `codebase` schema,
+  and the instructions that kept the maps fresh (AGENTS.md, the verify skill's
+  stale-map audit, and the references to a map skill, which the template never
+  shipped). If you cloned an earlier copy, delete `data/codebase/` and
+  `data/codebase.md`, their schema bindings in `.iwe/config.toml`, and the link
+  from `data/index.md`.
+- `title` from the frontmatter every document may carry (`okf.yaml`) and
+  `frontmatter_document_title` from `.iwe/config.toml`. The title is the
+  document's `#` heading; the app no longer offers an empty Title field.
+
 ## [1.2.0]
 
 ### Added

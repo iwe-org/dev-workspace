@@ -12,9 +12,10 @@ generated:
 *One page per shipped version in `releases/<version>.md`, newest first, each
 aggregating its features and fixes as inclusion links. `releases/unreleased.md`
 accumulates work as it ships; cutting a release renames it to the version number
-and starts a fresh accumulator (the ship skill does this). The timeline counts
-the links under each page's `## Added`, `## Changed` and `## Fixed`; the second
-chart joins `releases/metrics.csv`, one row per version, to the release dates.*
+and starts a fresh accumulator (the ship skill does this). The first chart
+counts the links under each page's `## Added`, `## Changed` and `## Fixed`; the
+second chart joins `releases/metrics.csv`, one row per version, to the releases.
+Both place the versions side by side in release order.*
 
 ``` chart
 title: Items per release
@@ -48,14 +49,15 @@ transform:
   - fold: [Added, Changed, Fixed]
     as: [kind, items]
 encoding:
-  x: {field: date, type: temporal, timeUnit: utcyearmonthdate, title: null, axis: {format: "%b %-d", labelAngle: 0}}
+  x: {field: version, type: ordinal, sort: {field: date, op: min}, title: null, axis: {labelAngle: 0}}
 layer:
-  - mark: {type: bar, width: 14, tooltip: true}
+  - mark: {type: bar, cornerRadiusEnd: 2, tooltip: true}
     encoding:
       y: {field: items, type: quantitative, stack: zero, title: Items, axis: {tickMinStep: 1}}
       color: {field: kind, type: nominal, title: null, scale: {domain: [Added, Changed, Fixed], range: ["#0090ff", "#f76b15", "#30a46c"]}, legend: {orient: top}}
       tooltip:
         - {field: version, title: Version}
+        - {field: date, type: temporal, title: Released, format: "%b %-d, %Y"}
         - {field: kind, title: Kind}
         - {field: items, title: Items}
   - transform:
@@ -64,7 +66,7 @@ layer:
     mark: {type: text, dy: -8, fontSize: 11}
     encoding:
       y: {field: total, type: quantitative}
-      text: {field: version}
+      text: {field: total}
 ```
 
 ``` chart
@@ -81,13 +83,14 @@ transform:
   - calculate: "toDate(datum.date)"
     as: shipped
 encoding:
-  x: {field: shipped, type: temporal, timeUnit: utcyearmonthdate, title: null, axis: {format: "%b %-d", labelAngle: 0}}
+  x: {field: version, type: ordinal, sort: {field: shipped, op: min}, title: null, axis: {labelAngle: 0}}
 layer:
-  - mark: {type: bar, width: 14, color: "#0090ff", opacity: 0.5, tooltip: true}
+  - mark: {type: bar, color: "#0090ff", opacity: 0.5, cornerRadiusEnd: 2, tooltip: true}
     encoding:
       y: {field: tests, type: quantitative, title: Tests}
       tooltip:
         - {field: version, title: Version}
+        - {field: shipped, type: temporal, title: Released, format: "%b %-d, %Y"}
         - {field: tests, title: Tests}
         - {field: suite_seconds, title: Suite seconds}
   - mark: {type: line, point: true, color: "#f76b15"}
@@ -98,12 +101,12 @@ resolve: {scale: {y: independent}}
 
 [Unreleased](releases/unreleased.md)
 
-[0.4.0](releases/0.4.0.example)
+[0.4.0](releases/example-0.4.0.md)
 
-[0.3.1](releases/0.3.1.example)
+[0.3.1](releases/example-0.3.1.md)
 
-[0.3.0](releases/0.3.0.example)
+[0.3.0](releases/example-0.3.0.md)
 
-[0.2.0](releases/0.2.0.example)
+[0.2.0](releases/example-0.2.0.md)
 
-[0.1.0](releases/0.1.0.example)
+[0.1.0](releases/example-0.1.0.md)

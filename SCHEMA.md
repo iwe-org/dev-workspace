@@ -6,7 +6,8 @@ section) — bindings are by path, and **every** document under `data/` is bound
 hubs included. Run `iwe schema validate` before committing — exit 0 is the gate.
 
 The examples below describe one fictional product (Pomodux, a focus-timer app);
-the `*.example.md` docs demonstrate each shape in place.
+the `*-example.md` docs (`releases/example-<version>.md` for releases)
+demonstrate each shape in place.
 
 `data/` is a conformant [Open Knowledge
 Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
@@ -16,8 +17,7 @@ below show only the fields specific to that type; the shared families come next.
 
 ## Fields every type carries
 
-OKF's optional families (SPEC §4.1, §5), declared on every schema and checked by
-`.iwe/schemas/okf.yaml`:
+OKF's optional families (SPEC §4.1, §5), declared on every type's schema:
 
 - `description` — one sentence. Every document has one; it is what an OKF
   consumer and `data/index.md` show before opening the file.
@@ -26,14 +26,12 @@ OKF's optional families (SPEC §4.1, §5), declared on every schema and checked 
   or human-confirmed content, `process:<id>` for automation.
 - `sources` — the materials a document derives from, each
   `{ id, resource, title, author, usage_count, last_modified }` with `resource`
-  required. A `resource` may be a URL or a repo path, so a codebase map cites
-  the code it describes. Attribute individual claims with a markdown footnote
-  keyed to an entry's `id` (SPEC §5.1).
+  required. A `resource` may be a URL or a repo path. Attribute individual
+  claims with a markdown footnote keyed to an entry's `id` (SPEC §5.1).
 - `verified` — `{ by, at }` or a list, recording who confirmed the content
-  against its sources. Codebase maps use it for "this doc still matches the
-  code", which is what the old date-valued `verified` field meant.
+  against its sources.
 - `resource`, `tags`, `stale_after`, `usage_window` — optional. Set
-  `stale_after` on codebase maps, which go stale the moment the code moves.
+  `stale_after` on anything that goes stale when the code moves.
 
 ### `stage` versus `status`
 
@@ -217,29 +215,6 @@ session: <id>       # optional, the working session it came from
 Link each learning from `data/learnings.md` under a `##` topic heading. A
 learning that turns out wrong is rewritten or deleted (`iwe delete`), not left
 beside its correction.
-
-## Codebase map — `data/codebase/<canonical-path>.md`
-
-Derived docs, written only by reading the code: one per component (crate,
-package, module), plus `flow-<name>` and `api-<name>`. Keys are canonical — a
-component's key mirrors its source path with wrapper segments elided
-(`packages/core/src/timer` → `data/codebase/packages/core/timer`). Their extra
-fields are provenance, not lifecycle.
-
-``` yaml
----
-type: codebase        # required
-source: src/timer     # required; one path, or a list of paths (first is primary)
-commit: "3f1a9c2"     # required, always quoted — an all-digit SHA parses as a number
-verified: { by: human:author, at: 2026-07-25T00:00:00Z }  # required; who last confirmed the doc against the code
-stale_after: 2026-11-01 # the day to re-check it
----
-```
-
-Component body: role paragraph, `## Contains` (inclusion links to children —
-this builds the tree), `## Public surface`, `## How it works`, `## Depends on`
-(one-way — "used by" is a backlink query), `## Invariants & gotchas`,
-`## Key references`. Flows: numbered `## Trace` + `## Failure modes`.
 
 ## Reference documents — type only
 

@@ -67,9 +67,6 @@ software project's memory and system of record. The division of labor:
      an afterthought.
    - Design decision made → `data/architecture/<slug>.md`, including the
      rejected alternatives.
-   - Code structure changed (module added, split, or moved) → re-read the code
-     and refresh the touched `data/codebase/` docs, bumping their `commit` and
-     `verified`. `git log <commit>..HEAD -- <source>` finds the stale ones.
    - Vision insight → `data/concept/<slug>.md`.
    - Task finished → `stage: done` + `completed` on the task doc, link moved to
      `## Done` in `data/backlog.md` (`deferred` and `cancelled` tasks move to
@@ -110,8 +107,7 @@ software project's memory and system of record. The division of labor:
   open, `done` requires `completed`); releases `released|unreleased`; backlog
   `planned|deferred|done|cancelled` (`done` requires `completed`). Reference
   docs (spec/architecture/concept/someday) and learnings carry a `type` and no
-  stage; codebase-map docs carry `source` + `commit` + `verified` — provenance,
-  not lifecycle.
+  stage.
 - **`data/` is an OKF v0.2 bundle** — the graph is portable knowledge any [Open
   Knowledge
   Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
@@ -119,8 +115,10 @@ software project's memory and system of record. The division of labor:
   it true: every document under `data/` has frontmatter with a non-empty `type`;
   `data/index.md` carries no frontmatter beyond `okf_version` and stays sections
   of link bullets; `data/log.md` stays date-grouped bullets under
-  `## YYYY-MM-DD`. `okf.yaml`, `okf-index.yaml`, and `okf-log.yaml` enforce all
-  three — never work around them by unbinding a schema.
+  `## YYYY-MM-DD`. Each folder's schema requires `type`, and `okf-index.yaml`
+  and `okf-log.yaml` check the reserved files — never work around them by
+  unbinding a schema, and bind a new folder under `data/` to a schema of its
+  own.
 - **Links carry `.md`** — `refs_extension = ".md"`, so a link resolves for
   readers outside iwe. Run `iwe normalize` after bulk edits rather than
   hand-writing link targets.
@@ -136,10 +134,11 @@ software project's memory and system of record. The division of labor:
   kebab slug; releases are `<semver>` plus `unreleased`. One topic per file.
 - **Markdown links only, never wiki links.** References are extension-less
   (`[Timer](spec/timer)`), relative to the containing file.
-- **Example docs**: files suffixed `.example.md` demonstrate each directory's
-  document shape (a fictional product; schema-validated so they can't rot).
-  Ignore them when reporting real project state; the setup skill deletes them at
-  the end of onboarding.
+- **Example docs**: files suffixed `-example.md`, and the releases named
+  `example-<version>.md`, demonstrate each directory's document shape (a
+  fictional product; schema-validated so they can't rot). Ignore them when
+  reporting real project state; the setup skill deletes them at the end of
+  onboarding.
 - **Charts**: hubs carry ```` ``` chart ```` blocks — Vega-Lite specs in YAML
   whose `data` is a query (`{query: {filter, project}}`) or a data file beside
   the docs (`{url: releases/metrics.csv}`). They select documents by `type` and

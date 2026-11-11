@@ -20,17 +20,23 @@ datasets:
 hconcat:
   - title: Closed
     data: {name: closed}
-    mark: {type: text, fontSize: 28, fontWeight: 600}
+    width: 120
+    height: 40
+    mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
     encoding: {text: {aggregate: count}}
   - title: Fixed
     data: {name: closed}
     transform: [{filter: "datum.stage == 'done'"}]
-    mark: {type: text, fontSize: 28, fontWeight: 600}
+    width: 120
+    height: 40
+    mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
     encoding: {text: {aggregate: count}}
   - title: Cancelled
     data: {name: closed}
     transform: [{filter: "datum.stage == 'cancelled'"}]
-    mark: {type: text, fontSize: 28, fontWeight: 600}
+    width: 120
+    height: 40
+    mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
     encoding: {text: {aggregate: count}}
 ```
 
@@ -57,36 +63,37 @@ resolve: {scale: {y: independent}}
 ## Fixed
 
 [Bug: The daily goal ring is clipped in the compact
-window](bugs/daily-goal-ring-clipped.example)
+window](bugs/daily-goal-ring-clipped-example.md)
 
-[Bug: The daily goal resets at noon](bugs/daily-goal-resets-at-noon.example)
+[Bug: The daily goal resets at noon](bugs/daily-goal-resets-at-noon-example.md)
 
 [Bug: The long break comes one session
-late](bugs/long-break-count-off-by-one.example)
+late](bugs/long-break-count-off-by-one-example.md)
 
 [Bug: The tray icon goes blank after a theme
-switch](bugs/tray-icon-blank-after-theme-switch.example)
+switch](bugs/tray-icon-blank-after-theme-switch-example.md)
 
 [Bug: Settings reset to defaults after an
-update](bugs/settings-reset-after-update.example)
+update](bugs/settings-reset-after-update-example.md)
 
-[Bug: The start shortcut starts two sessions](bugs/shortcut-fires-twice.example)
+[Bug: The start shortcut starts two
+sessions](bugs/shortcut-fires-twice-example.md)
 
 [Bug: History shows abandoned sessions as
-complete](bugs/history-shows-abandoned-as-complete.example)
+complete](bugs/history-shows-abandoned-as-complete-example.md)
 
 [Bug: The first break of the day starts
-muted](bugs/break-timer-starts-muted.example)
+muted](bugs/break-timer-starts-muted-example.md)
 
 [Bug: Pause button stays enabled after a session
-completes](bugs/pause-enabled-after-completion.example)
+completes](bugs/pause-enabled-after-completion-example.md)
 
 [Bug: A running session is lost when the app
-quits](bugs/session-lost-on-quit.example)
+quits](bugs/session-lost-on-quit-example.md)
 
 ## Cancelled
 
 [Bug: The countdown ends one second
-early](bugs/countdown-off-by-one-second.example)
+early](bugs/countdown-off-by-one-second-example.md)
 
-[Bug: The timer runs slow on battery](bugs/timer-slow-on-battery.example)
+[Bug: The timer runs slow on battery](bugs/timer-slow-on-battery-example.md)

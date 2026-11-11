@@ -25,9 +25,7 @@ what the code can't answer. Every future session reads what you write here.
      answer (Users, Constraints usually need the developer).
    - One starting `data/architecture/<slug>.md` describing the module layout
      and any design decisions visible in the code (state management, storage,
-     process boundaries). Say "unknown" where you'd be guessing. (The deep,
-     per-module map under `data/codebase/` is out of scope for setup — file it
-     as follow-up work rather than attempting it here.)
+     process boundaries). Say "unknown" where you'd be guessing.
    - Propose (don't yet write) spec docs for the 2–3 most load-bearing
      behaviors you can identify.
 4. **Interview.** Ask in batches, conversationally:
@@ -46,7 +44,7 @@ what the code can't answer. Every future session reads what you write here.
    (`fill-product-doc`, and `capture-current-architecture` if step 3 ran):
    `iwe update -k data/backlog/<slug> --set stage=done --set completed=<today>`,
    and move their links in `data/backlog.md` to `## Done`. Delete the example
-   docs — every `*.example.md` under `data/` (`iwe delete <key>` per doc).
+   docs — every `*-example.md` and `releases/example-*.md` under `data/` (`iwe delete <key>` per doc).
    `iwe delete` removes their inclusion links from hubs automatically but
    *flattens* inline links to plain text: sweep the hub files and remaining
    docs for leftover de-linked example lines and remove them. Cut

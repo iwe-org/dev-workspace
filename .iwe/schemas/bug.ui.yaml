@@ -19,7 +19,7 @@ fields:
         color: red
   reported_by:
     title: Reported by
-    description: Who noticed the problem: a person, or an agent acting unprompted.
+    description: 'Who noticed the problem: a person, or an agent acting unprompted.'
     values:
       user:
         title: User
@@ -42,7 +42,7 @@ fields:
     description: One sentence summarizing the document, shown by the hubs and data/index.md.
     multiline: true
   status:
-    title: OKF status
+    title: Status
     description: OKF lifecycle, derived from stage. Absent means stable.
     values:
       draft:

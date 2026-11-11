@@ -37,7 +37,7 @@ hconcat:
 
 ## High
 
-[Export the session history as CSV](backlog/export-history-csv.example)
+[Export the session history as CSV](backlog/export-history-csv-example.md)
 
 [Fill in the product doc](backlog/fill-product-doc.md)
 
@@ -46,10 +46,10 @@ hconcat:
 ## Medium
 
 [Sharpen the tray icon on high-density
-displays](backlog/retina-tray-icon.example)
+displays](backlog/retina-tray-icon-example.md)
 
 [Make every window usable from the keyboard
-alone](backlog/keyboard-only-flow.example)
+alone](backlog/keyboard-only-flow-example.md)
 
 [Capture the current architecture](backlog/capture-current-architecture.md)
 
@@ -57,28 +57,31 @@ alone](backlog/keyboard-only-flow.example)
 
 ## Low
 
-[Translate the chime names in settings](backlog/localize-chime-names.example)
+[Translate the chime names in settings](backlog/localize-chime-names-example.md)
 
-[Draw dark-mode variants of the window icons](backlog/dark-mode-icons.example)
+[Draw dark-mode variants of the window
+icons](backlog/dark-mode-icons-example.md)
 
 ## Deferred
 
 [Save named presets of session and break
-lengths](backlog/session-presets.example)
+lengths](backlog/session-presets-example.md)
 
-[Support the tray on Linux desktops](backlog/linux-tray-support.example)
+[Support the tray on Linux desktops](backlog/linux-tray-support-example.md)
 
 ## Done
 
-[Let users turn off the update check](backlog/update-check-opt-out.example)
+[Let users turn off the update check](backlog/update-check-opt-out-example.md)
 
 [Rewrite the settings labels in plain
-words](backlog/tidy-settings-labels.example)
+words](backlog/tidy-settings-labels-example.md)
 
-[Stop ticking the timer while no session runs](backlog/reduce-idle-cpu.example)
+[Stop ticking the timer while no session
+runs](backlog/reduce-idle-cpu-example.md)
 
-[Show the remaining time in the tray tooltip](backlog/statusbar-tooltip.example)
+[Show the remaining time in the tray
+tooltip](backlog/statusbar-tooltip-example.md)
 
 ## Cancelled
 
-[Shared focus sessions for a team](backlog/team-sessions.example)
+[Shared focus sessions for a team](backlog/team-sessions-example.md)

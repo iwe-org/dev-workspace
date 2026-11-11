@@ -38,21 +38,14 @@ encoding:
 ```
 
 ``` chart
-data: {query: {filter: {type: bug, stage: {$exists: false}}, project: {reported_by: 1, affected_versions: 1}}}
-hconcat:
-  - title: Open
-    mark: {type: text, fontSize: 28, fontWeight: 600}
-    encoding: {text: {aggregate: count}}
-  - title: Came back
-    transform: [{filter: "length(datum.affected_versions) > 1"}]
-    mark: {type: text, fontSize: 28, fontWeight: 600}
-    encoding: {text: {aggregate: count}}
-  - title: Open by who noticed
-    mark: {type: bar, cornerRadiusEnd: 3, tooltip: true}
-    encoding:
-      y: {field: reported_by, type: nominal, title: null, sort: [user, agent]}
-      x: {aggregate: count, type: quantitative, title: Bugs, axis: {tickMinStep: 1}}
-      color: {field: reported_by, type: nominal, legend: null, scale: {domain: [user, agent], range: ["#0090ff", "#8b8d98"]}}
+title: Open by who noticed
+height: {step: 24}
+data: {query: {filter: {type: bug, stage: {$exists: false}}, project: {reported_by: 1}}}
+mark: {type: bar, cornerRadiusEnd: 3, tooltip: true}
+encoding:
+  y: {field: reported_by, type: nominal, title: null, sort: [user, agent]}
+  x: {aggregate: count, type: quantitative, title: Bugs, axis: {tickMinStep: 1}}
+  color: {field: reported_by, type: nominal, legend: null, scale: {domain: [user, agent], range: ["#0090ff", "#8b8d98"]}}
 ```
 
 ``` chart
@@ -80,28 +73,28 @@ encoding:
 ## Open
 
 [Bug: The onboarding tour shows again after every
-update](bugs/onboarding-tour-reappears.example)
+update](bugs/onboarding-tour-reappears-example.md)
 
 [Bug: The tray tooltip cuts long task
-labels](bugs/tooltip-truncates-long-labels.example)
+labels](bugs/tooltip-truncates-long-labels-example.md)
 
 [Bug: Do not disturb stays on after
-waking](bugs/dnd-toggle-ignored-on-wake.example)
+waking](bugs/dnd-toggle-ignored-on-wake-example.md)
 
 [Bug: The long break is skipped after a paused
-session](bugs/long-break-skipped-after-pause.example)
+session](bugs/long-break-skipped-after-pause-example.md)
 
 [Bug: The default shortcut clashes with code
-editors](bugs/shortcut-conflicts-with-editor.example)
+editors](bugs/shortcut-conflicts-with-editor-example.md)
 
-[Bug: The completion chime plays twice](bugs/chime-plays-twice.example)
+[Bug: The completion chime plays twice](bugs/chime-plays-twice-example.md)
 
-[Bug: Timer drifts after laptop sleep](bugs/timer-drift-after-sleep.example)
+[Bug: Timer drifts after laptop sleep](bugs/timer-drift-after-sleep-example.md)
 
 ## Deferred
 
 [Bug: The tray icon is invisible in high
-contrast](bugs/high-contrast-tray-icon-invisible.example)
+contrast](bugs/high-contrast-tray-icon-invisible-example.md)
 
 [Bug: The screen reader announces every
-second](bugs/screen-reader-reads-every-second.example)
+second](bugs/screen-reader-reads-every-second-example.md)

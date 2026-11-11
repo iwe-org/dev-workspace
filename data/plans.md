@@ -33,16 +33,16 @@ encoding:
 
 ## Active
 
-[MVP](plans/mvp.example)
+[MVP](plans/mvp-example.md)
 
-[Polish](plans/20260901-polish-milestone.example)
+[Polish](plans/20260901-polish-milestone-example.md)
 
-[Streak widget](plans/20260720-streak-widget.example)
+[Streak widget](plans/20260720-streak-widget-example.md)
 
-[Do-not-disturb sync](plans/20261001-do-not-disturb-sync.example)
+[Do-not-disturb sync](plans/20261001-do-not-disturb-sync-example.md)
 
-[Task labels](plans/20261005-task-labels.example)
+[Task labels](plans/20261005-task-labels-example.md)
 
 ## Deferred
 
-[Weekly report](plans/20260918-weekly-report.example)
+[Weekly report](plans/20260918-weekly-report-example.md)

@@ -22,7 +22,7 @@ data/              # the graph
   index.md         # the root hub — every hub is its child
   product.md       # ✏️ fill-in tracker: the doc every session reads first
   <hub>.md + <hub>/  # plans, features, bugs, spec, architecture, concept,
-                     # codebase, releases, backlog, someday, learnings
+                     # releases, backlog, someday, learnings
                      # (+ milestone.md)
     releases/metrics.csv  # one row of numbers per release, drawn by a chart
   plans-archive.md   # closed plans: done by month, and cancelled
@@ -87,21 +87,6 @@ milestone machinery — the graph already does it.
 Line numbers rot; the stamp tells the reader how much to trust them, and the
 rule ("from the current checkout, never from memory") keeps them honest at write
 time.
-
-**The codebase map is derived truth.** `data/codebase/` is a fourth kind of
-truth next to spec (must), architecture (why), and concept (why at all): *what
-the code is*, written only from reading it. The map mirrors the code's
-containment tree: every component gets a doc at a canonical key matching its
-source path, and parents inclusion-link children (`## Contains`), so
-`iwe tree -k data/codebase` renders the code's structure. Map docs carry the
-most provenance of any type — `source` (the code described), `commit` (the
-revision it was read at), and OKF's `verified` (who last confirmed the doc
-against that code) — because provenance is what makes incremental refresh cheap:
-`git log <commit>..HEAD -- <source>` finds exactly the dirty docs. Each
-relationship is written in one direction only (`## Contains` down,
-`## Depends on` out); "part of" and "used by" are backlink queries, so they can
-never rot. Map docs are freely rewritable from a fresh read of the code;
-decision records never are.
 
 **Tickets come first, fixes second.** A ticket opened before any code changes,
 describing what the person saw rather than what the agent suspects, is where the

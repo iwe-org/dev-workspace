@@ -25,7 +25,7 @@ directory — the log is the source of truth, and aggregates (daily totals,
 streaks) are derived at read time.
 
 ``` mermaid
-flowchart LR
+flowchart TD
   UI["UI components"] -- "dispatch action" --> Reducers["Pure reducers"]
   Reducers -- "next state" --> Store[("Store<br/>src/store/sessions.ts")]
   Store -- "subscribe" --> UI

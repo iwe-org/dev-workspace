@@ -11,9 +11,9 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
 ### Added
 
 - A mermaid diagram in the state model example (`data/architecture/`): the
-  one-way flow from UI through reducers to the store and the session log, and
-  the aggregates derived from the log. Its convention note says to draw an
-  architecture note's structure the same way when it helps.
+  one-way flow, top to bottom, from UI through reducers to the store and the
+  session log, and the aggregates derived from the log. Its convention note says
+  to draw an architecture note's structure the same way when it helps.
 - Three more example specs under Spec: Breaks, Session history and Do not
   disturb, each linked to the feature it describes and the example bug that
   violates it.

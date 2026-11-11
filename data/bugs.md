@@ -80,28 +80,28 @@ encoding:
 ## Open
 
 [Bug: The onboarding tour shows again after every
-update](bugs/onboarding-tour-reappears.example)
+update](bugs/onboarding-tour-reappears-example.md)
 
 [Bug: The tray tooltip cuts long task
-labels](bugs/tooltip-truncates-long-labels.example)
+labels](bugs/tooltip-truncates-long-labels-example.md)
 
 [Bug: Do not disturb stays on after
-waking](bugs/dnd-toggle-ignored-on-wake.example)
+waking](bugs/dnd-toggle-ignored-on-wake-example.md)
 
 [Bug: The long break is skipped after a paused
-session](bugs/long-break-skipped-after-pause.example)
+session](bugs/long-break-skipped-after-pause-example.md)
 
 [Bug: The default shortcut clashes with code
-editors](bugs/shortcut-conflicts-with-editor.example)
+editors](bugs/shortcut-conflicts-with-editor-example.md)
 
-[Bug: The completion chime plays twice](bugs/chime-plays-twice.example)
+[Bug: The completion chime plays twice](bugs/chime-plays-twice-example.md)
 
-[Bug: Timer drifts after laptop sleep](bugs/timer-drift-after-sleep.example)
+[Bug: Timer drifts after laptop sleep](bugs/timer-drift-after-sleep-example.md)
 
 ## Deferred
 
 [Bug: The tray icon is invisible in high
-contrast](bugs/high-contrast-tray-icon-invisible.example)
+contrast](bugs/high-contrast-tray-icon-invisible-example.md)
 
 [Bug: The screen reader announces every
-second](bugs/screen-reader-reads-every-second.example)
+second](bugs/screen-reader-reads-every-second-example.md)

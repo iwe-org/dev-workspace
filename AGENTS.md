@@ -136,10 +136,11 @@ software project's memory and system of record. The division of labor:
   kebab slug; releases are `<semver>` plus `unreleased`. One topic per file.
 - **Markdown links only, never wiki links.** References are extension-less
   (`[Timer](spec/timer)`), relative to the containing file.
-- **Example docs**: files suffixed `.example.md` demonstrate each directory's
-  document shape (a fictional product; schema-validated so they can't rot).
-  Ignore them when reporting real project state; the setup skill deletes them at
-  the end of onboarding.
+- **Example docs**: files suffixed `-example.md`, and the releases named
+  `example-<version>.md`, demonstrate each directory's document shape (a
+  fictional product; schema-validated so they can't rot). Ignore them when
+  reporting real project state; the setup skill deletes them at the end of
+  onboarding.
 - **Charts**: hubs carry ```` ``` chart ```` blocks — Vega-Lite specs in YAML
   whose `data` is a query (`{query: {filter, project}}`) or a data file beside
   the docs (`{url: releases/metrics.csv}`). They select documents by `type` and

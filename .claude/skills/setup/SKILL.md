@@ -46,7 +46,7 @@ what the code can't answer. Every future session reads what you write here.
    (`fill-product-doc`, and `capture-current-architecture` if step 3 ran):
    `iwe update -k data/backlog/<slug> --set stage=done --set completed=<today>`,
    and move their links in `data/backlog.md` to `## Done`. Delete the example
-   docs — every `*.example.md` under `data/` (`iwe delete <key>` per doc).
+   docs — every `*-example.md` and `releases/example-*.md` under `data/` (`iwe delete <key>` per doc).
    `iwe delete` removes their inclusion links from hubs automatically but
    *flattens* inline links to plain text: sweep the hub files and remaining
    docs for leftover de-linked example lines and remove them. Cut

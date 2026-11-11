@@ -29,34 +29,34 @@ encoding:
 ## Timer and sound
 
 [Audio must be loaded before the first
-chime](learnings/audio-needs-preloading.example)
+chime](learnings/audio-needs-preloading-example.md)
 
-[Timer tests run on a fake clock](learnings/tests-use-a-fake-clock.example)
+[Timer tests run on a fake clock](learnings/tests-use-a-fake-clock-example.md)
 
 [The daily goal counts minutes, not
-sessions](learnings/goal-counts-minutes-not-sessions.example)
+sessions](learnings/goal-counts-minutes-not-sessions-example.md)
 
 [A streak day is the local day a session completes
-on](learnings/streak-days-use-local-midnight.example)
+on](learnings/streak-days-use-local-midnight-example.md)
 
 ## Tray, windows and system
 
 [The tray menu reads its labels once, when it
-opens](learnings/tray-label-reads-once-on-open.example)
+opens](learnings/tray-label-reads-once-on-open-example.md)
 
 [Shortcut registration fails without an
-error](learnings/shortcut-registration-fails-silently.example)
+error](learnings/shortcut-registration-fails-silently-example.md)
 
 [Do not disturb needs permission before the first
-session](learnings/dnd-needs-permission-first.example)
+session](learnings/dnd-needs-permission-first-example.md)
 
 [Settings are not migrated on
-update](learnings/settings-are-not-migrated.example)
+update](learnings/settings-are-not-migrated-example.md)
 
 ## Working on the project
 
 [Commit messages name the state
-change](learnings/commit-messages-name-the-state-change.example)
+change](learnings/commit-messages-name-the-state-change-example.md)
 
 [Release notes come from the unreleased
-page](learnings/release-notes-come-from-unreleased.example)
+page](learnings/release-notes-come-from-unreleased-example.md)

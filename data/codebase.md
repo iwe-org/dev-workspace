@@ -28,13 +28,13 @@ points; a directory → component table.*
 
 ## Components
 
-[Timer engine](codebase/timer.example)
+[Timer engine](codebase/timer-example.md)
 
-[Session store](codebase/store.example)
+[Session store](codebase/store-example.md)
 
 ## Flows
 
-[Flow: session lifecycle](codebase/flow-session-lifecycle.example)
+[Flow: session lifecycle](codebase/flow-session-lifecycle-example.md)
 
 ## Interfaces
 

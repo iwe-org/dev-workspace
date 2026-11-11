@@ -6,22 +6,22 @@ to the current day's group.
 
 ## 2026-10-02
 
-- **Release**: Cut [0.4.0](releases/0.4.0.example) with the daily goal.
+- **Release**: Cut [0.4.0](releases/example-0.4.0.md) with the daily goal.
 
 ## 2026-09-05
 
-- **Release**: Cut [0.3.1](releases/0.3.1.example), a fix release for settings
-  lost on update.
+- **Release**: Cut [0.3.1](releases/example-0.3.1.md), a fix release for
+  settings lost on update.
 
 ## 2026-08-28
 
-- **Release**: Cut [0.3.0](releases/0.3.0.example) with long breaks and global
-  shortcuts.
+- **Release**: Cut [0.3.0](releases/example-0.3.0.md) with long breaks and
+  global shortcuts.
 
 ## 2026-08-07
 
-- **Release**: Cut [0.2.0](releases/0.2.0.example) with break timers and session
-  history.
+- **Release**: Cut [0.2.0](releases/example-0.2.0.md) with break timers and
+  session history.
 
 ## 2026-08-01
 

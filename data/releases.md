@@ -98,12 +98,12 @@ resolve: {scale: {y: independent}}
 
 [Unreleased](releases/unreleased.md)
 
-[0.4.0](releases/0.4.0.example)
+[0.4.0](releases/example-0.4.0.md)
 
-[0.3.1](releases/0.3.1.example)
+[0.3.1](releases/example-0.3.1.md)
 
-[0.3.0](releases/0.3.0.example)
+[0.3.0](releases/example-0.3.0.md)
 
-[0.2.0](releases/0.2.0.example)
+[0.2.0](releases/example-0.2.0.md)
 
-[0.1.0](releases/0.1.0.example)
+[0.1.0](releases/example-0.1.0.md)

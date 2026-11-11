@@ -33,30 +33,30 @@ hconcat:
     encoding: {text: {field: guards, aggregate: sum}}
 ```
 
-[Break timers](features/break-timers.example)
+[Break timers](features/break-timers-example.md)
 
-[Daily goal](features/daily-goal.example)
+[Daily goal](features/daily-goal-example.md)
 
-[Focus sessions](features/focus-sessions.example)
+[Focus sessions](features/focus-sessions-example.md)
 
-[Global shortcuts](features/global-shortcuts.example)
+[Global shortcuts](features/global-shortcuts-example.md)
 
-[Long-break scheduling](features/long-break-scheduling.example)
+[Long-break scheduling](features/long-break-scheduling-example.md)
 
-[Onboarding tour](features/onboarding-tour.example)
+[Onboarding tour](features/onboarding-tour-example.md)
 
-[Session history](features/session-history.example)
+[Session history](features/session-history-example.md)
 
-[Do-not-disturb sync](features/do-not-disturb-sync.example)
+[Do-not-disturb sync](features/do-not-disturb-sync-example.md)
 
-[Task labels](features/task-labels.example)
+[Task labels](features/task-labels-example.md)
 
-[Custom sounds](features/custom-sounds.example)
+[Custom sounds](features/custom-sounds-example.md)
 
-[Streak widget](features/streak-widget.example)
+[Streak widget](features/streak-widget-example.md)
 
-[Weekly report](features/weekly-report.example)
+[Weekly report](features/weekly-report-example.md)
 
-[Compact mode](features/compact-mode.example)
+[Compact mode](features/compact-mode-example.md)
 
-[Cloud backup](features/cloud-backup.example)
+[Cloud backup](features/cloud-backup-example.md)

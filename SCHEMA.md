@@ -6,7 +6,8 @@ section) — bindings are by path, and **every** document under `data/` is bound
 hubs included. Run `iwe schema validate` before committing — exit 0 is the gate.
 
 The examples below describe one fictional product (Pomodux, a focus-timer app);
-the `*.example.md` docs demonstrate each shape in place.
+the `*-example.md` docs (`releases/example-<version>.md` for releases)
+demonstrate each shape in place.
 
 `data/` is a conformant [Open Knowledge
 Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)

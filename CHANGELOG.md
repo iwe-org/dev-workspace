@@ -6,6 +6,20 @@ All notable changes to this template are documented here. The format is based on
 This is a template you clone, so the entries below double as migration notes: if
 you cloned an earlier copy, they tell you what to change in your own workspace.
 
+## [1.2.1]
+
+### Fixed
+
+- The hubs list their example documents again. A link such as
+  `plans/mvp.example` reads to iwe as a file with the extension `.example`, not
+  as a document, so no example was included by its hub, every hub but Backlog
+  and Releases dropped out of the iWe sidebar, and `iwe normalize` kept
+  rewriting the links that way. Example documents are now named
+  `<name>-example.md`, and example releases `example-<version>.md`, since a
+  version's dots make `0.4.0-example` read as a file too. If you cloned an
+  earlier copy and kept the examples, rename them the same way and update the
+  links in their hubs.
+
 ## [1.2.0]
 
 ### Added

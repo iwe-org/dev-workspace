@@ -96,7 +96,7 @@ data/
 
 Every document carries typed, schema-validated frontmatter —
 `iwe schema validate` is the commit gate. Relationships are links, not fields;
-the `*.example.md` docs show every convention on a small fictional app and are
+the `*-example.md` docs show every convention on a small fictional app and are
 deleted by setup.
 
 `AGENTS.md` is the agent's operating manual. `SCHEMA.md` documents the

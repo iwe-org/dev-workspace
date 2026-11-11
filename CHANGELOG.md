@@ -14,6 +14,9 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   one-way flow, top to bottom, from UI through reducers to the store and the
   session log, and the aggregates derived from the log. Its convention note says
   to draw an architecture note's structure the same way when it helps.
+- A system overview diagram on the Architecture hub: the modules under `src/`
+  (UI, shortcuts, store, timer, audio, settings) and the session log, and how
+  they talk, linking the state model for the store's side.
 - Three more example specs under Spec: Breaks, Session history and Do not
   disturb, each linked to the feature it describes and the example bug that
   violates it.

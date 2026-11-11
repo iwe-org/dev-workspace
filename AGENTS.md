@@ -115,8 +115,10 @@ software project's memory and system of record. The division of labor:
   it true: every document under `data/` has frontmatter with a non-empty `type`;
   `data/index.md` carries no frontmatter beyond `okf_version` and stays sections
   of link bullets; `data/log.md` stays date-grouped bullets under
-  `## YYYY-MM-DD`. `okf.yaml`, `okf-index.yaml`, and `okf-log.yaml` enforce all
-  three — never work around them by unbinding a schema.
+  `## YYYY-MM-DD`. Each folder's schema requires `type`, and `okf-index.yaml`
+  and `okf-log.yaml` check the reserved files — never work around them by
+  unbinding a schema, and bind a new folder under `data/` to a schema of its
+  own.
 - **Links carry `.md`** — `refs_extension = ".md"`, so a link resolves for
   readers outside iwe. Run `iwe normalize` after bulk edits rather than
   hand-writing link targets.

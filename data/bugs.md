@@ -38,26 +38,14 @@ encoding:
 ```
 
 ``` chart
-data: {query: {filter: {type: bug, stage: {$exists: false}}, project: {reported_by: 1, affected_versions: 1}}}
-vconcat:
-  - hconcat:
-      - title: Open
-        width: 120
-        height: 40
-        mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
-        encoding: {text: {aggregate: count}}
-      - title: Came back
-        transform: [{filter: "length(datum.affected_versions) > 1"}]
-        width: 120
-        height: 40
-        mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
-        encoding: {text: {aggregate: count}}
-  - title: Open by who noticed
-    mark: {type: bar, cornerRadiusEnd: 3, tooltip: true}
-    encoding:
-      y: {field: reported_by, type: nominal, title: null, sort: [user, agent]}
-      x: {aggregate: count, type: quantitative, title: Bugs, axis: {tickMinStep: 1}}
-      color: {field: reported_by, type: nominal, legend: null, scale: {domain: [user, agent], range: ["#0090ff", "#8b8d98"]}}
+title: Open by who noticed
+height: {step: 24}
+data: {query: {filter: {type: bug, stage: {$exists: false}}, project: {reported_by: 1}}}
+mark: {type: bar, cornerRadiusEnd: 3, tooltip: true}
+encoding:
+  y: {field: reported_by, type: nominal, title: null, sort: [user, agent]}
+  x: {aggregate: count, type: quantitative, title: Bugs, axis: {tickMinStep: 1}}
+  color: {field: reported_by, type: nominal, legend: null, scale: {domain: [user, agent], range: ["#0090ff", "#8b8d98"]}}
 ```
 
 ``` chart

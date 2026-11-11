@@ -104,14 +104,10 @@ match = [
 [schemas.tracker]
 match = ["data/product", "data/milestone"]
 
-# OKF v0.2 conformance (SPEC §11). okf stacks on top of the per-type schemas and
-# catches any document arriving without a type; okf-index and okf-log check the
-# body shapes of the reserved files, which a frontmatter-only check cannot see.
-# The bundle root is data/, so these bind under data/ only. The reserved
-# index/log files are unbound via negated patterns.
-[schemas.okf]
-match = ["data/**", "!data/index", "!data/**/index", "!data/log", "!data/**/log"]
-
+# OKF v0.2 conformance (SPEC §11). Every document under data/ is bound to exactly
+# one typed schema above, and each requires a type; okf-index and okf-log check
+# the body shapes of the reserved files, which a frontmatter-only check cannot
+# see. A new folder under data/ needs a binding of its own.
 [schemas.okf-index]
 match = ["data/index", "data/**/index"]
 

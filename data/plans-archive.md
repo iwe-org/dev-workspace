@@ -17,39 +17,20 @@ successor or giving the reason it was dropped. Nothing is deleted: the archive
 is the record of what was built and what was dropped.*
 
 ``` chart
-datasets:
-  closed: {query: {filter: {type: plan, stage: {$in: [done, cancelled]}}, project: {stage: 1, created: 1, completed: 1}}}
-vconcat:
-  - hconcat:
-      - title: Shipped
-        data: {name: closed}
-        transform: [{filter: "datum.stage == 'done'"}]
-        width: 120
-        height: 40
-        mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
-        encoding: {text: {aggregate: count}}
-      - title: Cancelled
-        data: {name: closed}
-        transform: [{filter: "datum.stage == 'cancelled'"}]
-        width: 120
-        height: 40
-        mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
-        encoding: {text: {aggregate: count}}
-  - title: Shipped per month
-    height: 160
-    data: {name: closed}
-    transform:
-      - filter: "datum.stage == 'done'"
-      - calculate: "(toDate(datum.completed) - toDate(datum.created)) / 86400000"
-        as: days
-    mark: {type: bar, color: "#30a46c", cornerRadiusEnd: 3}
-    encoding:
-      x: {field: completed, timeUnit: utcyearmonth, type: ordinal, title: null, axis: {format: "%b %Y", labelAngle: 0}}
-      y: {aggregate: count, type: quantitative, title: Plans, axis: {tickMinStep: 1}}
-      tooltip:
-        - {field: completed, timeUnit: utcyearmonth, type: ordinal, title: Month, format: "%B %Y"}
-        - {aggregate: count, title: Plans}
-        - {field: days, aggregate: mean, title: Mean days from created, format: ".0f"}
+title: Shipped per month
+height: 160
+data: {query: {filter: {type: plan, stage: done}, project: {created: 1, completed: 1}}}
+transform:
+  - calculate: "(toDate(datum.completed) - toDate(datum.created)) / 86400000"
+    as: days
+mark: {type: bar, color: "#30a46c", cornerRadiusEnd: 3}
+encoding:
+  x: {field: completed, timeUnit: utcyearmonth, type: ordinal, title: null, axis: {format: "%b %Y", labelAngle: 0}}
+  y: {aggregate: count, type: quantitative, title: Plans, axis: {tickMinStep: 1}}
+  tooltip:
+    - {field: completed, timeUnit: utcyearmonth, type: ordinal, title: Month, format: "%B %Y"}
+    - {aggregate: count, title: Plans}
+    - {field: days, aggregate: mean, title: Mean days from created, format: ".0f"}
 ```
 
 ## Done

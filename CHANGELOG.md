@@ -26,13 +26,19 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   version's dots make `0.4.0-example` read as a file too. If you cloned an
   earlier copy and kept the examples, rename them the same way and update the
   links in their hubs.
-- The count tiles on the Bugs, Bugs archive, Features and Plans archive charts
-  are 40 px tall with the number under its title. They had no size of their own
-  and stretched to the chart beside them, leaving a tall empty box; the tiles
-  now sit in a row above the chart instead of beside it.
+- The Bugs, Features and Plans archive charts no longer put count tiles above
+  the chart; each is the chart alone. Bugs archive keeps its row of counts, now
+  40 px tall with each number under its title instead of a tall empty box.
 
 ### Removed
 
+- The `okf` schema that was stacked on every document under `data/`. Each
+  folder's own schema already requires `type`, and the second binding hid the
+  columns the iWe app shows beside inclusion links: the app takes them from the
+  first binding in alphabetical order, so `okf` won over `plan`, `release` and
+  `task`. Backlog, plan and release rows now show their stage, priority and
+  dates. If you cloned an earlier copy, delete `[schemas.okf]` from
+  `.iwe/config.toml` and `.iwe/schemas/okf.yaml`.
 - The Codebase hub: `data/codebase.md`, its example maps, the `codebase` schema,
   and the instructions that kept the maps fresh (AGENTS.md, the verify skill's
   stale-map audit, and the references to a map skill, which the template never

@@ -17,8 +17,7 @@ below show only the fields specific to that type; the shared families come next.
 
 ## Fields every type carries
 
-OKF's optional families (SPEC §4.1, §5), declared on every schema and checked by
-`.iwe/schemas/okf.yaml`:
+OKF's optional families (SPEC §4.1, §5), declared on every type's schema:
 
 - `description` — one sentence. Every document has one; it is what an OKF
   consumer and `data/index.md` show before opening the file.

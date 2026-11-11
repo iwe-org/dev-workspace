@@ -20,12 +20,18 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   earlier copy and kept the examples, rename them the same way and update the
   links in their hubs.
 - The count tiles on the Bugs, Bugs archive, Features and Plans archive charts
-  are 40 px tall with the number under its title. They had no size of their
-  own and stretched to the chart beside them, leaving a tall empty box; the
-  tiles now sit in a row above the chart instead of beside it.
+  are 40 px tall with the number under its title. They had no size of their own
+  and stretched to the chart beside them, leaving a tall empty box; the tiles
+  now sit in a row above the chart instead of beside it.
 
 ### Removed
 
+- The Codebase hub: `data/codebase.md`, its example maps, the `codebase` schema,
+  and the instructions that kept the maps fresh (AGENTS.md, the verify skill's
+  stale-map audit, and the references to a map skill, which the template never
+  shipped). If you cloned an earlier copy, delete `data/codebase/` and
+  `data/codebase.md`, their schema bindings in `.iwe/config.toml`, and the link
+  from `data/index.md`.
 - `title` from the frontmatter every document may carry (`okf.yaml`) and
   `frontmatter_document_title` from `.iwe/config.toml`. The title is the
   document's `#` heading; the app no longer offers an empty Title field.

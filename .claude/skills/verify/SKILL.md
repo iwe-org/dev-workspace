@@ -50,10 +50,6 @@ fixes belong to the skills and sessions it points at.
      `## Key references` no longer exist. Recurring bugs (two or more
      `affected_versions`) get a WARNING asking why the first fix did not hold.
    - Learnings the code now contradicts — a correction is due.
-   - Stale map docs: for each `data/codebase/` doc, commits touching its
-     `source` after its `commit`
-     (`git log --oneline <commit>..HEAD -- <source>`) — flag for the map
-     skill's refresh mode.
    - Consistency: closed items still on an open list —
      `iwe find --filter '{type: plan, stage: {$in: [done, cancelled]}}' --included-by data/plans -f keys`
      and the same for `{type: bug, stage: {$in: [done, cancelled]}}` under

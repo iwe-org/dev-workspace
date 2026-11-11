@@ -86,7 +86,6 @@ data/
 ├── spec.md     spec/          # behavioral specs — the durable truth, synced at ship time
 ├── architecture.md architecture/  # design decisions, with the rejected alternatives
 ├── concept.md  concept/       # product vision — the tiebreaker for feature debates
-├── codebase.md codebase/      # the code map: a component tree + flows — derived, refreshable
 ├── releases.md releases/      # one page per version + the unreleased accumulator
 ├── backlog.md  backlog/       # prioritized next work
 ├── someday.md  someday/       # ideas that aren't commitments

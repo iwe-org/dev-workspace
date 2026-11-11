@@ -67,9 +67,6 @@ software project's memory and system of record. The division of labor:
      an afterthought.
    - Design decision made → `data/architecture/<slug>.md`, including the
      rejected alternatives.
-   - Code structure changed (module added, split, or moved) → re-read the code
-     and refresh the touched `data/codebase/` docs, bumping their `commit` and
-     `verified`. `git log <commit>..HEAD -- <source>` finds the stale ones.
    - Vision insight → `data/concept/<slug>.md`.
    - Task finished → `stage: done` + `completed` on the task doc, link moved to
      `## Done` in `data/backlog.md` (`deferred` and `cancelled` tasks move to
@@ -110,8 +107,7 @@ software project's memory and system of record. The division of labor:
   open, `done` requires `completed`); releases `released|unreleased`; backlog
   `planned|deferred|done|cancelled` (`done` requires `completed`). Reference
   docs (spec/architecture/concept/someday) and learnings carry a `type` and no
-  stage; codebase-map docs carry `source` + `commit` + `verified` — provenance,
-  not lifecycle.
+  stage.
 - **`data/` is an OKF v0.2 bundle** — the graph is portable knowledge any [Open
   Knowledge
   Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)

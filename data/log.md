@@ -31,8 +31,8 @@ to the current day's group.
   [features](features.md), [bugs](bugs.md), and [releases](releases.md) for
   delivery.
 - **Creation**: Seeded the reference side — [spec](spec.md),
-  [codebase](codebase.md), [architecture](architecture.md), and
-  [concept](concept.md) — with example documents showing the shape of each type.
+  [architecture](architecture.md), and [concept](concept.md) — with example
+  documents showing the shape of each type.
 - **Creation**: Added [learnings](learnings.md) for durable memory, and the
   [plans archive](plans-archive.md) and [bugs archive](bugs-archive.md) for
   closed work.

@@ -17,7 +17,8 @@ below).
 
 ```
 README.md          # the pitch and quickstart (humans)
-AGENTS.md          # the operating manual (agents) — CLAUDE.md points here
+index.md           # the start page the iWe app opens first
+AGENTS.md          # the operating manual (agents)
 SCHEMA.md          # frontmatter reference (humans)
 STRUCTURE.md       # this file: design rationale
 .iwe/

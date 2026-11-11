@@ -10,6 +10,10 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
 
 ### Added
 
+- `index.md` — a start page at the root: what the workspace is, how to begin,
+  and where things live. The iWe app opens it when it creates a workspace from
+  this template.
+- `preview.png` — the image the iWe template gallery shows for this template.
 - `data/` is now a conformant [Open Knowledge
   Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
   v0.2 bundle — portable knowledge any OKF consumer can read, not just iwe.
@@ -40,6 +44,8 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
 
 ### Changed
 
+- **`CLAUDE.md` removed.** It only pointed at `AGENTS.md`, which Claude Code now
+  reads directly.
 - **`status` is now `stage`.** OKF reserves `status` for its lifecycle values
   (`draft | stable | deprecated`), so the workflow field moved to `stage` in all
   schemas and every document. `status` is now set only where it carries signal —

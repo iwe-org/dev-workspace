@@ -61,8 +61,8 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   and the start page describe them.
 - The open bug example gained the new fields and an `## Expected` section; its
   suspected cause moved to `## Leads`.
-- `STRUCTURE.md` no longer carries the notes on where the template came from;
-  it describes the layout and its rationale only.
+- `STRUCTURE.md` no longer carries the notes on where the template came from; it
+  describes the layout and its rationale only.
 
 ### Fixed
 

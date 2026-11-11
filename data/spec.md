@@ -17,3 +17,9 @@ requirements as `### Requirement:` sections with SHALL statements and
 whenever a plan ships, so this section never drifts from the code.*
 
 [Timer](spec/timer-example.md)
+
+[Breaks](spec/breaks-example.md)
+
+[Session history](spec/session-history-example.md)
+
+[Do not disturb](spec/do-not-disturb-example.md)

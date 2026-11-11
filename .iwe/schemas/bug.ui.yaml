@@ -19,7 +19,7 @@ fields:
         color: red
   reported_by:
     title: Reported by
-    description: Who noticed the problem: a person, or an agent acting unprompted.
+    description: 'Who noticed the problem: a person, or an agent acting unprompted.'
     values:
       user:
         title: User

@@ -14,6 +14,9 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   one-way flow from UI through reducers to the store and the session log, and
   the aggregates derived from the log. Its convention note says to draw an
   architecture note's structure the same way when it helps.
+- Three more example specs under Spec: Breaks, Session history and Do not
+  disturb, each linked to the feature it describes and the example bug that
+  violates it.
 
 ### Fixed
 
@@ -26,6 +29,12 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   version's dots make `0.4.0-example` read as a file too. If you cloned an
   earlier copy and kept the examples, rename them the same way and update the
   links in their hubs.
+- `bug.ui.yaml` did not parse: an unquoted colon in the `reported_by`
+  description. The app dropped the whole sidecar, so bug rows showed no columns
+  and the fields lost their titles and colours.
+- The release charts place one bar per version, side by side in release order,
+  instead of thin bars on a calendar axis with weeks of empty space between
+  them. The label above each bar is now its item total.
 - The Bugs, Features and Plans archive charts no longer put count tiles above
   the chart; each is the chart alone. Bugs archive keeps its row of counts, now
   40 px tall with each number under its title instead of a tall empty box.

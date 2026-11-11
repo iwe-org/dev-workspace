@@ -2,6 +2,8 @@
 type: plan
 description: 'Example active plan: building the streak widget.'
 created: 2026-07-20
+tags:
+- milestone-mvp
 generated:
   by: human:author
   at: 2026-07-20T00:00:00Z
@@ -9,7 +11,7 @@ generated:
 
 # Streak widget
 
-*Example document — this shows an active plan (no `status` frontmatter) with a
+*Example document — this shows an active plan (no `stage` frontmatter) with a
 `## Depends on` section. The setup skill deletes `*.example.md` files after
 onboarding.*
 
@@ -63,7 +65,7 @@ sessions.
 
 - Weekly/monthly aggregates in the history view.
 
-*Convention notes: an active plan simply has no `status` — it appears under
+*Convention notes: an active plan simply has no `stage` — it appears under
 `## Active` in the plans hub. `## Depends on` uses inline links (soft
 references), so the dependency is queryable via `iwe find --references` without
 making this plan a child of the other. A spec that doesn't exist yet is named in

@@ -1,16 +1,42 @@
 $schema: https://document-schema.org/draft/2026-06/schema
 description: >-
-  Bug reports, investigations, and repro notes (data/bugs/<slug>.md). Stage is
-  optional; an absent stage means open/under investigation.
+  Bug tickets, one per problem (data/bugs/<slug>.md), describing what was
+  observed rather than what is suspected: a "# Bug: <short symptom>" title
+  holding "## Symptom", "## Expected" and "## Reproduction", followed by optional
+  investigation and fix sections. created, reported_by and affected_versions
+  are required. An open bug has no stage; a done bug records completed.
 maxDepth: 4
 frontmatter:
   type: object
-  required: [type]
+  required: [type, created, reported_by, affected_versions]
   properties:
     type: { const: bug }
     stage:
-      enum: [done, cancelled]
-      description: "stage, if present, must be one of: done, cancelled (omit while open)"
+      enum: [deferred, done, cancelled]
+      description: "stage, if present, must be one of: deferred, done, cancelled (omit while open)"
+    reported_by:
+      enum: [user, agent]
+      description: >-
+        reported_by names who noticed the problem, not who typed the ticket:
+        user for a person, agent for an agent that spotted it unprompted during
+        a review, a test run or unrelated work
+    created:
+      type: string
+      format: date
+      description: created is the YYYY-MM-DD date the ticket was filed
+    completed:
+      type: string
+      format: date
+      description: completed is the YYYY-MM-DD date the bug was fixed
+    affected_versions:
+      type: array
+      minItems: 1
+      items:
+        type: string
+        pattern: '^(unreleased|\d+\.\d+\.\d+)$'
+      description: >-
+        affected_versions holds the versions the bug has been observed in, in
+        release order; each is a semantic version like 0.1.0, or unreleased
     description:
       type: string
       description: one sentence summarizing this document — what OKF consumers and data/index.md show
@@ -63,3 +89,44 @@ frontmatter:
       properties:
         by: { type: string, description: "actor (SPEC §7)" }
         at: { type: string, description: ISO 8601 datetime }
+  if:
+    required: [stage]
+    properties:
+      stage: { const: done }
+  then:
+    required: [completed]
+    description: a bug marked done must carry a completed date
+sections:
+  - header: { pattern: '^Bug: .+' }
+    maxContains: 1
+    description: 'a single "# Bug: <short symptom>" heading holds every section'
+    sections:
+      - header: { const: Symptom }
+        maxContains: 1
+        description: the observed behaviour, the date, and the version it was seen on
+      - header: { const: Expected }
+        maxContains: 1
+        description: the correct behaviour, citing the spec or feature document that defines it
+      - header: { const: Reproduction }
+        maxContains: 1
+        description: numbered steps that trigger the bug; when none are known yet, a sentence saying so
+      - header: { const: Leads }
+        minContains: 0
+        maxContains: 1
+      - header: { const: Root cause }
+        minContains: 0
+        maxContains: 1
+      - header: { const: Fix }
+        minContains: 0
+        maxContains: 1
+      - header: { const: Recurrence }
+        minContains: 0
+        maxContains: 1
+      - header: { const: Related }
+        minContains: 0
+        maxContains: 1
+      - header: { const: Key references }
+        minContains: 0
+        maxContains: 1
+    additionalSections: false
+additionalSections: false

@@ -1,0 +1,58 @@
+name: Plans
+columns: [stage, completed]
+fields:
+  stage:
+    title: Stage
+    description: Where the plan stands. Empty means active.
+    values:
+      approved:
+        title: Approved
+        description: Signed off and ready to build.
+        color: blue
+      deferred:
+        title: Deferred
+        description: On hold; kept for later, not scheduled.
+        color: orange
+      done:
+        title: Done
+        description: Every task has landed.
+        color: green
+      cancelled:
+        title: Cancelled
+        description: Dropped or replaced; the first line of the body explains.
+        color: red
+  created:
+    description: When the plan was written (YYYY-MM-DD).
+  completed:
+    description: When the last task landed (YYYY-MM-DD).
+  type:
+    hidden: true
+  description:
+    description: One sentence summarizing the document, shown by the hubs and data/index.md.
+    multiline: true
+  status:
+    title: OKF status
+    description: OKF lifecycle, derived from stage. Absent means stable.
+    values:
+      draft:
+        title: Draft
+        color: gray
+      stable:
+        title: Stable
+        color: green
+      deprecated:
+        title: Deprecated
+        color: red
+  stale_after:
+    title: Stale after
+    description: The day this content should be checked again.
+  generated:
+    hidden: true
+  verified:
+    hidden: true
+  sources:
+    hidden: true
+  usage_window:
+    hidden: true
+  resource:
+    hidden: true

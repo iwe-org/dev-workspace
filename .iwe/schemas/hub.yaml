@@ -1,7 +1,8 @@
 $schema: https://document-schema.org/draft/2026-06/schema
 description: >-
   A landing page that inclusion-links the documents in one directory
-  (data/features.md, data/plans.md, …).
+  (data/features.md, data/plans.md, …), or the closed ones of a directory
+  (data/plans-archive.md, data/bugs-archive.md).
 maxDepth: 4
 frontmatter:
   type: object

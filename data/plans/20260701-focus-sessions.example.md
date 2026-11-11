@@ -4,6 +4,8 @@ description: 'Example shipped plan: building focus sessions, from approach throu
 stage: done
 created: 2026-07-01
 completed: 2026-07-18
+tags:
+- milestone-mvp
 generated:
   by: human:author
   at: 2026-07-01T00:00:00Z
@@ -13,7 +15,7 @@ generated:
 
 *Example document — this shows the full body template of a shipped plan,
 including the `## Spec changes` section the ship skill synced before flipping
-the status to done. The setup skill deletes `*.example.md` files after
+the stage to done. The setup skill deletes `*.example.md` files after
 onboarding.*
 
 ## Context
@@ -21,7 +23,8 @@ onboarding.*
 Pomodux has a window and a session log but no working timer. This plan builds
 the core loop: countdown, pause/resume, completion logging. The [state
 model](../architecture/state-model.example) (single store, append-only log) is
-already in place.
+already in place. It replaces the [menu-bar-only
+timer](20260627-menu-bar-only-timer.example) plan, cancelled in the same change.
 
 ## Approach
 
@@ -78,7 +81,10 @@ Verified anchor points (line numbers as of 2026-07-01):
 - `src/store/sessions.ts:15` — `appendSession()`, the log writer
 - `src/main.ts:31` — window/tray bootstrap where the view mounts
 
-*Convention notes: `status: done` requires `completed` (schema-enforced), and
-the plan's link in the plans hub sits under `## Done`. `## Spec changes` names
-every spec this work touches — the ship skill walks that list before the status
-flips, which is what keeps specs from drifting.*
+*Convention notes: `stage: done` requires `completed` (schema-enforced), only
+the stage says the plan shipped — the ticked boxes above are for the reader, not
+for queries. Once done, the plan's link left `## Active` in the plans hub: it
+sits under `## Shipped` in its milestone and under its month in the plans
+archive. `## Spec changes` names every spec this work touches — the ship skill
+walks that list before the stage flips, which is what keeps specs from
+drifting.*

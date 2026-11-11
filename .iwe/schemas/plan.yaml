@@ -2,7 +2,8 @@ $schema: https://document-schema.org/draft/2026-06/schema
 description: >-
   Implementation plans, migrations, and design proposals
   (data/plans/YYYYMMDD-slug.md). Every plan carries a created date; a shipped
-  plan is marked done and dated with completed.
+  plan is marked done and dated with completed. Queries read the stage, never
+  the body, to tell whether a plan shipped.
 maxDepth: 4
 frontmatter:
   type: object
@@ -10,8 +11,8 @@ frontmatter:
   properties:
     type: { const: plan }
     stage:
-      enum: [done, cancelled]
-      description: "stage must be one of: done, cancelled (omit for active/pending)"
+      enum: [approved, deferred, done, cancelled]
+      description: "stage must be one of: approved, deferred, done, cancelled (omit for active/pending)"
     created:
       type: string
       format: date

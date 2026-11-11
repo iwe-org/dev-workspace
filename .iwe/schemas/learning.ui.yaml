@@ -1,0 +1,53 @@
+name: Learnings
+columns: [kind, created]
+fields:
+  kind:
+    description: What sort of fact this is.
+    values:
+      trap:
+        title: Trap
+        description: A pitfall and how to avoid it.
+        color: orange
+      rule:
+        title: Rule
+        description: A standing instruction to follow from now on.
+        color: blue
+      correction:
+        title: Correction
+        description: A belief that turned out to be wrong, and what is true instead.
+        color: purple
+  created:
+    description: When the fact was discovered or stated (YYYY-MM-DD).
+  session:
+    description: Identifier of the agent session that produced the fact, if available.
+  type:
+    hidden: true
+  description:
+    description: One sentence summarizing the document, shown by the hubs and data/index.md.
+    multiline: true
+  status:
+    title: OKF status
+    description: OKF lifecycle, derived from stage. Absent means stable.
+    values:
+      draft:
+        title: Draft
+        color: gray
+      stable:
+        title: Stable
+        color: green
+      deprecated:
+        title: Deprecated
+        color: red
+  stale_after:
+    title: Stale after
+    description: The day this content should be checked again.
+  generated:
+    hidden: true
+  verified:
+    hidden: true
+  sources:
+    hidden: true
+  usage_window:
+    hidden: true
+  resource:
+    hidden: true

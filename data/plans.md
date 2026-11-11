@@ -9,20 +9,40 @@ generated:
 
 # 🗺️ Plans
 
-*Every plan lives in `plans/YYYYMMDD-<slug>.md` and is listed here, always — a
-status change moves its link between sections, never removes it. `## Active`
-holds plans without a `status`; `## Done` mirrors `status: done`; `## Cancelled`
-mirrors `status: cancelled`. The plan skill files new plans, the ship skill
-moves them.*
+*Every plan lives in `plans/YYYYMMDD-<slug>.md`. This hub lists the open ones:
+`## Active` holds plans without a `stage` or with `stage: approved`, and
+`## Deferred` holds plans parked for later. When a plan's `stage` becomes `done`
+or `cancelled`, its link moves to the [plans archive](plans-archive.md) in the
+same change, so nothing under this hub ever carries a closed stage. The plan
+skill files new plans, the ship skill moves them. The chart counts every
+`type: plan` document, open and closed.*
+
+``` chart
+title: Every plan by stage
+height: {step: 24}
+data: {query: {filter: {type: plan}, project: {stage: 1}}}
+transform:
+  - calculate: "datum.stage == null ? 'active' : datum.stage"
+    as: state
+mark: {type: bar, cornerRadiusEnd: 3, tooltip: true}
+encoding:
+  y: {field: state, type: nominal, title: null, sort: [active, approved, deferred, done, cancelled]}
+  x: {aggregate: count, type: quantitative, title: Plans, axis: {tickMinStep: 1}}
+  color: {field: state, type: nominal, legend: null, scale: {domain: [active, approved, deferred, done, cancelled], range: ["#8b8d98", "#0090ff", "#f76b15", "#30a46c", "#e5484d"]}}
+```
 
 ## Active
 
-[Streak widget](plans/20260720-streak-widget.example)
-
 [MVP](plans/mvp.example)
 
-## Done
+[Polish](plans/20260901-polish-milestone.example)
 
-[Focus sessions](plans/20260701-focus-sessions.example)
+[Streak widget](plans/20260720-streak-widget.example)
 
-## Cancelled
+[Do-not-disturb sync](plans/20261001-do-not-disturb-sync.example)
+
+[Task labels](plans/20261005-task-labels.example)
+
+## Deferred
+
+[Weekly report](plans/20260918-weekly-report.example)

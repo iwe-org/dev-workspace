@@ -44,17 +44,21 @@ fixes belong to the skills and sessions it points at.
    codebase:
    - Specs whose requirements the code now contradicts (sample the
      highest-traffic specs first: `iwe find --references <key>` counts).
-   - Features marked `implemented` with no trace in the code; shipped
-     behavior with no feature doc.
+   - Features marked `implemented` with no trace in the code, or whose
+     `tests` no longer exist; shipped behavior with no feature doc.
    - Open bugs (no `stage`) — still reproducible? Point at ones whose
-     `## Key references` no longer exist.
+     `## Key references` no longer exist. Recurring bugs (two or more
+     `affected_versions`) get a WARNING asking why the first fix did not hold.
+   - Learnings the code now contradicts — a correction is due.
    - Stale map docs: for each `data/codebase/` doc, commits touching its
      `source` after its `commit`
      (`git log --oneline <commit>..HEAD -- <source>`) — flag for the map
      skill's refresh mode.
-   - Consistency: plans with `stage: done` still linked under `## Active`
-     (`iwe find --filter '{stage: done}' --included-by data/plans -f keys`
-     cross-checked against the hub sections); `iwe schema validate`
+   - Consistency: closed items still on an open list —
+     `iwe find --filter '{type: plan, stage: {$in: [done, cancelled]}}' --included-by data/plans -f keys`
+     and the same for `{type: bug, stage: {$in: [done, cancelled]}}` under
+     `data/bugs` must print nothing; plans whose body claims they shipped
+     (every box ticked) but carry no `stage`; `iwe schema validate`
      violations; `iwe stats` dangling links and `data/` orphans other than
      `data/index`.
    - Report in the same CRITICAL/WARNING/SUGGESTION format, grouped by fix

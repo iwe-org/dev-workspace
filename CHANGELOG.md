@@ -6,7 +6,88 @@ All notable changes to this template are documented here. The format is based on
 This is a template you clone, so the entries below double as migration notes: if
 you cloned an earlier copy, they tell you what to change in your own workspace.
 
-## [Unreleased]
+## [1.2.0]
+
+### Added
+
+- **Learnings** — a `learning` type for durable memory, one fact per page: a
+  pitfall to avoid, a standing rule, or a mistaken belief put right, with its
+  `created` date and a `kind`. `data/learnings.md` lists them by topic, and two
+  example learnings show the shape. The agent consults learnings before working
+  on an area and writes one when something was learned the hard way.
+- **Archive hubs for closed work** — `data/plans-archive.md` (done plans by
+  month, cancelled plans) and `data/bugs-archive.md` (fixed and cancelled
+  tickets). Closing a plan or bug moves its link there, so the open lists stay
+  short and nothing is delisted.
+- **Display sidecars** — a `<type>.ui.yaml` beside every schema, read by the iWe
+  editor: display names, hub columns (`stage` and `completed` for plans, `stage`
+  and `reported_by` for bugs, …), value titles and colors, and the provenance
+  fields hidden from the frontmatter band. The validator never reads them.
+- Bug tickets carry `created`, `reported_by` (`user` or `agent`) and
+  `affected_versions`, all required, and `completed` once fixed. A bug that
+  returns is reopened rather than filed again, so repeat offenders can be listed
+  with one query.
+- Bug bodies are schema-checked: one `# Bug:` heading holding `## Symptom`,
+  `## Expected` and `## Reproduction`, then optional `## Leads`,
+  `## Root cause`, `## Fix`, `## Recurrence`, `## Related` and
+  `## Key references`, in that order.
+- Features marked `implemented` name their guard tests in `tests`.
+- **Live charts on the hubs** — ```` ``` chart ```` blocks (Vega-Lite specs over
+  queries) on bugs, the bugs archive, plans, the plans archive, backlog,
+  features, releases, learnings and milestones: bugs filed and fixed per month,
+  open and recurring bugs, plans shipped per month, stage mixes, a release
+  timeline, learnings per kind and milestone progress. They select documents by
+  `type` and frontmatter, so they need no upkeep.
+- `data/releases/metrics.csv` — test count and suite time per release, joined to
+  the release pages in a chart. Setup cuts it down to its header line.
+- Plans a milestone schedules carry a `milestone-<slug>` tag, which the
+  milestone progress chart counts.
+- New examples, enough to give every chart a shape: 21 bugs (open, deferred,
+  fixed, cancelled, two that came back), 16 plans including a second milestone,
+  12 example backlog tasks, 14 features, 5 releases and 10 learnings, spread
+  over June to October 2026.
+
+### Changed
+
+- Plan stages add `approved` and `deferred`; backlog task stages add `deferred`
+  and `cancelled`, and a `done` task now requires `completed`; bug stages add
+  `deferred`.
+- `data/plans.md` lists open plans only (`## Active`, `## Deferred`), and
+  `data/bugs.md` open tickets only (`## Open`, `## Deferred`). Milestone plans
+  move a shipped child to a `## Shipped` section.
+- A release `version` must be a semantic version or `unreleased`.
+- The ship, plan, verify and weekly skills follow the archive moves, the bug
+  fields, guard tests and learnings. `AGENTS.md`, `SCHEMA.md`, `STRUCTURE.md`
+  and the start page describe them.
+- The open bug example gained the new fields and an `## Expected` section; its
+  suspected cause moved to `## Leads`.
+- `STRUCTURE.md` no longer carries the notes on where the template came from; it
+  describes the layout and its rationale only.
+
+### Fixed
+
+- Hub intros and example convention notes still said `status` where the field
+  has been `stage` since 1.1.0.
+- The codebase-map key example in `SCHEMA.md` now uses a fictional path.
+
+### Migration
+
+If you cloned 1.1.0, in your workspace:
+
+1. Copy the changed schemas (`bug`, `plan`, `feature`, `task`, `release`, `hub`)
+   and the new `learning.yaml`, plus every `*.ui.yaml`, into `.iwe/schemas/`.
+2. Add the `[schemas.learning]` binding and the `data/learnings`,
+   `data/plans-archive` and `data/bugs-archive` hub entries to
+   `.iwe/config.toml`.
+3. Add `created`, `reported_by` and `affected_versions` to every bug, an
+   `## Expected` section where it is missing, and `completed` to fixed bugs and
+   done tasks. Use `unreleased` when no version has shipped.
+4. Add `tests` to every feature marked `implemented`.
+5. Create the two archive hubs and `data/learnings.md`, move the links of closed
+   plans and bugs into the archives, and list them in `data/index.md`.
+6. Run `iwe normalize`, then `iwe schema validate`.
+
+## [1.1.0]
 
 ### Added
 

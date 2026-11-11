@@ -10,7 +10,8 @@ frontmatter:
     type: { const: release }
     version:
       type: string
-      description: version must be a string (e.g. 0.6.0, or "unreleased" for the accumulator page)
+      pattern: '^(unreleased|\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?)$'
+      description: version must be a semantic version (e.g. 0.6.0 or 1.0.0-beta.1), or "unreleased" for the accumulator page
     stage:
       enum: [released, unreleased]
       description: "stage must be one of: released, unreleased"

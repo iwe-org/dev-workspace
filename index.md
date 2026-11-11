@@ -22,13 +22,16 @@ session ends, so the next one starts with context instead of archaeology.
 
 - [Product](data/product.md) — what you are building; every session reads it
   first.
-- [Plans](data/plans.md) — one plan per unit of work: active, done, and
-  cancelled.
+- [Plans](data/plans.md) — one plan per unit of work; shipped and cancelled ones
+  move to the [plans archive](data/plans-archive.md).
 - [Backlog](data/backlog.md) — work items waiting to become a plan or a quick
   fix.
 - [Features](data/features.md) — feature documents, from proposed to
   implemented.
-- [Bugs](data/bugs.md) — symptom, reproduction, root cause, and fix.
+- [Bugs](data/bugs.md) — one ticket per problem, opened before any fix: symptom,
+  expected behaviour, reproduction, and fix.
+- [Learnings](data/learnings.md) — pitfalls, standing rules, and mistaken
+  beliefs put right, one fact per page.
 - [Spec](data/spec.md) — how the product must behave, synced when work ships.
 - [Architecture](data/architecture.md) — design decisions and the alternatives
   that were rejected.

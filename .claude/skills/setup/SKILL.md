@@ -49,7 +49,10 @@ what the code can't answer. Every future session reads what you write here.
    docs — every `*.example.md` under `data/` (`iwe delete <key>` per doc).
    `iwe delete` removes their inclusion links from hubs automatically but
    *flattens* inline links to plain text: sweep the hub files and remaining
-   docs for leftover de-linked example lines and remove them.
+   docs for leftover de-linked example lines and remove them. Cut
+   `data/releases/metrics.csv` down to its header line: its rows describe the
+   example releases. The hub charts then draw empty axes until real documents
+   arrive.
 7. **Validate & commit.** `iwe normalize`, then `iwe schema validate` — both
    must pass clean. Commit with a message like
    `setup: product doc filled, architecture captured, examples removed`.

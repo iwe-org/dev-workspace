@@ -83,6 +83,9 @@ match = "data/concept/**"
 [schemas.someday]
 match = "data/someday/**"
 
+[schemas.learning]
+match = "data/learnings/**"
+
 # Directory hubs. OKF conformance requires every non-reserved document under the
 # bundle to carry a type, so the hubs are typed and validated too — the earlier
 # "hubs stay unvalidated by design" exemption is deliberately retired.
@@ -91,10 +94,13 @@ match = [
   "data/architecture",
   "data/backlog",
   "data/bugs",
+  "data/bugs-archive",
   "data/codebase",
   "data/concept",
   "data/features",
+  "data/learnings",
   "data/plans",
+  "data/plans-archive",
   "data/releases",
   "data/someday",
   "data/spec",

@@ -78,9 +78,11 @@ iwe tree -k data/features                                            # the featu
 data/
 ├── index.md          # the graph root — every hub is a child
 ├── product.md        # what you're building — the doc every session reads first
-├── plans.md    plans/         # implementation plans: Active / Done / Cancelled
+├── plans.md    plans/         # implementation plans: Active / Deferred
+├── plans-archive.md           # closed plans: Done by month / Cancelled
 ├── features.md features/      # feature docs, proposed → implemented
-├── bugs.md     bugs/          # symptom / repro / root cause / fix
+├── bugs.md     bugs/          # one ticket per problem: Open / Deferred
+├── bugs-archive.md            # closed tickets: Fixed / Cancelled
 ├── spec.md     spec/          # behavioral specs — the durable truth, synced at ship time
 ├── architecture.md architecture/  # design decisions, with the rejected alternatives
 ├── concept.md  concept/       # product vision — the tiebreaker for feature debates
@@ -88,6 +90,7 @@ data/
 ├── releases.md releases/      # one page per version + the unreleased accumulator
 ├── backlog.md  backlog/       # prioritized next work
 ├── someday.md  someday/       # ideas that aren't commitments
+├── learnings.md learnings/    # traps, rules, corrections — one fact per page
 └── milestone.md               # milestones: plans whose children are plans
 ```
 

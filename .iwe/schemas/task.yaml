@@ -1,7 +1,8 @@
 $schema: https://document-schema.org/draft/2026-06/schema
 description: >-
   An atomic backlog task (data/backlog/<slug>.md) — a prioritized, single-topic
-  work item waiting to become a plan or a quick fix.
+  work item waiting to become a plan or a quick fix. A finished task carries its
+  completed date.
 maxDepth: 3
 frontmatter:
   type: object
@@ -9,8 +10,8 @@ frontmatter:
   properties:
     type: { const: task }
     stage:
-      enum: [planned, done]
-      description: "stage must be one of: planned, done"
+      enum: [planned, deferred, done, cancelled]
+      description: "stage must be one of: planned, deferred, done, cancelled"
     priority:
       enum: [high, medium, low]
       description: "priority must be one of: high, medium, low"
@@ -74,3 +75,10 @@ frontmatter:
       properties:
         by: { type: string, description: "actor (SPEC §7)" }
         at: { type: string, description: ISO 8601 datetime }
+  if:
+    required: [stage]
+    properties:
+      stage: { const: done }
+  then:
+    required: [completed]
+    description: a task marked done must carry a completed date

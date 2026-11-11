@@ -4,15 +4,6 @@ This document explains how the workspace is put together and why — the design
 rationale behind the layout. The repo itself is the deliverable: a template
 knowledge base a software project copies and fills.
 
-## Provenance
-
-The structure is generalized from a production app-development knowledge base
-(hundreds of documents, maintained daily by agents) built on IWE; the template
-conventions — root docs, fill-in tracker, `*.example.md` demo set, workflow
-skills — follow its sibling, the IWE marketing workspace template. Two ideas are
-adapted from [OpenSpec](https://github.com/Fission-AI/OpenSpec) (see Influences
-below).
-
 ## Layout
 
 ```
@@ -23,14 +14,19 @@ SCHEMA.md          # frontmatter reference (humans)
 STRUCTURE.md       # this file: design rationale
 .iwe/
   config.toml      # markdown conventions + schema→glob bindings
-  schemas/         # validation schemas: plan, feature, bug, release, task, codebase
+  schemas/         # one <type>.yaml per document type, validated by iwe,
+                   # plus a <type>.ui.yaml display sidecar the editor reads
 .claude/skills/    # state workflows: setup, explore, plan, implement,
                    # verify, ship, weekly
 data/              # the graph
   index.md         # the root hub — every hub is its child
   product.md       # ✏️ fill-in tracker: the doc every session reads first
   <hub>.md + <hub>/  # plans, features, bugs, spec, architecture, concept,
-                     # codebase, releases, backlog, someday (+ milestone.md)
+                     # codebase, releases, backlog, someday, learnings
+                     # (+ milestone.md)
+    releases/metrics.csv  # one row of numbers per release, drawn by a chart
+  plans-archive.md   # closed plans: done by month, and cancelled
+  bugs-archive.md    # closed bugs: fixed, and cancelled
 ```
 
 ## Design decisions
@@ -43,22 +39,34 @@ and makes every hub a queryable index.
 
 **Work items vs. reference.** Plans, features, bugs, releases, and backlog tasks
 are *work items*: a lifecycle `stage`, dates, a commit gate
-(`iwe schema validate`). Specs, architecture, concept, and someday docs are
-*durable reference*: they carry a `type` and the shared OKF families, but no
-`stage`, because nothing about them is a lifecycle. The split keeps the ceremony
-where it pays. Every document is validated — OKF conformance requires a `type`
-everywhere — but only work items are asked for more than that.
+(`iwe schema validate`). Specs, architecture, concept, someday, and learnings
+docs are *durable reference*: they carry a `type` and the shared OKF families,
+but no `stage`, because nothing about them is a lifecycle. The split keeps the
+ceremony where it pays. Every document is validated — OKF conformance requires a
+`type` everywhere — but only work items are asked for more than that.
 
 **Dual representation.** A work item's stage lives in frontmatter (for queries)
 and as its link's position in the hub (for reading). The rule that makes this
 survivable: change both together, and no item is ever delisted — `## Done` and
-`## Cancelled` are history, not a trash can.
+`## Cancelled` are history, not a trash can. Frontmatter wins any disagreement:
+a plan whose body says it shipped but whose `stage` is empty is still active as
+far as every hub and query can tell, so closing a plan is part of the change
+that finishes it.
 
-**Minimal frontmatter; relationships are links.** Five stage vocabularies and
-three date fields — that's the entire frontmatter surface. Everything relational
-(plan → spec, bug → requirement, release → feature, plan → plan dependency) is a
-markdown link in the body, which keeps relationships visible while reading and
-traversable via `iwe find --references`.
+**Archive hubs for closed work.** Plans and bugs accumulate fastest, and an open
+list buried under hundreds of closed items stops being read. So each has a
+second hub, `plans-archive.md` and `bugs-archive.md`, and closing an item moves
+its link there. Only the link moves — the document keeps its key and every
+reference to it — so the archive costs nothing the graph doesn't already do, and
+a check for a closed item still on an open list is a one-line query.
+
+**Minimal frontmatter; relationships are links.** Five stage vocabularies, three
+date fields, and a few fields that each answer one question a query needs — who
+reported a bug and on which versions, which tests guard a feature, what kind of
+fact a learning is — that's the entire frontmatter surface. Everything
+relational (plan → spec, bug → requirement, release → feature, plan → plan
+dependency) is a markdown link in the body, which keeps relationships visible
+while reading and traversable via `iwe find --references`.
 
 **The funnel.** Ideas harden stepwise: `someday/` (no commitment) → `backlog/`
 (prioritized) → `plans/YYYYMMDD-<slug>` (committed, dated) → feature
@@ -95,6 +103,40 @@ relationship is written in one direction only (`## Contains` down,
 never rot. Map docs are freely rewritable from a fresh read of the code;
 decision records never are.
 
+**Tickets come first, fixes second.** A ticket opened before any code changes,
+describing what the person saw rather than what the agent suspects, is where the
+reasoning behind a fix outlives the session that made it. `reported_by`
+separates what people reported from what agents found on their own;
+`affected_versions` turns "this came back" into a query, because a returning bug
+reopens its ticket instead of starting a second one. The body's sections are
+schema-enforced, so every ticket answers the same three questions — what
+happened, what should have, how to see it — before anything else.
+
+**A feature claims its guard tests.** `stage: implemented` alone is a claim with
+no evidence. Requiring `tests` on an implemented feature makes the gap between
+"shipped" and "protected" visible at validation time instead of at the next
+regression.
+
+**Learnings are memory, one fact at a time.** Pitfalls, standing rules and
+mistaken beliefs put right are what a new session most needs and is least likely
+to find in code. Each gets one short dated page, linked from `learnings.md` by
+topic, so it can be found, cited and corrected individually rather than lost in
+a long notes file.
+
+**Charts read the frontmatter.** Each hub opens with live charts whose data is a
+query over the documents — never pasted numbers — so a chart is exactly as true
+as the frontmatter it reads. They select by `type` and fields rather than by hub
+membership, which keeps a moved link from changing a count, and they are the
+main payoff of keeping dates and stages honest: a closed plan without
+`completed` simply never appears on the shipped-per-month bar. Numbers that live
+outside the documents, such as test counts per release, go in a small CSV beside
+the docs and join to the documents through a lookup.
+
+**Display lives beside validation.** Each schema has a `<type>.ui.yaml` sidecar
+with titles, colors and hub columns. The validator never reads it, so display
+choices can't weaken the gate, and the schema stays the one source of fields and
+values.
+
 **Authoring rules travel with the product doc.** `data/product.md` carries an
 optional `## Authoring rules` section — per-document-type constraints the plan
 and ship skills consult before writing. Project-specific discipline lives in
@@ -123,26 +165,13 @@ Adopted, in IWE-native form:
 Deliberately not adopted:
 
 - **Archive by file move** (`changes/archive/YYYY-MM-DD-*`) — `stage: done` plus
-  graph queries gives the same lifecycle without moving files or breaking links.
+  a link moved to an archive hub gives the same lifecycle without moving files
+  or breaking links.
 - **Per-change file bundles** (proposal/design/tasks/specs per change) — one
   plan document with sections is leaner; when a plan genuinely outgrows one
   file, inclusion links split it natively.
 - **Delta headers** (`## ADDED/MODIFIED/REMOVED Requirements`) — machinery for a
   parser this workspace doesn't need; `iwe` handles renames and references.
-
-## Improvements over the source KB
-
-Lessons from the knowledge base this template generalizes:
-
-- Its `## Failed` plans section had no frontmatter counterpart — failed plans
-  were indistinguishable from active ones in queries. Here `stage: cancelled` ⇄
-  `## Cancelled` covers abandoned work completely.
-- It accumulated overlapping ad-hoc hubs (dated snapshot indexes duplicating the
-  real ones). This template ships exactly one hub per entity type; point-in-time
-  views should be queries, not files.
-- Its examples of convention lived in real (product-specific) docs. Here the
-  `*.example.md` set demonstrates every convention on a fictional product,
-  schema-validated so it can't rot, and deleted by setup.
 
 ## Publishing
 

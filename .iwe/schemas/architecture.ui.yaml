@@ -1,0 +1,34 @@
+name: Architecture
+columns: []
+fields:
+  type:
+    hidden: true
+  description:
+    description: One sentence summarizing the document, shown by the hubs and data/index.md.
+    multiline: true
+  status:
+    title: OKF status
+    description: OKF lifecycle, derived from stage. Absent means stable.
+    values:
+      draft:
+        title: Draft
+        color: gray
+      stable:
+        title: Stable
+        color: green
+      deprecated:
+        title: Deprecated
+        color: red
+  stale_after:
+    title: Stale after
+    description: The day this content should be checked again.
+  generated:
+    hidden: true
+  verified:
+    hidden: true
+  sources:
+    hidden: true
+  usage_window:
+    hidden: true
+  resource:
+    hidden: true

@@ -1,0 +1,69 @@
+name: Bugs
+columns: [stage, reported_by]
+fields:
+  stage:
+    title: Stage
+    description: Where the bug stands. Empty means open.
+    values:
+      deferred:
+        title: Deferred
+        description: Set aside on purpose, to come back to.
+        color: orange
+      done:
+        title: Fixed
+        description: Fixed. See the Fix section.
+        color: green
+      cancelled:
+        title: Cancelled
+        description: Closed with no code change; the Fix section explains why.
+        color: red
+  reported_by:
+    title: Reported by
+    description: Who noticed the problem: a person, or an agent acting unprompted.
+    values:
+      user:
+        title: User
+        description: Raised by a person.
+        color: blue
+      agent:
+        title: Agent
+        description: Noticed by an agent during a review, a test run, or other work.
+        color: gray
+  affected_versions:
+    title: Affected versions
+    description: Versions the bug showed up in, in release order. More than one means it returned.
+  created:
+    description: When the ticket was opened (YYYY-MM-DD).
+  completed:
+    description: When the fix landed (YYYY-MM-DD).
+  type:
+    hidden: true
+  description:
+    description: One sentence summarizing the document, shown by the hubs and data/index.md.
+    multiline: true
+  status:
+    title: OKF status
+    description: OKF lifecycle, derived from stage. Absent means stable.
+    values:
+      draft:
+        title: Draft
+        color: gray
+      stable:
+        title: Stable
+        color: green
+      deprecated:
+        title: Deprecated
+        color: red
+  stale_after:
+    title: Stale after
+    description: The day this content should be checked again.
+  generated:
+    hidden: true
+  verified:
+    hidden: true
+  sources:
+    hidden: true
+  usage_window:
+    hidden: true
+  resource:
+    hidden: true

@@ -2,6 +2,9 @@
 type: feature
 description: 'Example implemented feature: focus sessions, the product''s core loop.'
 stage: implemented
+tests:
+- src/timer/engine.test.ts
+- src/store/reducers.test.ts
 generated:
   by: human:author
   at: 2026-08-01T00:00:00Z
@@ -34,8 +37,9 @@ spec](../spec/timer.example) — monotonic clock, sleep-safe.
 - Should the default length be onboarding-configurable?
   - Deferred until real usage data exists.
 
-*Convention notes: the feature's `status` chip carries its lifecycle; the story
-of how it was built lives in the [focus sessions
+*Convention notes: the feature's `stage` chip carries its lifecycle, and `tests`
+names the guard tests, required once the stage is `implemented`; the story of
+how it was built lives in the [focus sessions
 plan](../plans/20260701-focus-sessions.example), and the [0.1.0
 release](../releases/0.1.0.example) inclusion-links this doc as shipped
 content.*

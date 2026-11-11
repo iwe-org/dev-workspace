@@ -1,0 +1,61 @@
+name: Features
+columns: [stage]
+fields:
+  stage:
+    title: Stage
+    description: Where the feature stands.
+    values:
+      proposed:
+        title: Proposed
+        description: Under discussion. Not decided yet.
+        color: yellow
+      accepted:
+        title: Accepted
+        description: Decided. Ready to plan.
+        color: blue
+      implemented:
+        title: Implemented
+        description: Built and released. Its guard tests are listed.
+        color: green
+      deprecated:
+        title: Deprecated
+        description: Still present, but on its way out.
+        color: orange
+      cancelled:
+        title: Cancelled
+        description: Not going to be built.
+        color: red
+  tests:
+    title: Guard tests
+    description: Tests that go red if this behaviour regresses; needed before the stage can be implemented.
+  type:
+    hidden: true
+  description:
+    description: One sentence summarizing the document, shown by the hubs and data/index.md.
+    multiline: true
+  status:
+    title: OKF status
+    description: OKF lifecycle, derived from stage. Absent means stable.
+    values:
+      draft:
+        title: Draft
+        color: gray
+      stable:
+        title: Stable
+        color: green
+      deprecated:
+        title: Deprecated
+        color: red
+  stale_after:
+    title: Stale after
+    description: The day this content should be checked again.
+  generated:
+    hidden: true
+  verified:
+    hidden: true
+  sources:
+    hidden: true
+  usage_window:
+    hidden: true
+  resource:
+    hidden: true

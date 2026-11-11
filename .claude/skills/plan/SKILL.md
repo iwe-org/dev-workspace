@@ -25,6 +25,7 @@ verified, every touched spec is named.
 
    ```yaml
    ---
+   type: plan
    created: <today>
    ---
    ```
@@ -45,10 +46,14 @@ verified, every touched spec is named.
    - `## Out of scope` — what this plan deliberately does not do
    - `## Key references` — `path:line — symbol` list under a line
      `Verified anchor points (line numbers as of <today>):`
-4. **File it.** Add an inclusion link under `## Active` in `data/plans.md`. If
+4. **File it.** Add an inclusion link under `## Active` in `data/plans.md`, and
+   under the phase it advances in its milestone plan if one schedules it,
+   with `tags: [milestone-<slug>]` in the plan's frontmatter. If
    the plan implements a proposed feature, set the feature doc to
    `stage: accepted`. If it grew from a backlog task, mark the task done and
-   move its link.
+   move its link. If it replaces an older plan, link the old plan from
+   `## Context` and cancel it in the same change (the ship skill's cancel
+   path).
 5. **Validate.** `iwe normalize`, then `iwe schema validate` — must pass.
 
 ## Rules

@@ -1,6 +1,6 @@
 ---
 name: ship
-description: Close the loop when work ships — sync the specs the plan touched, mark the plan done, flip the feature doc to implemented, and link the work into the unreleased page; also cuts a release when asked. Use when the user says "ship <plan>", "mark <plan> done", "the <feature> work is finished", or "cut release X.Y.Z".
+description: Close the loop when work ships — sync the specs the plan touched, mark the plan done and archive its link, flip the feature doc to implemented, close the bug, and link the work into the unreleased page; also cuts a release when asked. Use when the user says "ship <plan>", "mark <plan> done", "the <feature> work is finished", or "cut release X.Y.Z".
 ---
 
 # Ship finished work
@@ -23,13 +23,24 @@ describe the old behavior.
    Scenario format; update scenarios that the change falsified.
 3. **Flip the plan.**
    `iwe update -k data/plans/<key> --set stage=done --set completed=<today>`,
-   then move its link in `data/plans.md` from `## Active` to `## Done`.
-   (Abandoned instead of shipped? `--set stage=cancelled`, move to
-   `## Cancelled`, and stop here.)
-4. **Update the feature.** Set the feature doc to `stage: implemented`
-   (create it from the plan's Context if it doesn't exist, linked from
-   `data/features.md`). Fixed a bug instead? Set the bug doc to
-   `stage: done`.
+   then move its link out of `## Active` in `data/plans.md` to
+   `data/plans-archive.md`, under `## Done` and the `### YYYY-MM` heading of
+   this month (create it, newest month first). If a milestone plan lists it,
+   move that link to the milestone's `## Shipped` section too. Loose ends the plan mentions without promising are no reason to leave it open:
+   turn each into a backlog task or a bug, link it from the plan, and close
+   the plan.
+   (Abandoned or superseded instead of shipped? `--set stage=cancelled`, set
+   OKF `status: deprecated`, add a first line to the body pointing to its successor or giving the reason, move its link to `## Cancelled` in
+   `data/plans-archive.md`, and stop here.)
+4. **Update the feature.** Set the feature doc to `stage: implemented` and
+   list its guard tests in `tests` — the tests that fail when its behaviour
+   breaks (create the doc from the plan's Context if it doesn't exist, linked
+   from `data/features.md`). No such test exists? Say so to the user rather
+   than inventing one; the schema rejects `implemented` without `tests`, and
+   that gap is worth a backlog task. Fixed a bug instead? Write its `## Fix`
+   section (Change, Guard, Shipped), set `stage: done` and `completed`, and
+   move its link from `data/bugs.md` to `## Fixed` in
+   `data/bugs-archive.md`.
 5. **Record in the release.** Add an inclusion link to the feature doc under
    `## Added` in `data/releases/unreleased.md` (bug fixes under `## Fixed`,
    linking the bug doc).
@@ -40,6 +51,8 @@ describe the old behavior.
      `unreleased`, empty `## Added` / `## Fixed`)
    - In `data/releases.md`, keep `Unreleased` on top and add the new version
      right below it (newest first).
+   - If the user gives the release's test count and suite time, add a row
+     for the version to `data/releases/metrics.csv`; never estimate them.
 7. **Log it.** Append a bullet to `data/log.md` under a `## YYYY-MM-DD` group
    for today (create the group if it isn't there, newest group first), one line
    per state change, each linking the document it describes —
@@ -57,3 +70,5 @@ describe the old behavior.
 - Never invent verification results — if tests weren't run, say so and run
   them or ask.
 - Release pages link feature and bug docs, not plans.
+- Closing moves a link, never a file and never the link away from the graph:
+  every closed plan and bug stays listed in its archive hub.

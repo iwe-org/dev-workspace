@@ -11,6 +11,8 @@ okf_version: '0.2'
 
 - [Plans](plans.md) - Implementation plans, migrations, and design proposals,
   one document per unit of work.
+- [Plans archive](plans-archive.md) - Closed plans — shipped or cancelled — kept
+  reachable from the graph.
 - [Backlog](backlog.md) - Prioritized single-topic work items waiting to become
   a plan or a quick fix.
 - [Milestones](milestone.md) - Aggregator plans that sequence the work for one
@@ -21,7 +23,9 @@ okf_version: '0.2'
 
 - [Features](features.md) - Feature design documents, each carrying its
   lifecycle stage.
-- [Bugs](bugs.md) - Bug reports, investigations, and repro notes.
+- [Bugs](bugs.md) - Open bug tickets, one per reported problem.
+- [Bugs archive](bugs-archive.md) - Closed bug tickets, fixed or closed without
+  a fix, each keeping its Fix write-up.
 - [Releases](releases.md) - One page per version, aggregating the features and
   fixes it shipped.
 
@@ -35,3 +39,5 @@ okf_version: '0.2'
   them, rejected alternatives included.
 - [Concept](concept.md) - Product vision and the principles that outlive any
   single release.
+- [Learnings](learnings.md) - Durable memory of pitfalls, standing rules, and
+  mistaken beliefs put right, one fact per document.

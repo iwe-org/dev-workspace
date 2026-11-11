@@ -17,4 +17,9 @@ renames this file to the version number and starts a fresh one.*
 
 ## Added
 
+[Onboarding tour](../features/onboarding-tour.example)
+
 ## Fixed
+
+[Bug: The daily goal ring is clipped in the compact
+window](../bugs/daily-goal-ring-clipped.example)

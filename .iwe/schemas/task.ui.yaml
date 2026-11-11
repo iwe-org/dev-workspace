@@ -1,0 +1,70 @@
+name: Backlog
+columns: [stage, priority]
+fields:
+  stage:
+    title: Stage
+    description: Where the task stands.
+    values:
+      planned:
+        title: Planned
+        description: Waiting to be picked up.
+        color: blue
+      deferred:
+        title: Deferred
+        description: Set aside on purpose, to come back to.
+        color: orange
+      done:
+        title: Done
+        description: Finished.
+        color: green
+      cancelled:
+        title: Cancelled
+        description: Not going to be done.
+        color: red
+  priority:
+    description: How soon the task should be picked up.
+    values:
+      high:
+        title: High
+        color: red
+      medium:
+        title: Medium
+        color: orange
+      low:
+        title: Low
+        color: gray
+  created:
+    description: When the task was added (YYYY-MM-DD).
+  completed:
+    description: When the task was finished (YYYY-MM-DD).
+  type:
+    hidden: true
+  description:
+    description: One sentence summarizing the document, shown by the hubs and data/index.md.
+    multiline: true
+  status:
+    title: OKF status
+    description: OKF lifecycle, derived from stage. Absent means stable.
+    values:
+      draft:
+        title: Draft
+        color: gray
+      stable:
+        title: Stable
+        color: green
+      deprecated:
+        title: Deprecated
+        color: red
+  stale_after:
+    title: Stale after
+    description: The day this content should be checked again.
+  generated:
+    hidden: true
+  verified:
+    hidden: true
+  sources:
+    hidden: true
+  usage_window:
+    hidden: true
+  resource:
+    hidden: true

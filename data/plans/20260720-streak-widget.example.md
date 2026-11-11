@@ -17,8 +17,8 @@ onboarding.*
 
 The [streak widget feature](../features/streak-widget.example) is proposed: an
 always-on-top widget showing the daily focus streak. Streaks are derived from
-the session log at read time per the
-[state model](../architecture/state-model.example) — no new stored state.
+the session log at read time per the [state
+model](../architecture/state-model.example) — no new stored state.
 
 ## Approach
 
@@ -49,9 +49,9 @@ requirements from Task 1.
 
 ## Depends on
 
-Requires the session log populated by
-[Focus sessions](20260701-focus-sessions.example) — streaks derive from
-completed sessions.
+Requires the session log populated by [Focus
+sessions](20260701-focus-sessions.example) — streaks derive from completed
+sessions.
 
 ## Verification
 

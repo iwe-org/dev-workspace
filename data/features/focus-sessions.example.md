@@ -21,8 +21,8 @@ records a completed focus session to the local history log.
 
 Start, pause, resume, and abandon from the main window or the tray. Completion
 plays a soft chime and logs the session; abandoned sessions log with an
-`abandoned` flag so history stays honest. Timing follows the
-[Timer spec](../spec/timer.example) — monotonic clock, sleep-safe.
+`abandoned` flag so history stays honest. Timing follows the [Timer
+spec](../spec/timer.example) — monotonic clock, sleep-safe.
 
 ## Edge cases
 
@@ -35,7 +35,7 @@ plays a soft chime and logs the session; abandoned sessions log with an
   - Deferred until real usage data exists.
 
 *Convention notes: the feature's `status` chip carries its lifecycle; the story
-of how it was built lives in the
-[focus sessions plan](../plans/20260701-focus-sessions.example), and the
-[0.1.0 release](../releases/0.1.0.example) inclusion-links this doc as shipped
+of how it was built lives in the [focus sessions
+plan](../plans/20260701-focus-sessions.example), and the [0.1.0
+release](../releases/0.1.0.example) inclusion-links this doc as shipped
 content.*

@@ -145,6 +145,6 @@ Lessons from the knowledge base this template generalizes:
 
 ## Publishing
 
-Intended to live as a GitHub template repository. The `.iwe/` runtime artifacts
-(databases, snapshots) are gitignored; only `config.toml` and the schemas are
-authored files.
+Intended to live as a GitHub template repository. The runtime artifacts
+(databases, snapshots) live in `.iwe/app/` and are gitignored; only
+`config.toml` and the schemas are authored files.

@@ -35,5 +35,5 @@ never shames: a broken streak simply restarts at zero with no red badges or
 - Opt-in or on by default?
 
 *Convention notes: `status: proposed` means design discussion; `accepted` means
-ready to plan. The implementation work is sequenced in the
-[streak widget plan](../plans/20260720-streak-widget.example).*
+ready to plan. The implementation work is sequenced in the [streak widget
+plan](../plans/20260720-streak-widget.example).*

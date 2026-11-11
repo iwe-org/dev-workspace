@@ -27,8 +27,8 @@ remaining time than before sleep, or jumps straight to negative values.
 
 The tick handler recomputes remaining time from `Date.now()` deltas, so the wall
 clock leaks into elapsed time across sleep — a direct violation of the
-"Wall-clock independence" requirement in the
-[Timer spec](../spec/timer.example).
+"Wall-clock independence" requirement in the [Timer
+spec](../spec/timer.example).
 
 ## Fix
 

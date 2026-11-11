@@ -38,6 +38,13 @@ commit.
    codebase, drafts the product doc and a starting architecture note from it,
    asks you only what the code can't answer, and deletes the example documents.
 
+## In the iWe app
+
+This template is listed in the [iWe template
+registry](https://github.com/iwe-org/templates). In the iWe app, choose **File ▸
+New Workspace from Template…** to create a workspace from it; the app copies the
+template into a new folder, so there is nothing to clone.
+
 ## How you use it
 
 **Day one.** Run the setup. For an existing codebase it's mostly reading — the

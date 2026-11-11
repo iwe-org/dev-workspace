@@ -40,21 +40,19 @@ timing decision lives here and nowhere else.
 
 States: idle → running → paused → completed | abandoned. Elapsed time is
 accumulated from `performance.now()` deltas per run segment, so wall-clock
-changes never corrupt a session (the requirement behind this is in the
-[Timer spec](../spec/timer.example)). A wake-event handler reconciles once after
-system sleep.
+changes never corrupt a session (the requirement behind this is in the [Timer
+spec](../spec/timer.example)). A wake-event handler reconciles once after system
+sleep.
 
 ## Depends on
 
-Nothing internal — transitions are consumed by the
-[session store](store.example); the dependency points the other way. No UI
-imports, ever.
+Nothing internal — transitions are consumed by the [session
+store](store.example); the dependency points the other way. No UI imports, ever.
 
 ## Invariants & gotchas
 
-- Never read `Date.now()` for elapsed time — the open
-  [timer drift bug](../bugs/timer-drift-after-sleep.example) is what happens
-  when this slips.
+- Never read `Date.now()` for elapsed time — the open [timer drift
+  bug](../bugs/timer-drift-after-sleep.example) is what happens when this slips.
 - A session under one minute emits `abandoned`, not `completed`.
 
 ## Key references

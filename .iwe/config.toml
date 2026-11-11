@@ -10,7 +10,6 @@ wrap_column = 80
 [workspace]
 path = ""
 date_format = "%Y-%m-%d"
-frontmatter_document_title = "title"
 
 [search]
 language = "english"

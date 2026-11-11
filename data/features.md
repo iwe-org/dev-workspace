@@ -17,7 +17,15 @@ them. Group with `##` headings once it outgrows a single list.*
 
 ``` chart
 data: {query: {filter: {type: feature}, project: {stage: 1, tests: 1}}}
-hconcat:
+vconcat:
+  - title: Guard tests
+    transform:
+      - calculate: "isArray(datum.tests) ? length(datum.tests) : 0"
+        as: guards
+    width: 120
+    height: 40
+    mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
+    encoding: {text: {field: guards, aggregate: sum}}
   - title: Features by stage
     height: {step: 24}
     mark: {type: bar, cornerRadiusEnd: 3, tooltip: true}
@@ -25,12 +33,6 @@ hconcat:
       y: {field: stage, type: nominal, title: null, sort: [proposed, accepted, implemented, deprecated, cancelled]}
       x: {aggregate: count, type: quantitative, title: Features, axis: {tickMinStep: 1}}
       color: {field: stage, type: nominal, legend: null, scale: {domain: [proposed, accepted, implemented, deprecated, cancelled], range: ["#ffc53d", "#0090ff", "#30a46c", "#f76b15", "#e5484d"]}}
-  - title: Guard tests
-    transform:
-      - calculate: "isArray(datum.tests) ? length(datum.tests) : 0"
-        as: guards
-    mark: {type: text, fontSize: 28, fontWeight: 600}
-    encoding: {text: {field: guards, aggregate: sum}}
 ```
 
 [Break timers](features/break-timers-example.md)

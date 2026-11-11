@@ -19,17 +19,22 @@ is the record of what was built and what was dropped.*
 ``` chart
 datasets:
   closed: {query: {filter: {type: plan, stage: {$in: [done, cancelled]}}, project: {stage: 1, created: 1, completed: 1}}}
-hconcat:
-  - title: Shipped
-    data: {name: closed}
-    transform: [{filter: "datum.stage == 'done'"}]
-    mark: {type: text, fontSize: 28, fontWeight: 600}
-    encoding: {text: {aggregate: count}}
-  - title: Cancelled
-    data: {name: closed}
-    transform: [{filter: "datum.stage == 'cancelled'"}]
-    mark: {type: text, fontSize: 28, fontWeight: 600}
-    encoding: {text: {aggregate: count}}
+vconcat:
+  - hconcat:
+      - title: Shipped
+        data: {name: closed}
+        transform: [{filter: "datum.stage == 'done'"}]
+        width: 120
+        height: 40
+        mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
+        encoding: {text: {aggregate: count}}
+      - title: Cancelled
+        data: {name: closed}
+        transform: [{filter: "datum.stage == 'cancelled'"}]
+        width: 120
+        height: 40
+        mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
+        encoding: {text: {aggregate: count}}
   - title: Shipped per month
     height: 160
     data: {name: closed}

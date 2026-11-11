@@ -39,14 +39,19 @@ encoding:
 
 ``` chart
 data: {query: {filter: {type: bug, stage: {$exists: false}}, project: {reported_by: 1, affected_versions: 1}}}
-hconcat:
-  - title: Open
-    mark: {type: text, fontSize: 28, fontWeight: 600}
-    encoding: {text: {aggregate: count}}
-  - title: Came back
-    transform: [{filter: "length(datum.affected_versions) > 1"}]
-    mark: {type: text, fontSize: 28, fontWeight: 600}
-    encoding: {text: {aggregate: count}}
+vconcat:
+  - hconcat:
+      - title: Open
+        width: 120
+        height: 40
+        mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
+        encoding: {text: {aggregate: count}}
+      - title: Came back
+        transform: [{filter: "length(datum.affected_versions) > 1"}]
+        width: 120
+        height: 40
+        mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
+        encoding: {text: {aggregate: count}}
   - title: Open by who noticed
     mark: {type: bar, cornerRadiusEnd: 3, tooltip: true}
     encoding:

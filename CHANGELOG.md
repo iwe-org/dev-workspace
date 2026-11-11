@@ -19,6 +19,16 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   version's dots make `0.4.0-example` read as a file too. If you cloned an
   earlier copy and kept the examples, rename them the same way and update the
   links in their hubs.
+- The count tiles on the Bugs, Bugs archive, Features and Plans archive charts
+  are 40 px tall with the number under its title. They had no size of their
+  own and stretched to the chart beside them, leaving a tall empty box; the
+  tiles now sit in a row above the chart instead of beside it.
+
+### Removed
+
+- `title` from the frontmatter every document may carry (`okf.yaml`) and
+  `frontmatter_document_title` from `.iwe/config.toml`. The title is the
+  document's `#` heading; the app no longer offers an empty Title field.
 
 ## [1.2.0]
 

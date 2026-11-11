@@ -20,17 +20,23 @@ datasets:
 hconcat:
   - title: Closed
     data: {name: closed}
-    mark: {type: text, fontSize: 28, fontWeight: 600}
+    width: 120
+    height: 40
+    mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
     encoding: {text: {aggregate: count}}
   - title: Fixed
     data: {name: closed}
     transform: [{filter: "datum.stage == 'done'"}]
-    mark: {type: text, fontSize: 28, fontWeight: 600}
+    width: 120
+    height: 40
+    mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
     encoding: {text: {aggregate: count}}
   - title: Cancelled
     data: {name: closed}
     transform: [{filter: "datum.stage == 'cancelled'"}]
-    mark: {type: text, fontSize: 28, fontWeight: 600}
+    width: 120
+    height: 40
+    mark: {type: text, fontSize: 28, fontWeight: 600, align: left, baseline: middle, x: 0, y: 20}
     encoding: {text: {aggregate: count}}
 ```
 

@@ -6,6 +6,21 @@ All notable changes to this template are documented here. The format is based on
 This is a template you clone, so the entries below double as migration notes: if
 you cloned an earlier copy, they tell you what to change in your own workspace.
 
+## [1.3.0]
+
+### Changed
+
+- The `iwe` command reference moved out of `AGENTS.md` into a skill,
+  `.claude/skills/iwe/SKILL.md`, so the agent reads it when it is about to query
+  or restructure the graph instead of at the start of every session. The rules
+  that bind every edit (keys, `iwe rename` and `iwe delete` instead of `mv`,
+  `iwe normalize` after an edit) stay in the manual. If you cloned an earlier
+  copy, add the skill and drop the `## IWE CLI cheatsheet` section from your
+  `AGENTS.md`.
+- The repository validates with the registry's shared workflow, which adds the
+  template's structural rules to the schema and normalization checks, and a `v*`
+  tag opens the registry update pull request.
+
 ## [1.2.1]
 
 ### Added

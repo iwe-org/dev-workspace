@@ -173,30 +173,9 @@ know:
   markdown — reading and editing work fine — but renames, queries, and
   validation need the CLI. Ask the user to install it
   (https://iwe.md/quick-start/) before restructuring anything.
-
-## IWE CLI cheatsheet
-
-``` bash
-iwe retrieve -k data/spec/timer                                  # read a doc
-iwe retrieve -k data/plans --expand-includes 1                   # hub + children
-iwe find --fuzzy timer -f keys                                   # fuzzy title+key match
-iwe find --lexical "session log storage" -f keys                 # full-text ranking
-iwe find --included-by data/plans -f keys                        # all docs under a hub
-iwe find --references data/spec/timer -f keys                    # backlinks
-iwe find --filter '{stage: done}' --included-by data/plans-archive:0 -f keys  # frontmatter query
-iwe tree -k data/plans -d 2                                      # subtree overview
-iwe new --key data/plans/20260801-my-plan                        # create at an explicit key
-iwe update -k data/features/foo --set stage=implemented         # set frontmatter
-iwe rename <old-key> <new-key>                                   # move; references auto-update
-iwe delete <key>                                                 # delete + reference cleanup
-iwe normalize                                                    # run after manual edits
-iwe schema validate                                              # the commit gate (exit 0 = clean)
-iwe stats                                                        # counts, orphans, broken links
-```
-
-Filters are YAML (`$eq`, `$ne`, `$in`, `$gte`, `$exists`, …), not jq. Structural
-anchors: `--includes`, `--included-by`, `--references`, `--referenced-by`,
-`--roots`.
+- The commands and the query syntax are in the `iwe` skill
+  (`.claude/skills/iwe/SKILL.md`); read it before a query or a restructuring you
+  have not run this session.
 
 ## Workspace skills
 
@@ -209,3 +188,4 @@ anchors: `--includes`, `--included-by`, `--references`, `--referenced-by`,
 | `.claude/skills/verify/SKILL.md`    | Pre-ship gate + drift audit: claims in the graph checked against code   |
 | `.claude/skills/ship/SKILL.md`      | Closes the loop: spec sync, stage flips, release recording, release cut |
 | `.claude/skills/weekly/SKILL.md`    | Read-only digest: shipped, in flight, bugs, backlog, graph health       |
+| `.claude/skills/iwe/SKILL.md`       | The `iwe` CLI reference: reading, querying, restructuring, validating   |

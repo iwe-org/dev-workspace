@@ -17,7 +17,7 @@ STRUCTURE.md       # this file: design rationale
   schemas/         # one <type>.yaml per document type, validated by iwe,
                    # plus a <type>.ui.yaml display sidecar the editor reads
 .claude/skills/    # state workflows: setup, explore, plan, implement,
-                   # verify, ship, weekly
+                   # verify, ship, weekly; and iwe, the CLI reference
 data/              # the graph
   index.md         # the root hub — every hub is its child
   product.md       # ✏️ fill-in tracker: the doc every session reads first

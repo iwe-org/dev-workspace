@@ -5,28 +5,9 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
-  schema:
-    name: OKF conformance and schema validation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Cache the iwe binary
-        id: cache-iwe
-        uses: actions/cache@v4
-        with:
-          path: ~/.cargo/bin/iwe
-          key: iwe-${{ runner.os }}-0.32.0
-
-      - name: Install iwe
-        if: steps.cache-iwe.outputs.cache-hit != 'true'
-        run: cargo install iwe --locked --version 0.32.0
-
-      - name: Validate every document against its schemas
-        run: iwe schema validate
-
-      - name: Check that normalization is a no-op
-        run: |
-          iwe normalize
-          git diff --exit-code
+  validate:
+    uses: iwe-org/templates/.github/workflows/validate.yml@main

@@ -1,0 +1,16 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  registry:
+    uses: iwe-org/templates/.github/workflows/bump.yml@main
+    with:
+      id: dev-workspace
+    secrets:
+      registry-token: ${{ secrets.REGISTRY_TOKEN }}

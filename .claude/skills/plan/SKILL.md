@@ -20,8 +20,11 @@ verified, every touched spec is named.
    the functions to modify, and their current line numbers — these become
    `## Key references`, and they must come from the current checkout, not
    memory.
-3. **Create.** `iwe new --key data/plans/<YYYYMMDD>-<slug>` (today's date,
-   kebab slug), then write:
+3. **Create.**
+   `iwe new "<Title>" --key data/plans/<YYYYMMDD>-<slug> --content ""` (today's
+   date, kebab slug; the title is required, and the empty `--content` keeps the
+   command from waiting for piped input). It writes the `# <Title>` heading;
+   add the frontmatter above it:
 
    ```yaml
    ---
@@ -48,10 +51,13 @@ verified, every touched spec is named.
      `Verified anchor points (line numbers as of <today>):`
 4. **File it.** Add an inclusion link under `## Active` in `data/plans.md`, and
    under the phase it advances in its milestone plan if one schedules it,
-   with `tags: [milestone-<slug>]` in the plan's frontmatter. If
-   the plan implements a proposed feature, set the feature doc to
-   `stage: accepted`. If it grew from a backlog task, mark the task done and
-   move its link. If it replaces an older plan, link the old plan from
+   with `tags: [milestone-<slug>]` in the plan's frontmatter. If the plan
+   implements a proposed feature, accept the feature and clear the draft status
+   that `proposed` carried:
+   `iwe update -k data/features/<slug> --set stage=accepted --unset status`. If
+   it grew from a backlog task, mark the task done (`stage: done`, `completed`)
+   and move its link to `## Done` in `data/backlog.md`. If it replaces an older
+   plan, link the old plan from
    `## Context` and cancel it in the same change (the ship skill's cancel
    path).
 5. **Validate.** `iwe normalize`, then `iwe schema validate` — must pass.

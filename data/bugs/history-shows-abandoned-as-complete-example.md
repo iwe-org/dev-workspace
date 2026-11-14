@@ -21,8 +21,8 @@ same check mark as completed ones.
 
 ## Expected
 
-Abandoned sessions are marked as such, per [Session
-history](../features/session-history-example.md).
+Abandoned sessions are marked as such, per "Completed and abandoned are told
+apart" in the [Session history spec](../spec/session-history-example.md).
 
 ## Reproduction
 
@@ -36,5 +36,9 @@ The row component read `completedAt` instead of the `abandoned` flag.
 
 ## Fix
 
-- **Change:** the row reads the flag; guarded by `src/ui/history-row.test.tsx`,
-  shipped in [0.3.0](../releases/example-0.3.0.md).
+- **Change:** the row reads the `abandoned` flag instead of `completedAt`, in
+  `src/ui/history-row.tsx`.
+- **Guard:** `src/ui/history-row.test.tsx` — "an abandoned session has no check
+  mark".
+- **Shipped:** commit `27f6d08`, listed under `## Fixed` in
+  [0.3.0](../releases/example-0.3.0.md).

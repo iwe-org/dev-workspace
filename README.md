@@ -18,8 +18,9 @@ Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/S
 v0.2 bundle — an open standard for agent-maintained knowledge — so your project
 graph is portable to any OKF consumer, not locked to one tool. Every document
 carries a `type`, provenance (`generated`, `sources`) and lifecycle (`status`,
-`stale_after`) live in frontmatter, and conformance is checked in CI on every
-commit.
+`stale_after`) live in frontmatter, and `iwe schema validate` checks
+conformance: the agent runs it after every change, and this repository runs it
+in CI on every push.
 
 ## Quickstart
 
@@ -37,6 +38,8 @@ commit.
    reads `AGENTS.md`) and say: **"run the setup"**. The setup skill reads your
    codebase, drafts the product doc and a starting architecture note from it,
    asks you only what the code can't answer, and deletes the example documents.
+   Git is optional: setup asks once whether the workspace should be a
+   repository, and the skills commit only when it is one.
 
 ## In the iWe app
 
@@ -63,13 +66,14 @@ what's stuck, what's next). Enter and leave the loop anywhere — small work can
 skip straight from plan to ship. Each step leaves the graph consistent, so the
 next session — or the next agent — picks up exactly where this one stopped.
 
-Ask questions against the graph instead of re-reading the codebase:
+Ask questions against the graph instead of re-reading the codebase. These run
+against the example documents the template ships with:
 
 ``` bash
-iwe find --filter '{stage: done}' --included-by data/plans -f keys  # what shipped
-iwe find --references data/spec/timer -f keys                        # what depends on this spec
-iwe retrieve -k data/plans/mvp --expand-includes 1                   # a milestone and its plans
-iwe tree -k data/features                                            # the feature landscape
+iwe find --filter '{stage: done}' --included-by data/plans-archive -f keys           # what shipped
+iwe find --references data/spec/timer-example -f keys                                # what depends on this spec
+iwe retrieve -k data/plans/20260625-v1-milestone-example --expand-includes 1         # a milestone and its plans
+iwe tree -k data/features                                                            # the feature landscape
 ```
 
 ## What's inside
@@ -77,6 +81,7 @@ iwe tree -k data/features                                            # the featu
 ```
 data/
 ├── index.md          # the graph root — every hub is a child
+├── log.md            # the dated history of what shipped and what was released
 ├── product.md        # what you're building — the doc every session reads first
 ├── plans.md    plans/         # implementation plans: Active / Deferred
 ├── plans-archive.md           # closed plans: Done by month / Cancelled

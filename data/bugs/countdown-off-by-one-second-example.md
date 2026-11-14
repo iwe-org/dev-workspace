@@ -29,5 +29,9 @@ The countdown shows 00:00 when the completion signal fires.
 
 ## Fix
 
-- **Change:** none. Not reproducible: the test ran on a loaded CI machine, and
-  200 local runs never showed it.
+- **Change:** none — not reproducible. The one failure came from a test that
+  slept for real on a loaded CI machine; 200 local runs never showed it.
+- **Guard:** none for the product. The test itself now runs on the fake clock,
+  the rule in [timer tests run on a fake
+  clock](../learnings/tests-use-a-fake-clock-example.md).
+- **Shipped:** nothing to ship; closed without a release entry.

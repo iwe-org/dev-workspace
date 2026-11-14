@@ -1,6 +1,6 @@
 ---
 type: release
-description: 'Version 0.3.0: long breaks and global shortcuts.'
+description: 'Version 0.3.0: global shortcuts.'
 version: 0.3.0
 date: 2026-08-28
 stage: released
@@ -11,11 +11,9 @@ generated:
 
 # 0.3.0
 
-Long breaks and global shortcuts.
+Global shortcuts.
 
 ## Added
-
-[Long-break scheduling](../features/long-break-scheduling-example.md)
 
 [Global shortcuts](../features/global-shortcuts-example.md)
 

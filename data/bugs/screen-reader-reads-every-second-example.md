@@ -30,3 +30,8 @@ The countdown is announced at the minute and on request.
 ## Leads
 
 1. Not investigated yet.
+
+## Related
+
+- [Accessibility pass](../plans/20260922-accessibility-pass-example.md), the
+  deferred plan that fixes it.

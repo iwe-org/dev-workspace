@@ -35,7 +35,8 @@ Settings survive an update.
 
 ## Fix
 
-- **Change:** the [settings file
-  migration](../plans/20260830-settings-file-migration-example.md) plan; guarded
-  by `src/settings/migrate.test.ts`, shipped in
+- **Change:** a versioned settings file with migrations, built by the [settings
+  file migration](../plans/20260830-settings-file-migration-example.md) plan.
+- **Guard:** `src/settings/migrate.test.ts` — "a 0.2.0 file keeps its values".
+- **Shipped:** commit `d2c85a9`, listed under `## Fixed` in
   [0.3.1](../releases/example-0.3.1.md).

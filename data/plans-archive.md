@@ -35,32 +35,16 @@ encoding:
 
 ## Done
 
-### 2026-10
-
-[Onboarding tour](plans/20260926-onboarding-tour-example.md)
-
 ### 2026-09
 
 [Daily goal](plans/20260904-daily-goal-example.md)
 
 [Settings file migration](plans/20260830-settings-file-migration-example.md)
 
-### 2026-08
-
-[Global shortcuts](plans/20260810-global-shortcuts-example.md)
-
-[Long-break scheduling](plans/20260808-long-break-scheduling-example.md)
-
-[Session history](plans/20260724-session-history-example.md)
-
-[Break timers](plans/20260722-break-timers-example.md)
-
 ### 2026-07
 
 [Focus sessions](plans/20260701-focus-sessions-example.md)
 
 ## Cancelled
-
-[Cloud backup](plans/20260912-cloud-backup-example.md)
 
 [Menu-bar-only timer](plans/20260627-menu-bar-only-timer-example.md)

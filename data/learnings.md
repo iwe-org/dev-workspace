@@ -12,8 +12,9 @@ generated:
 *What the agent and the team learned the hard way, one fact per document in
 `learnings/<slug>.md`, dated when it was discovered: a pitfall and how to avoid
 it, a rule the developer laid down, or a belief that proved wrong. A learning
-links to the bug, plan or spec it came from instead of repeating it. Group the
-links under `##` topic headings once the list outgrows one screen.*
+links to the bug, plan or spec it came from instead of repeating it. The list is
+flat; group the links under `##` topic headings of your own once it outgrows one
+screen.*
 
 ``` chart
 title: Learnings per month
@@ -26,8 +27,6 @@ encoding:
   color: {field: kind, type: nominal, title: null, scale: {domain: [trap, rule, correction], range: ["#f76b15", "#0090ff", "#8e4ec6"]}, legend: {orient: top}}
 ```
 
-## Timer and sound
-
 [Audio must be loaded before the first
 chime](learnings/audio-needs-preloading-example.md)
 
@@ -38,8 +37,6 @@ sessions](learnings/goal-counts-minutes-not-sessions-example.md)
 
 [A streak day is the local day a session completes
 on](learnings/streak-days-use-local-midnight-example.md)
-
-## Tray, windows and system
 
 [The tray menu reads its labels once, when it
 opens](learnings/tray-label-reads-once-on-open-example.md)
@@ -52,8 +49,6 @@ session](learnings/dnd-needs-permission-first-example.md)
 
 [Settings are not migrated on
 update](learnings/settings-are-not-migrated-example.md)
-
-## Working on the project
 
 [Commit messages name the state
 change](learnings/commit-messages-name-the-state-change-example.md)

@@ -25,7 +25,9 @@ records a completed focus session to the local history log.
 Start, pause, resume, and abandon from the main window or the tray. Completion
 plays a soft chime and logs the session; abandoned sessions log with an
 `abandoned` flag so history stays honest. Timing follows the [Timer
-spec](../spec/timer-example.md) — monotonic clock, sleep-safe.
+spec](../spec/timer-example.md) — monotonic clock, sleep-safe. The history view
+lists the log newest first, as the [Session history
+spec](../spec/session-history-example.md) describes.
 
 ## Edge cases
 

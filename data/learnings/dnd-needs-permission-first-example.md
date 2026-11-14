@@ -11,4 +11,6 @@ generated:
 # Do not disturb needs permission before the first session
 
 Turning on the system's do-not-disturb mode asks for permission the first time,
-which interrupts the session it was meant to protect. Ask during setup instead.
+which interrupts the session it was meant to protect. Ask when the setting is
+turned on instead. Found in a spike before the [do-not-disturb sync
+plan](../plans/20261001-do-not-disturb-sync-example.md) was written.

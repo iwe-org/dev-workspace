@@ -48,8 +48,9 @@ reverse = false
 
 # Document-schema bindings. Each entry names a schema file in .iwe/schemas/<name>.yaml
 # and a key-glob that binds it. Bindings are BY PATH, not by frontmatter fields.
-# The extension-less hub keys (data/plans, data/bugs, ...) match none of these
-# globs, so hub documents stay unvalidated by design.
+# A folder glob (data/plans/**) binds the documents in the folder; the hub beside
+# it (data/plans) matches no folder glob and is bound by name under [schemas.hub]
+# below, so every document under data/ is validated.
 # Run: iwe schema validate  (--explain shows the binding trace).
 
 [schemas.plan]
@@ -83,8 +84,8 @@ match = "data/someday/**"
 match = "data/learnings/**"
 
 # Directory hubs. OKF conformance requires every non-reserved document under the
-# bundle to carry a type, so the hubs are typed and validated too — the earlier
-# "hubs stay unvalidated by design" exemption is deliberately retired.
+# bundle to carry a type, so the hubs are typed and validated too. A new hub is
+# added to this list.
 [schemas.hub]
 match = [
   "data/architecture",

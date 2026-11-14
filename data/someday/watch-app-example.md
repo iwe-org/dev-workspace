@@ -19,5 +19,6 @@ sessions from it.
 Parked until the desktop loop proves retention. If it gets real, it starts as a
 backlog task with an honest scope question: mirror only, or full control?
 
-*Convention notes: someday docs have no frontmatter and no pressure. Promotion
-is just moving the link — someday → backlog task → plan.*
+*Convention notes: a someday doc's frontmatter is its `type` and a
+`description`, with no `stage` and no pressure. Promotion is just moving the
+link — someday → backlog task → plan.*

@@ -36,5 +36,9 @@ The day boundary was computed from a 12-hour clock value.
 
 ## Fix
 
-- **Change:** days come from the local date; guarded by
-  `src/store/goal.test.ts`, shipped in [0.4.0](../releases/example-0.4.0.md).
+- **Change:** the day comes from the local calendar date instead of a 12-hour
+  clock value, in `src/store/goal.ts`.
+- **Guard:** `src/store/goal.test.ts` — "progress survives noon", which fails
+  without the fix.
+- **Shipped:** commit `5d7a31e`, before the daily goal was released, and listed
+  under `## Fixed` in [0.4.0](../releases/example-0.4.0.md).

@@ -1,14 +1,13 @@
 # Structure
 
 This document explains how the workspace is put together and why — the design
-rationale behind the layout. The repo itself is the deliverable: a template
-knowledge base a software project copies and fills.
+rationale behind the layout. The workspace starts as a copy of the Dev Workspace
+template: a knowledge base a software project fills in and keeps.
 
 ## Layout
 
 ```
-README.md          # the pitch and quickstart (humans)
-index.md           # the start page the iWe app opens first
+index.md           # the start page: how to begin, and where things live
 AGENTS.md          # the operating manual (agents)
 SCHEMA.md          # frontmatter reference (humans)
 STRUCTURE.md       # this file: design rationale
@@ -20,6 +19,7 @@ STRUCTURE.md       # this file: design rationale
                    # verify, ship, weekly; and iwe, the CLI reference
 data/              # the graph
   index.md         # the root hub — every hub is its child
+  log.md           # the dated history: what shipped, what was released
   product.md       # ✏️ fill-in tracker: the doc every session reads first
   <hub>.md + <hub>/  # plans, features, bugs, spec, architecture, concept,
                      # releases, backlog, someday, learnings
@@ -38,7 +38,7 @@ graph is truth. This keeps categorization refactorable (move a link, not a file)
 and makes every hub a queryable index.
 
 **Work items vs. reference.** Plans, features, bugs, releases, and backlog tasks
-are *work items*: a lifecycle `stage`, dates, a commit gate
+are *work items*: a lifecycle `stage`, dates, a validation gate
 (`iwe schema validate`). Specs, architecture, concept, someday, and learnings
 docs are *durable reference*: they carry a `type` and the shared OKF families,
 but no `stage`, because nothing about them is a lifecycle. The split keeps the
@@ -158,8 +158,9 @@ Deliberately not adopted:
 - **Delta headers** (`## ADDED/MODIFIED/REMOVED Requirements`) — machinery for a
   parser this workspace doesn't need; `iwe` handles renames and references.
 
-## Publishing
+## Files the tools write
 
-Intended to live as a GitHub template repository. The runtime artifacts
-(databases, snapshots) live in `.iwe/app/` and are gitignored; only
-`config.toml` and the schemas are authored files.
+The iWe app keeps its own records (databases, snapshots) in `.iwe/app/`, which
+`.gitignore` names. In `.iwe/`, only `config.toml` and the schemas are authored
+files. The workspace works the same with or without git: the skills commit when
+it is a repository and skip the commit when it is not.

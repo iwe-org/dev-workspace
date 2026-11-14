@@ -1,12 +1,14 @@
 $schema: https://document-schema.org/draft/2026-06/schema
 description: >-
   An atomic backlog task (data/backlog/<slug>.md) — a prioritized, single-topic
-  work item waiting to become a plan or a quick fix. A finished task carries its
+  work item waiting to become a plan or a quick fix. Every task carries a
+  priority, which places it in the backlog hub; a finished task carries its
   completed date.
 maxDepth: 3
 frontmatter:
   type: object
-  required: [type, stage, created]
+  additionalProperties: false
+  required: [type, stage, priority, created]
   properties:
     type: { const: task }
     stage:

@@ -37,8 +37,12 @@ released.
 
 ## Fix
 
-- **Change:** the icon is rebuilt from the bundled asset on every theme event;
-  guarded by `src/ui/tray.test.ts`, shipped in
+- **Change:** the icon is rebuilt from the bundled asset on every theme event,
+  in both directions.
+- **Guard:** `src/ui/tray.test.ts` — "the icon survives light, dark and light
+  again". The first fix was tested in one direction only.
+- **Shipped:** the first fix in [0.3.0](../releases/example-0.3.0.md); the one
+  that held is commit `f4a7c19`, listed under `## Fixed` in
   [0.3.1](../releases/example-0.3.1.md).
 
 ## Recurrence

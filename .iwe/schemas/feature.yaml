@@ -6,6 +6,7 @@ description: >-
 maxDepth: 4
 frontmatter:
   type: object
+  additionalProperties: false
   required: [type, stage]
   properties:
     type: { const: feature }

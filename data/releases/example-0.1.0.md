@@ -15,7 +15,8 @@ generated:
 version/date/stage, the body aggregates shipped work as inclusion links. The
 setup skill deletes `*-example.md` files after onboarding.*
 
-The first usable Pomodux: start a focus session, finish it, see it in history.
+The first usable Pomodux: start a focus session, pause it, finish it, and find
+it in the history view.
 
 ## Added
 
@@ -23,4 +24,6 @@ The first usable Pomodux: start a focus session, finish it, see it in history.
 
 *Convention notes: a released version requires a `date` (schema-enforced).
 Release pages inclusion-link feature docs, not plans — the release describes
-what users got; how it was built stays in the plan.*
+what users got; how it was built stays in the plan. A bug that comes back stays
+listed in the release that first fixed it, and its ticket says why the fix did
+not hold.*

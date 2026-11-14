@@ -26,29 +26,19 @@ encoding:
   color: {field: stage, type: nominal, legend: null, scale: {domain: [proposed, accepted, implemented, deprecated, cancelled], range: ["#ffc53d", "#0090ff", "#30a46c", "#f76b15", "#e5484d"]}}
 ```
 
-[Break timers](features/break-timers-example.md)
-
-[Daily goal](features/daily-goal-example.md)
-
 [Focus sessions](features/focus-sessions-example.md)
+
+[Break timers](features/break-timers-example.md)
 
 [Global shortcuts](features/global-shortcuts-example.md)
 
-[Long-break scheduling](features/long-break-scheduling-example.md)
-
-[Onboarding tour](features/onboarding-tour-example.md)
-
-[Session history](features/session-history-example.md)
-
-[Do-not-disturb sync](features/do-not-disturb-sync-example.md)
-
-[Task labels](features/task-labels-example.md)
-
-[Custom sounds](features/custom-sounds-example.md)
+[Daily goal](features/daily-goal-example.md)
 
 [Streak widget](features/streak-widget-example.md)
 
-[Weekly report](features/weekly-report-example.md)
+[Do-not-disturb sync](features/do-not-disturb-sync-example.md)
+
+[Custom sounds](features/custom-sounds-example.md)
 
 [Compact mode](features/compact-mode-example.md)
 

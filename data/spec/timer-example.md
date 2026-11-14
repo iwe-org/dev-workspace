@@ -53,9 +53,10 @@ changes, or manual clock adjustments never corrupt a session.
 - **THEN** the session is either completed (if configured to run through sleep)
   or paused at 10:00 — never showing negative or drifted time
 
-*Convention notes: specs carry no frontmatter — they are reference, not work
-items. The requirement headers are stable names other documents cite: the [timer
-drift bug](../bugs/timer-drift-after-sleep-example.md) reports a violation of
+*Convention notes: a spec's frontmatter is its `type` and a `description`, with
+no `stage` — specs are reference, not work items. The requirement headers are
+stable names other documents cite: the [timer drift
+bug](../bugs/timer-drift-after-sleep-example.md) reports a violation of
 "Wall-clock independence", and the [focus sessions
 plan](../plans/20260701-focus-sessions-example.md) lists this spec under its
 `## Spec changes`. Scale rigor with risk — a two-line requirement is fine for

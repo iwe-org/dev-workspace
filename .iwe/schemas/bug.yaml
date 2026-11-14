@@ -8,6 +8,7 @@ description: >-
 maxDepth: 4
 frontmatter:
   type: object
+  additionalProperties: false
   required: [type, created, reported_by, affected_versions]
   properties:
     type: { const: bug }
@@ -33,10 +34,11 @@ frontmatter:
       minItems: 1
       items:
         type: string
-        pattern: '^(unreleased|\d+\.\d+\.\d+)$'
+        pattern: '^(unreleased|\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?)$'
       description: >-
         affected_versions holds the versions the bug has been observed in, in
-        release order; each is a semantic version like 0.1.0, or unreleased
+        release order; each is a semantic version like 0.1.0 or 1.0.0-beta.1, the
+        same form a release page's version takes, or unreleased
     description:
       type: string
       description: one sentence summarizing this document — what OKF consumers and data/index.md show

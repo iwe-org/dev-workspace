@@ -15,4 +15,5 @@ Complete every ✏️ block in `data/product.md`: the one-liner, users, platform
 stack, constraints, and any authoring rules. The setup skill
 (`.claude/skills/setup/`) does most of this by reading your codebase and asking
 you only what the code can't answer. Nothing else in the workspace works well
-until this exists — every plan, spec, and session start reads it.
+until this exists — every plan, spec, and session start reads it. Done when no
+✏️ is left in the document.

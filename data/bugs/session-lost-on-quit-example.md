@@ -37,6 +37,8 @@ session.
 
 ## Fix
 
-- **Change:** the store flushes on `before-quit`; guarded by
-  `src/store/sessions.test.ts`, shipped in
+- **Change:** the store flushes the running session on `before-quit`, and the
+  next launch offers to resume it.
+- **Guard:** `src/store/sessions.test.ts` — "a running session survives a quit".
+- **Shipped:** commit `0a94e6f`, listed under `## Fixed` in
   [0.2.0](../releases/example-0.2.0.md).

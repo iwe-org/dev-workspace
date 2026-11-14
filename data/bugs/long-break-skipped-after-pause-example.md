@@ -19,7 +19,8 @@ paused once does not count toward the long break.
 
 ## Expected
 
-Paused and resumed sessions count like any other.
+Paused and resumed sessions count like any other, per "Long-break interval" in
+the [Breaks spec](../spec/breaks-example.md).
 
 ## Reproduction
 

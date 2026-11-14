@@ -29,6 +29,10 @@ main window at all.
 A tray icon whose label is the countdown, and a dropdown with start, pause and
 abandon.
 
+## Spec changes
+
+None — the plan was cancelled before any behaviour was specified.
+
 ## Verification
 
 - Manual: a session can be started, paused and finished from the tray alone.
@@ -37,6 +41,8 @@ abandon.
 
 - Session history, which needs a window to browse it.
 
-*Convention notes: the focus sessions plan links back here, and both edits
-landed together. Dropped work gets `stage: cancelled` right away — left without
-a stage, this plan would still sit under Active and look like pending work.*
+*Convention notes: this plan never reached discovery, so it has no tasks and no
+code anchors — sections that are genuinely empty are left out. The focus
+sessions plan links back here, and both edits landed together. Dropped work gets
+`stage: cancelled` right away — left without a stage, this plan would still sit
+under Active and look like pending work.*

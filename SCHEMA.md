@@ -3,11 +3,18 @@
 The human-readable companion to the machine schemas. Validation lives in
 `.iwe/schemas/*.yaml`, bound to key globs in `.iwe/config.toml` (`[schemas]`
 section) — bindings are by path, and **every** document under `data/` is bound,
-hubs included. Run `iwe schema validate` before committing — exit 0 is the gate.
+hubs included. Run `iwe schema validate` after every change — exit 0 is the
+gate. A new folder under `data/` needs a schema and a binding of its own.
 
-The examples below describe one fictional product (Pomodux, a focus-timer app);
-the `*-example.md` docs (`releases/example-<version>.md` for releases)
-demonstrate each shape in place.
+Every schema rejects a field it does not declare, so a misspelled `priorty:`
+fails instead of passing unnoticed. To carry a field of your own, add it to the
+type's schema and decorate it in the sidecar beside it. The document title is
+its `#` heading; there is no `title` field.
+
+The examples below describe one fictional product, a focus-timer app; the
+`*-example.md` docs (`releases/example-<version>.md` for releases) demonstrate
+each shape in place until the setup skill deletes them, and this paragraph with
+them.
 
 `data/` is a conformant [Open Knowledge
 Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
@@ -22,8 +29,9 @@ OKF's optional families (SPEC §4.1, §5), declared on every type's schema:
 - `description` — one sentence. Every document has one; it is what an OKF
   consumer and `data/index.md` show before opening the file.
 - `generated` — `{ by, at }`. Write it on **every** edit. `by` is an actor (SPEC
-  §7): `claude-code/opus-5` for agent writes, `human:<handle>` for hand-authored
-  or human-confirmed content, `process:<id>` for automation.
+  §7): `<your agent>/<your model>` for an agent's writes, naming the agent and
+  model actually running (for example `claude-code/opus-5`), `human:<handle>`
+  for hand-authored or human-confirmed content, `process:<id>` for automation.
 - `sources` — the materials a document derives from, each
   `{ id, resource, title, author, usage_count, last_modified }` with `resource`
   required. A `resource` may be a URL or a repo path. Attribute individual
@@ -49,8 +57,11 @@ whenever you set `stage`, derive `status` from this table and set or clear it.
 | release | `unreleased`              | `draft`      |
 | task    | `cancelled`               | `deprecated` |
 
-Every other `stage` value means the document is current — omit `status`. The
-reference types and learnings never set it.
+Every other `stage` value means the document is current — omit `status`, and
+remove it when a document leaves one of the rows above: a feature that goes from
+`proposed` to `accepted` loses `status: draft`, and so does the unreleased page
+when it becomes a release. The reference types, learnings, hubs and trackers
+have no stage to derive it from and never set it.
 
 ## Reserved files
 
@@ -62,7 +73,9 @@ documents — they carry no `type` and are checked by `okf-index.yaml` and
   `okf_version: "0.2"`. The body is `#` sections of link bullets, each bullet a
   markdown link to a document followed by `-` and that document's `description`.
 - `data/log.md` — the update history. A title section over `## YYYY-MM-DD`
-  groups of bullets, newest first. The `ship` skill appends to it.
+  groups of bullets, newest first, and at least one group. The ship skill adds a
+  line for every state change and every release cut; the setup skill starts the
+  log over when it removes the examples.
 
 ## Plans — `data/plans/YYYYMMDD-<slug>.md`
 
@@ -80,7 +93,9 @@ completed: 2026-07-18 # required when stage: done
 Body: `## Context`, `## Approach`, `## Implementation Steps` (`### Task N`,
 `**Files:**`, checkboxes), `## Spec changes`, `## Depends on` (optional),
 `## Verification`, `## Out of scope`, `## Key references` (dated
-`path:line — symbol` anchors).
+`path:line — symbol` anchors, taken from the current checkout, never from
+memory). A section that is genuinely empty is left out; `## Spec changes` and
+`## Verification` never are.
 
 Whether a plan shipped is answered by `stage` and nothing else. Hubs and queries
 never look at the body, so a fully ticked checklist or a "finished" remark under
@@ -94,7 +109,7 @@ or gives the reason it was dropped. When one plan takes over from another, both
 edits land together: the newcomer links back, and the old plan is cancelled.
 
 A plan that a milestone schedules also carries `tags: [milestone-<slug>]`
-(`milestone-mvp`, `milestone-polish`). The inclusion link in the milestone plan
+(`milestone-v1`, `milestone-polish`). The inclusion link in the milestone plan
 is what you read; the tag is what the milestone progress chart counts.
 
 ## Features — `data/features/<slug>.md`
@@ -116,7 +131,8 @@ project's test runner takes them. Marking a feature implemented without naming
 any test fails `iwe schema validate`. Treat the failure as missing protection:
 write the test, then list it.
 
-Body: `## Purpose`, `## Behaviour`, `## Edge cases`, `## Open questions`.
+Body: `## Purpose`, `## Behaviour`, `## Edge cases`, `## Open questions`. A
+cancelled feature opens with a line giving the reason.
 
 ## Bugs — `data/bugs/<slug>.md`
 
@@ -131,7 +147,7 @@ created: 2026-07-27   # required, when the ticket was opened
 completed: 2026-07-29 # required when stage: done
 reported_by: agent    # required: user | agent
 affected_versions:    # required: versions it showed up in, release order
-  - 0.1.0             # a released version, or unreleased
+  - 0.1.0             # a release's version (0.1.0, 1.0.0-beta.1), or unreleased
 ---
 ```
 
@@ -152,8 +168,8 @@ causes, each with the quickest check that would confirm or rule it out),
 `## Root cause`, `## Fix`, `## Recurrence`, `## Related`, `## Key references`.
 No other section is accepted. The `## Fix` section is three bullets: **Change**
 (what was touched), **Guard** (the test that fails without the fix, or why none
-exists), **Shipped** (the commit and the release entry), with the root cause in
-its own section.
+exists), **Shipped** (the commit, where the code is in git, and the release
+entry), with the root cause in its own section.
 
 Open tickets are listed under `## Open` in `data/bugs.md` and deferred ones
 under `## Deferred`; a ticket closed as `done` moves to `## Fixed` in
@@ -185,14 +201,16 @@ Atomic prioritized work items waiting to become plans.
 ---
 type: task          # required
 stage: planned      # planned | deferred | done | cancelled — required
-priority: high      # high | medium | low
+priority: high      # high | medium | low — required
 created: 2026-08-01 # required, YYYY-MM-DD
 completed: 2026-08-14 # required when stage: done
 ---
 ```
 
-The link in `data/backlog.md` sits under the priority section while the task is
-`planned`, and under `## Deferred`, `## Done` or `## Cancelled` otherwise.
+The link in `data/backlog.md` sits under the section of its `priority` while the
+task is `planned`, and under `## Deferred`, `## Done` or `## Cancelled`
+otherwise. A finished task gets `stage: done` and `completed`, and its link
+moves to `## Done`.
 
 ## Learnings — `data/learnings/<slug>.md`
 
@@ -207,14 +225,14 @@ of repeating it.
 ---
 type: learning      # required
 created: 2026-07-12 # required, when the fact was discovered or stated
-kind: trap          # trap | rule | correction
+kind: trap          # trap | rule | correction — required
 session: <id>       # optional, the working session it came from
 ---
 ```
 
-Link each learning from `data/learnings.md` under a `##` topic heading. A
-learning that turns out wrong is rewritten or deleted (`iwe delete`), not left
-beside its correction.
+Link each learning from `data/learnings.md`; group the links under `##` topic
+headings once the list outgrows one screen. A learning that turns out wrong is
+rewritten or deleted (`iwe delete`), not left beside its correction.
 
 ## Reference documents — type only
 
@@ -222,8 +240,9 @@ beside its correction.
 carry a `type` (`spec`, `architecture`, `concept`, `someday`) and nothing else
 that is required: they are durable reference, not work items, so no `stage`
 applies. Specs use the Requirement/Scenario format (`### Requirement:` + SHALL,
-`#### Scenario:` + WHEN/THEN); architecture notes record decisions with their
-rejected alternatives.
+`#### Scenario:` + WHEN/THEN), with rigor scaled to risk: two lines for low-risk
+behavior, full scenarios for a contract. Architecture notes record decisions
+with their rejected alternatives.
 
 ## Hubs and the trackers
 
@@ -257,17 +276,20 @@ Inline `values` are refused, so a chart can only show what the documents say.
 The template's charts select by `type` and frontmatter fields rather than by hub
 links, so moving a link never changes a number. What each hub draws:
 
-| Hub                     | Charts                                                                                                                                                   |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data/bugs.md`          | filed and fixed per month; open bugs, recurring bugs and open bugs by `reported_by`; bugs whose `affected_versions` hold two or more versions            |
-| `data/bugs-archive.md`  | closed, fixed and cancelled counts; fixes per month by `reported_by` with the mean days to fix                                                           |
-| `data/plans.md`         | every plan by `stage`                                                                                                                                    |
-| `data/plans-archive.md` | shipped and cancelled counts; plans shipped per month                                                                                                    |
-| `data/backlog.md`       | tasks by `stage` and `priority`; tasks added per month                                                                                                   |
-| `data/features.md`      | features by `stage`; guard tests listed                                                                                                                  |
-| `data/releases.md`      | items per release on a timeline, counted from each page's `## Added`, `## Changed` and `## Fixed`; tests and suite time from `data/releases/metrics.csv` |
-| `data/learnings.md`     | learnings per month by `kind`                                                                                                                            |
-| `data/milestone.md`     | each milestone's plans by stage, from the `milestone-<slug>` tags                                                                                        |
+| Hub                     | Charts                                                                                                                                     |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `data/bugs.md`          | filed and fixed per month; open bugs by `reported_by`; bugs whose `affected_versions` hold two or more versions                            |
+| `data/bugs-archive.md`  | closed, fixed and cancelled counts; fixes per month by `reported_by` with the mean days to fix                                             |
+| `data/plans.md`         | every plan by `stage`                                                                                                                      |
+| `data/plans-archive.md` | plans shipped per month                                                                                                                    |
+| `data/backlog.md`       | tasks by `stage` and `priority`; tasks added per month                                                                                     |
+| `data/features.md`      | features by `stage`                                                                                                                        |
+| `data/releases.md`      | items per release, counted from each page's `## Added`, `## Changed` and `## Fixed`; tests and suite time from `data/releases/metrics.csv` |
+| `data/learnings.md`     | learnings per month by `kind`                                                                                                              |
+| `data/milestone.md`     | each milestone's plans by stage, from the `milestone-<slug>` tags                                                                          |
+
+When you add a field or an enum value that a chart groups by, update the chart's
+`sort` and color `domain` lists in the same change.
 
 `data/releases/metrics.csv` has one row per released version (`version`,
 `tests`, `suite_seconds`, `app_mb`); its `version` column joins to the release

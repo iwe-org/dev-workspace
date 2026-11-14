@@ -5,6 +5,7 @@ description: >-
 maxDepth: 4
 frontmatter:
   type: object
+  additionalProperties: false
   required: [type]
   properties:
     type: { const: concept }
@@ -17,7 +18,7 @@ frontmatter:
     tags: { type: array, items: { type: string } }
     status:
       enum: [draft, stable, deprecated]
-      description: OKF lifecycle (SPEC §5.4), derived from stage — set it only for the draft and deprecated cases in SCHEMA.md; absent means stable
+      description: OKF lifecycle (SPEC §5.4) — this type has no stage to derive it from, so leave it unset; absent means stable
     stale_after:
       type: string
       format: date

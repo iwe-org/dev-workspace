@@ -8,7 +8,7 @@ fields:
     multiline: true
   status:
     title: Status
-    description: OKF lifecycle, derived from stage. Absent means stable.
+    description: OKF lifecycle. This type has no stage to derive it from, so leave it unset. Absent means stable.
     values:
       draft:
         title: Draft

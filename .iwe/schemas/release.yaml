@@ -5,6 +5,7 @@ description: >-
 maxDepth: 4
 frontmatter:
   type: object
+  additionalProperties: false
   required: [type, version, stage]
   properties:
     type: { const: release }

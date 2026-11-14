@@ -7,7 +7,8 @@ maxDepth: 2
 maxTokens: 600
 frontmatter:
   type: object
-  required: [type, created]
+  additionalProperties: false
+  required: [type, created, kind]
   properties:
     type: { const: learning }
     created:
@@ -16,7 +17,7 @@ frontmatter:
       description: created is the YYYY-MM-DD date the fact was discovered or stated, which may precede the day it was recorded
     kind:
       enum: [trap, rule, correction]
-      description: "kind, if present, must be one of: trap, rule, correction"
+      description: "kind must be one of: trap, rule, correction"
     session:
       type: string
       minLength: 1
@@ -30,7 +31,7 @@ frontmatter:
     tags: { type: array, items: { type: string } }
     status:
       enum: [draft, stable, deprecated]
-      description: OKF lifecycle (SPEC §5.4), derived from stage — set it only for the draft and deprecated cases in SCHEMA.md; absent means stable
+      description: OKF lifecycle (SPEC §5.4) — this type has no stage to derive it from, so leave it unset; absent means stable
     stale_after:
       type: string
       format: date

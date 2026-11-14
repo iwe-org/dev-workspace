@@ -6,7 +6,106 @@ All notable changes to this template are documented here. The format is based on
 This is a template you clone, so the entries below double as migration notes: if
 you cloned an earlier copy, they tell you what to change in your own workspace.
 
-## [1.3.0]
+## [1.4.0] - 2026-11-13
+
+An audit of the template as the iWe app installs it: into an empty folder, with
+no git repository, no `README.md` and no CI, for whichever agent the user runs.
+
+### Fixed
+
+- `iwe new` in the plan skill and the `iwe` skill lacked the title the command
+  requires, and waited for piped input. The form is
+  `iwe new "<Title>" --key data/plans/<YYYYMMDD>-<slug> --content ""`.
+- Setup left the fictional product behind after deleting the examples: release
+  history in `data/log.md`, a module diagram on the Architecture hub, month
+  headings in the plans archive, topic headings on the Learnings hub, and the
+  template's dates on the product doc and the onboarding tasks. The diagram
+  moved into an example document, the Learnings hub lists its examples flat, and
+  the setup skill names every remaining cleanup: the log starts over with one
+  group dated today, the onboarding tasks are re-dated, the product changelog
+  gets its first entry, and the paragraphs about the examples leave `AGENTS.md`
+  and `SCHEMA.md`.
+- Cutting a release left the new page a draft titled Unreleased, with the
+  accumulator's description and paragraph, and the hub link still reading
+  Unreleased. The ship skill now clears `status`, sets the description, has the
+  heading and paragraph rewritten, fixes the hub link, and gives the whole of
+  the fresh `unreleased.md`. Accepting a proposed feature clears its
+  `status: draft` in the plan skill, with the command.
+- `AGENTS.md` said links carry `.md` and, a few lines later, that they are
+  extension-less. They carry `.md`.
+- `data/log.md` was always an orphan in `iwe stats`, so the weekly and verify
+  skills could never report a healthy graph. The start page links the log, and
+  the skills use the section names `iwe stats` prints, `## Broken Links` and
+  `## Orphans`, which appear only when there is something to list.
+- A skipped ✏️ in `data/product.md` sent every later session back into setup.
+  Setup is due only while "What is it" is unfilled; any other ✏️ is mentioned
+  once per session.
+- The agent stamped every document as `claude-code/opus-5` whichever agent it
+  was. `generated.by` is `<your agent>/<your model>`.
+- `SCHEMA.md` listed charts that 1.2.1 removed; `.iwe/config.toml` said in one
+  comment that hubs are unvalidated and in another that they are validated;
+  `data/log.md` said every skill logs, when the ship skill does; `AGENTS.md`
+  asked for `data/index.md` to be updated when a hub gained a document rather
+  than when a hub is added; `STRUCTURE.md` described the GitHub repository and
+  its README, which the app does not install.
+- The status field's description said "derived from stage" on the types that
+  have no stage, and on hubs and trackers, whose stage never changes.
+- Example documents that contradicted each other: a someday note and a spec that
+  said their type has no frontmatter; a proposed feature with an active plan;
+  bugs reported against features that had not shipped; a fix shipped in 0.2.0
+  for a bug still listed as affecting 0.2.0, and missing from that release page;
+  two learnings dated before the bugs they cite; and an MVP milestone still open
+  after four releases, in a plan file without the date prefix. The milestone is
+  now `20260625-v1-milestone-example`, "1.0", with the tag `milestone-v1`.
+- The README's example queries returned nothing against the shipped data, and it
+  claimed CI for every workspace rather than for this repository.
+
+### Changed
+
+- **Git is optional.** Setup asks once whether the workspace should be a git
+  repository and offers `git init`. Every skill commits only in a repository,
+  the weekly digest falls back to `generated.at` and file dates, and the claim
+  that CI checks every commit is gone.
+- `AGENTS.md` is 128 lines instead of 191. It keeps what every session needs and
+  points at `SCHEMA.md` and the skills for the rest: one line per event in the
+  Record step, and no second copy of the stage vocabularies. The rules that
+  lived only there (chart upkeep, code anchors, rigor scaled to risk, unknown
+  fields) moved to `SCHEMA.md`.
+- **Schemas reject fields they do not declare** (`additionalProperties: false`
+  on every typed schema), so a misspelled `priorty:` fails validation. A field
+  of your own is declared in the schema and its sidecar first. There is no
+  `title` field: the title is the `#` heading.
+- `priority` is required on a backlog task and `kind` on a learning; the backlog
+  hub's sections and the learnings chart depend on them.
+- A bug's `affected_versions` accepts the same versions a release page does,
+  prereleases such as `1.0.0-beta.1` included.
+- The example set is smaller and every example has the shape `SCHEMA.md` asks
+  for: 9 plans (two of them milestones), 9 features, 18 bugs, 4 specs and 2
+  architecture notes, down from 16 plans, 14 features, 21 bugs and 4 specs.
+  Every plan has its `## Spec changes`, every feature its four sections, and
+  every closed bug a `## Fix` of Change, Guard and Shipped. Each stage and each
+  hub section still has an example.
+- The start page says the `iwe` CLI is needed and how to install it, and lists
+  Milestones, Someday, Concept, the bugs archive and the log.
+- Earlier entries in this changelog carry their release dates.
+
+### Migration
+
+If you cloned 1.3.0 and have run setup, in your workspace:
+
+1. Copy `.iwe/schemas/*.yaml` and the comments in `.iwe/config.toml` from this
+   template. If `iwe schema validate` then reports an unexpected field, either
+   fix the spelling or declare the field in the schema and its sidecar.
+2. Add `priority` to any backlog task and `kind` to any learning without one.
+3. Copy `AGENTS.md`, `SCHEMA.md`, `STRUCTURE.md` and `.claude/skills/`, then
+   delete the **Example docs** paragraph from `AGENTS.md` and the paragraph
+   about the examples from `SCHEMA.md`.
+4. Add the Log line from this template's `index.md` to yours.
+5. Check `data/log.md`, `data/learnings.md`, `data/plans-archive.md` and
+   `data/architecture.md` for lines the examples left behind, and remove them.
+6. Run `iwe normalize`, then `iwe schema validate`.
+
+## [1.3.0] - 2026-11-12
 
 ### Changed
 
@@ -21,7 +120,7 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   template's structural rules to the schema and normalization checks, and a `v*`
   tag opens the registry update pull request.
 
-## [1.2.1]
+## [1.2.1] - 2026-11-11
 
 ### Added
 
@@ -77,7 +176,7 @@ you cloned an earlier copy, they tell you what to change in your own workspace.
   `frontmatter_document_title` from `.iwe/config.toml`. The title is the
   document's `#` heading; the app no longer offers an empty Title field.
 
-## [1.2.0]
+## [1.2.0] - 2026-11-11
 
 ### Added
 
@@ -158,7 +257,7 @@ If you cloned 1.1.0, in your workspace:
    plans and bugs into the archives, and list them in `data/index.md`.
 6. Run `iwe normalize`, then `iwe schema validate`.
 
-## [1.1.0]
+## [1.1.0] - 2026-11-11
 
 ### Added
 

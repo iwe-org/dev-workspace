@@ -29,11 +29,12 @@ describe the old behavior.
    move that link to the milestone's `## Shipped` section too. Loose ends the plan mentions without promising are no reason to leave it open:
    turn each into a backlog task or a bug, link it from the plan, and close
    the plan.
-   (Abandoned or superseded instead of shipped? `--set stage=cancelled`, set
-   OKF `status: deprecated`, add a first line to the body pointing to its successor or giving the reason, move its link to `## Cancelled` in
+   (Abandoned or superseded instead of shipped?
+   `--set stage=cancelled --set status=deprecated`, add a first line to the body pointing to its successor or giving the reason, move its link to `## Cancelled` in
    `data/plans-archive.md`, and stop here.)
-4. **Update the feature.** Set the feature doc to `stage: implemented` and
-   list its guard tests in `tests` — the tests that fail when its behaviour
+4. **Update the feature.** Set the feature doc to `stage: implemented`, remove
+   a `status` left over from an earlier stage, and list its guard tests in
+   `tests` — the tests that fail when its behaviour
    breaks (create the doc from the plan's Context if it doesn't exist, linked
    from `data/features.md`). No such test exists? Say so to the user rather
    than inventing one; the schema rejects `implemented` without `tests`, and
@@ -44,13 +45,52 @@ describe the old behavior.
 5. **Record in the release.** Add an inclusion link to the feature doc under
    `## Added` in `data/releases/unreleased.md` (bug fixes under `## Fixed`,
    linking the bug doc).
-6. **Cut a release** (only when asked, e.g. "cut release 0.2.0"):
-   - `iwe rename data/releases/unreleased data/releases/<X.Y.Z>`
-   - `iwe update -k data/releases/<X.Y.Z> --set version=<X.Y.Z> --set date=<today> --set stage=released`
-   - Recreate `data/releases/unreleased.md` fresh (version/stage
-     `unreleased`, empty `## Added` / `## Fixed`)
-   - In `data/releases.md`, keep `Unreleased` on top and add the new version
-     right below it (newest first).
+6. **Cut a release** (only when asked, e.g. "cut release 0.2.0"). The
+   accumulator page becomes the release page, and a new accumulator replaces
+   it:
+   - `iwe rename data/releases/unreleased data/releases/<X.Y.Z>` — every link to
+     the page follows it.
+   - `iwe update -k data/releases/<X.Y.Z> --set version=<X.Y.Z> --set date=<today> --set stage=released --unset status --set 'description="Version <X.Y.Z>: <what it carries>."'`
+     — a released page is no longer a draft, and its description names the
+     release instead of the accumulator. Keep both pairs of quotes: the value
+     holds a colon.
+   - Edit the page body: retitle the heading from `# Unreleased` to `# <X.Y.Z>`,
+     replace the italic paragraph about the accumulator with one sentence saying
+     what the release carries, and drop a `## Added`, `## Changed` or `## Fixed`
+     heading that has nothing under it.
+   - Create `data/releases/unreleased.md` again, exactly:
+
+     ```markdown
+     ---
+     type: release
+     description: The accumulator page for work merged but not yet released.
+     version: unreleased
+     stage: unreleased
+     status: draft
+     generated:
+       by: <your agent>/<your model>
+       at: <ISO 8601 now>
+     ---
+
+     # Unreleased
+
+     *Work that has shipped to main but not yet to users. The ship skill adds an
+     inclusion link here for every feature or fix as it lands; cutting a release
+     renames this file to the version number and starts a fresh one.*
+
+     ## Added
+
+     ## Fixed
+     ```
+   - In `data/releases.md` the renamed link still reads `Unreleased`. Change it
+     to `[<X.Y.Z>](releases/<X.Y.Z>.md)` and add
+     `[Unreleased](releases/unreleased.md)` on a line of its own above it, so
+     the accumulator stays on top and the versions follow newest first.
+   - The rename also moved links that meant the accumulator rather than this
+     release. List what links to the new page
+     (`iwe find --references data/releases/<X.Y.Z> -f keys`) and point any such
+     link back at `releases/unreleased.md`; a bug's `## Fix` that says where the
+     fix shipped is right as it is, once its wording names the version.
    - If the user gives the release's test count and suite time, add a row
      for the version to `data/releases/metrics.csv`; never estimate them.
 7. **Log it.** Append a bullet to `data/log.md` under a `## YYYY-MM-DD` group
@@ -58,9 +98,9 @@ describe the old behavior.
    per state change, each linking the document it describes —
    `- **Update**: [Focus sessions](features/focus-sessions.md) implemented.`
    A release cut gets its own line linking the release page.
-8. **Validate & commit.** `iwe normalize`, then `iwe schema validate` — must
-   pass. Commit with a message describing the state change, e.g.
-   `ship: focus-sessions done, timer spec synced, 0.2.0 cut`.
+8. **Validate.** `iwe normalize`, then `iwe schema validate` — must pass. If
+   the workspace is a git repository, commit with a message describing the
+   state change, e.g. `ship: focus-sessions done, timer spec synced, 0.2.0 cut`.
 
 ## Rules
 

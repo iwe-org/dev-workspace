@@ -47,8 +47,8 @@ never silently outgrown.
 - Never tick a box whose tests fail or weren't run — an unchecked box that's
   actually done is a nuisance; a checked box that isn't done is a lie the next
   session builds on.
-- Checkbox flips and anchor updates belong in the same commit as the code they
-  describe.
+- Checkbox flips and anchor updates belong to the same change as the code they
+  describe — the same commit, where the plan and the code share a repository.
 - One task at a time unless the user asks for more; small honest increments
   beat a big unreviewable one.
 - This skill implements; it doesn't ship. Status flips, spec sync, and release

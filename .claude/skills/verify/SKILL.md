@@ -55,8 +55,9 @@ fixes belong to the skills and sessions it points at.
      and the same for `{type: bug, stage: {$in: [done, cancelled]}}` under
      `data/bugs` must print nothing; plans whose body claims they shipped
      (every box ticked) but carry no `stage`; `iwe schema validate`
-     violations; `iwe stats` dangling links and `data/` orphans other than
-     `data/index`.
+     violations; a `## Broken Links` section in `iwe stats`, or a `data/`
+     document under its `## Orphans` section (`iwe stats` prints either section
+     only when it has something to list).
    - Report in the same CRITICAL/WARNING/SUGGESTION format, grouped by fix
      owner: "run the ship skill on X", "update spec Y", "close bug Z".
 

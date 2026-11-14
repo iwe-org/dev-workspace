@@ -21,8 +21,8 @@ every four sessions, it arrives after the fifth.
 
 ## Expected
 
-The long break follows the configured number of sessions, per [Long-break
-scheduling](../features/long-break-scheduling-example.md).
+The long break follows the configured number of sessions, per "Long-break
+interval" in the [Breaks spec](../spec/breaks-example.md).
 
 ## Reproduction
 
@@ -36,6 +36,9 @@ The counter was incremented after the check instead of before.
 
 ## Fix
 
-- **Change:** the counter moves before the check; guarded by
-  `src/timer/schedule.test.ts`, shipped in
+- **Change:** the session counter is incremented before the interval check, in
+  `src/timer/schedule.ts`.
+- **Guard:** `src/timer/schedule.test.ts` — "the long break follows the fourth
+  session".
+- **Shipped:** commit `b3187ce`, listed under `## Fixed` in
   [0.4.0](../releases/example-0.4.0.md).

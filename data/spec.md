@@ -22,4 +22,4 @@ whenever a plan ships, so this section never drifts from the code.*
 
 [Session history](spec/session-history-example.md)
 
-[Do not disturb](spec/do-not-disturb-example.md)
+[Daily goal](spec/daily-goal-example.md)

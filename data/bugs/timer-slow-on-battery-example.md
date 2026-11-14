@@ -30,6 +30,10 @@ The countdown matches wall time to the second.
 
 ## Fix
 
-- **Change:** none. By design: the system throttles timers on battery, and the
+- **Change:** none — by design. The system throttles timers on battery, and the
   countdown re-syncs from the monotonic clock on every tick, so the end time is
-  exact. A stopwatch comparison showed under a second of drift.
+  exact.
+- **Guard:** none needed; the engine tests already cover "Wall-clock
+  independence" in the [Timer spec](../spec/timer-example.md).
+- **Shipped:** nothing to ship. A stopwatch comparison showed under a second of
+  drift over a full session.

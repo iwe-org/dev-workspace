@@ -12,8 +12,10 @@ generated:
 *The foundation document. Every plan, spec, and release decision derives from
 what's written here — fill it in before anything else (the setup skill walks you
 through it, drafting most sections from your codebase). Replace each ✏️ block;
-delete the instruction lines when done. Log every material change in the
-Changelog section at the bottom.*
+delete the instruction lines when done. "What is it" is the one section setup
+cannot finish without; a ✏️ left in any other section is a gap the agent
+mentions and works around. Log every material change in the Changelog section at
+the bottom.*
 
 ## What is it
 
@@ -59,7 +61,7 @@ constraint written here is a constraint no plan has to rediscover.*
 
 *Optional but powerful: project-specific rules the agent must follow when
 writing each document type, checked by the plan and ship skills before they
-write. Group by target, e.g.:*
+write. If there are none, write "None yet." Group by target, e.g.:*
 
 - *specs — "every requirement touching file paths must state cross-platform
   behavior"*
@@ -71,4 +73,4 @@ write. Group by target, e.g.:*
 
 ## Changelog
 
-- 2026-08-01 — document created.
+- Not filled in yet; setup writes the first entry.

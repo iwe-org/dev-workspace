@@ -1,7 +1,7 @@
 ---
 type: learning
 description: Timer tests run on a fake clock.
-created: 2026-08-04
+created: 2026-09-19
 kind: rule
 generated:
   by: human:author

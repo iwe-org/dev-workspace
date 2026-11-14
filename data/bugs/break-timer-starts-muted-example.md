@@ -36,5 +36,15 @@ The audio element was created lazily on the first chime and missed it.
 
 ## Fix
 
-- **Change:** the chime is preloaded at launch; guarded by
-  `src/audio/chime.test.ts`, shipped in [0.2.0](../releases/example-0.2.0.md).
+- **Change:** the chime is loaded at launch instead of on first use, in
+  `src/audio/chime.ts`.
+- **Guard:** `src/audio/chime.test.ts` — "the first chime after launch plays",
+  which fails without the preload.
+- **Shipped:** commit `c41e9d7`, listed under `## Fixed` in
+  [0.2.0](../releases/example-0.2.0.md).
+
+## Related
+
+- [Audio must be loaded before the first
+  chime](../learnings/audio-needs-preloading-example.md), the learning this
+  ticket produced.

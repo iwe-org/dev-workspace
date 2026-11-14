@@ -12,4 +12,5 @@ generated:
 
 Early notes said the goal counted completed sessions. The shipped [Daily
 goal](../features/daily-goal-example.md) counts focus minutes, so a shortened
-session still counts in part.
+session still counts in part; the [Daily goal
+spec](../spec/daily-goal-example.md) has the rule.

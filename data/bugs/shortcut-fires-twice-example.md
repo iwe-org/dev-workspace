@@ -36,6 +36,9 @@ The shortcut was registered again every time the settings window opened.
 
 ## Fix
 
-- **Change:** registration happens once at launch; guarded by
-  `src/shortcuts/register.test.ts`, shipped in
-  [0.3.0](../releases/example-0.3.0.md).
+- **Change:** shortcuts are registered once at launch, and again only when the
+  user changes one.
+- **Guard:** `src/shortcuts/register.test.ts` — "opening settings does not
+  register again".
+- **Shipped:** commit `61fd3b7`, before global shortcuts were released, and
+  listed under `## Fixed` in [0.3.0](../releases/example-0.3.0.md).

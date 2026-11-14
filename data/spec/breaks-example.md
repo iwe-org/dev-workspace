@@ -60,6 +60,5 @@ long-break count.
 
 *Convention notes: the [long-break
 bug](../bugs/long-break-skipped-after-pause-example.md) violates "Long-break
-interval", and [long-break
-scheduling](../features/long-break-scheduling-example.md) is the feature this
-spec describes.*
+interval", and [break timers](../features/break-timers-example.md) is the
+feature this spec describes.*

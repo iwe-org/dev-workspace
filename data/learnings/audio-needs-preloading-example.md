@@ -1,7 +1,7 @@
 ---
 type: learning
 description: Audio must be loaded before the first chime.
-created: 2026-06-18
+created: 2026-08-05
 kind: trap
 generated:
   by: human:author

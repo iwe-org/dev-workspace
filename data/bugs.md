@@ -72,15 +72,6 @@ encoding:
 
 ## Open
 
-[Bug: The onboarding tour shows again after every
-update](bugs/onboarding-tour-reappears-example.md)
-
-[Bug: The tray tooltip cuts long task
-labels](bugs/tooltip-truncates-long-labels-example.md)
-
-[Bug: Do not disturb stays on after
-waking](bugs/dnd-toggle-ignored-on-wake-example.md)
-
 [Bug: The long break is skipped after a paused
 session](bugs/long-break-skipped-after-pause-example.md)
 

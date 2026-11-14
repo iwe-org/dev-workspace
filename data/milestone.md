@@ -47,6 +47,6 @@ layer:
       text: {field: label}
 ```
 
-[MVP](plans/mvp-example.md)
+[1.0](plans/20260625-v1-milestone-example.md)
 
 [Polish](plans/20260901-polish-milestone-example.md)

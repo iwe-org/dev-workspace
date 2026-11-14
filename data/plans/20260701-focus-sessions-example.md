@@ -5,7 +5,7 @@ stage: done
 created: 2026-07-01
 completed: 2026-07-18
 tags:
-- milestone-mvp
+- milestone-v1
 generated:
   by: human:author
   at: 2026-07-01T00:00:00Z
@@ -57,12 +57,16 @@ store. Completion appends to the session log through the existing writer.
 
 - [x] Main-window countdown display with start/pause/resume/abandon
 - [x] Tray controls mirroring the window
+- [x] History view listing the log, newest first
 - [x] Completion chime
 
 ## Spec changes
 
 [Timer](../spec/timer-example.md) — session countdown, pause/resume, and
 wall-clock independence requirements written from this plan's behavior.
+
+[Session history](../spec/session-history-example.md) — what a log entry
+records, and how the history view tells completed sessions from abandoned ones.
 
 ## Verification
 
@@ -72,7 +76,7 @@ wall-clock independence requirements written from this plan's behavior.
 
 ## Out of scope
 
-- Break timers and long-break scheduling.
+- Breaks between sessions.
 - The streak widget (planned separately).
 
 ## Key references

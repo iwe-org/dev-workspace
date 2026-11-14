@@ -62,7 +62,7 @@ resolve: {scale: {y: independent}}
 
 ## Fixed
 
-[Bug: The daily goal ring is clipped in the compact
+[Bug: The daily goal ring is clipped in a small
 window](bugs/daily-goal-ring-clipped-example.md)
 
 [Bug: The daily goal resets at noon](bugs/daily-goal-resets-at-noon-example.md)

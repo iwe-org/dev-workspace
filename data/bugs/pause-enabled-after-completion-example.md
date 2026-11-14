@@ -49,7 +49,8 @@ session's state, and the reducer accepted `pause` in any state.
   view reads the button state from the store.
 - **Guard:** `src/store/reducers.test.ts` — "pause after completion is ignored",
   which fails without the fix.
-- **Shipped:** listed under `## Fixed` in [0.2.0](../releases/example-0.2.0.md).
+- **Shipped:** commit `9e1b6a3`, listed under `## Fixed` in
+  [0.2.0](../releases/example-0.2.0.md).
 
 ## Related
 

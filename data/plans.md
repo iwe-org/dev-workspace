@@ -33,7 +33,7 @@ encoding:
 
 ## Active
 
-[MVP](plans/mvp-example.md)
+[1.0](plans/20260625-v1-milestone-example.md)
 
 [Polish](plans/20260901-polish-milestone-example.md)
 
@@ -41,8 +41,6 @@ encoding:
 
 [Do-not-disturb sync](plans/20261001-do-not-disturb-sync-example.md)
 
-[Task labels](plans/20261005-task-labels-example.md)
-
 ## Deferred
 
-[Weekly report](plans/20260918-weekly-report-example.md)
+[Accessibility pass](plans/20260922-accessibility-pass-example.md)

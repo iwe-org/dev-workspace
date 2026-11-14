@@ -51,6 +51,6 @@ entry.
 
 *Convention notes: the [abandoned-sessions
 bug](../bugs/history-shows-abandoned-as-complete-example.md) violated "Completed
-and abandoned are told apart", and [session
-history](../features/session-history-example.md) is the feature this spec
-describes.*
+and abandoned are told apart"; the history view is part of [focus
+sessions](../features/focus-sessions-example.md), whose plan lists this spec
+under its `## Spec changes`.*
